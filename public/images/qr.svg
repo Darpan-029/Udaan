@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#FFFFFF" rx="12"/>
+  <path d="M20 20h50v50H20zM30 30v30h30V30zM130 20h50v50h-50zM140 30v30h30V30zM20 130h50v50H20zM30 140v30h30v-30z" fill="#000"/>
+  <rect x="40" y="40" width="10" height="10" fill="#000"/>
+  <rect x="150" y="40" width="10" height="10" fill="#000"/>
+  <rect x="40" y="150" width="10" height="10" fill="#000"/>
+  <!-- Decorative barcode pattern -->
+  <path d="M80 20h10v20H80zM100 20h20v10h-20zM80 50h30v10H80zM120 40h10v30h-10zM80 70h90v10H80zM20 80h30v10H20zM60 80h10v30H60zM80 90h20v20H80zM110 90h30v10h-30zM150 90h30v20h-30zM20 100h30v10H20zM100 120h20v20h-20zM130 110h20v30h-20zM80 130h10v40H80zM100 150h30v10h-30zM140 140h30v30h-30zM100 170h70v10h-70z" fill="#1E3A8A"/>
+</svg>
