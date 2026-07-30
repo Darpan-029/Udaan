@@ -1,16 +1,7 @@
-"use client"
-
 import * as React from "react"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { Clock, MapPin, Calendar, Download } from "lucide-react"
+import { Clock, MapPin, Calendar } from "lucide-react"
 
 export function Schedule() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
   const scheduleItems = [
     {
       time: "09:00 AM",
@@ -57,59 +48,54 @@ export function Schedule() {
   ]
 
   return (
-    <section id="schedule" className="py-16 bg-[#FAF8F5] dark:bg-[#12161E] border-t border-[#E4DFD7] dark:border-[#212B3B]" ref={ref}>
+    <section id="schedule" className="py-16 bg-background text-foreground border-t border-border scroll-mt-24">
       <div className="container mx-auto px-4 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <span className="text-[11px] font-sans tracking-[0.2em] text-[#C5A059] uppercase block mb-1">
+        <div className="text-center mb-12">
+          <span className="text-[11px] font-sans tracking-[0.2em] text-accent uppercase block mb-1">
             PROGRAM TIMELINE
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl text-[#142338] dark:text-[#FAF8F5] font-normal">
+          <h2 className="font-serif text-3xl md:text-4xl text-foreground font-normal">
             Order of Events
           </h2>
-          <div className="w-12 h-px bg-[#C5A059] mx-auto mt-4" />
-        </motion.div>
+          <div className="w-12 h-px bg-accent mx-auto mt-4" />
+        </div>
 
         {/* Schedule Info Ribbon */}
-        <div className="bg-white dark:bg-[#1C2430] p-6 border border-[#EAE5DC] dark:border-[#212B3B] grid md:grid-cols-3 gap-6 mb-8 text-xs font-sans">
+        <div className="bg-card p-6 border border-border grid md:grid-cols-3 gap-6 mb-8 text-xs font-sans">
           <div className="flex items-center space-x-3">
-            <Calendar className="h-4 w-4 text-[#C5A059]" />
+            <Calendar className="h-4 w-4 text-accent" />
             <div>
-              <span className="text-[#64748B] block uppercase tracking-wider text-[10px]">Date</span>
-              <span className="font-semibold text-[#142338] dark:text-white">Thursday, 27 August 2026</span>
+              <span className="text-muted-foreground block uppercase tracking-wider text-[10px]">Date</span>
+              <span className="font-semibold text-foreground">Thursday, 27 August 2026</span>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <Clock className="h-4 w-4 text-[#C5A059]" />
+            <Clock className="h-4 w-4 text-accent" />
             <div>
-              <span className="text-[#64748B] block uppercase tracking-wider text-[10px]">Timing</span>
-              <span className="font-semibold text-[#142338] dark:text-white">09:00 AM – 04:00 PM IST</span>
+              <span className="text-muted-foreground block uppercase tracking-wider text-[10px]">Timing</span>
+              <span className="font-semibold text-foreground">09:00 AM – 04:00 PM IST</span>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <MapPin className="h-4 w-4 text-[#C5A059]" />
+            <MapPin className="h-4 w-4 text-accent" />
             <div>
-              <span className="text-[#64748B] block uppercase tracking-wider text-[10px]">Venue</span>
-              <span className="font-semibold text-[#142338] dark:text-white">SGSITS Main Auditorium</span>
+              <span className="text-muted-foreground block uppercase tracking-wider text-[10px]">Venue</span>
+              <span className="font-semibold text-foreground">SGSITS Main Auditorium</span>
             </div>
           </div>
         </div>
 
         {/* Minimalist Editorial Timeline Table */}
-        <div className="bg-white dark:bg-[#1C2430] border border-[#EAE5DC] dark:border-[#212B3B] divide-y divide-[#EAE5DC] dark:divide-[#212B3B]">
+        <div className="bg-card border border-border divide-y divide-border">
           {scheduleItems.map((item, idx) => (
-            <div key={idx} className="p-5 flex flex-col md:flex-row items-start gap-4 hover:bg-[#FAF8F5] dark:hover:bg-[#12161E] transition-colors">
+            <div key={idx} className="p-5 flex flex-col md:flex-row items-start gap-4 hover:bg-muted/40 transition-colors">
               <div className="md:w-32 flex-shrink-0">
-                <span className="font-serif text-base text-[#142338] dark:text-[#C5A059] font-normal">{item.time}</span>
+                <span className="font-serif text-base text-foreground dark:text-accent font-normal">{item.time}</span>
               </div>
               <div className="flex-1">
-                <h3 className="font-serif text-base text-[#142338] dark:text-white font-normal mb-1">{item.title}</h3>
-                <p className="font-sans text-xs text-[#64748B] dark:text-[#94A3B8] leading-relaxed mb-2">{item.description}</p>
-                <span className="inline-flex items-center gap-1 text-[11px] font-sans text-[#C5A059]">
+                <h3 className="font-serif text-base text-foreground font-normal mb-1">{item.title}</h3>
+                <p className="font-sans text-xs text-muted-foreground leading-relaxed mb-2">{item.description}</p>
+                <span className="inline-flex items-center gap-1 text-[11px] font-sans text-accent">
                   <MapPin className="h-3 w-3" /> {item.location}
                 </span>
               </div>
@@ -120,7 +106,8 @@ export function Schedule() {
         <div className="mt-8 text-center">
           <a
             href="/docs/schedule.pdf"
-            className="inline-block bg-[#142338] hover:bg-[#0F1B2B] text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors shadow-sm"
+            download="UDAAN_2026_Schedule.pdf"
+            className="inline-block bg-[#142338] hover:bg-[#0F1B2B] text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             Download Schedule PDF
           </a>

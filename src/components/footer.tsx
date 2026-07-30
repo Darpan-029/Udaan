@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -7,9 +8,11 @@ export function Footer() {
         {/* Emblem */}
         <div className="flex justify-center mb-4">
           <div className="p-1 bg-white border border-[#DCD5C9] rounded-full shadow-sm">
-            <img
+            <Image
               src="/images/sgsits_logo.png"
               alt="SGSITS Indore Official Seal"
+              width={48}
+              height={48}
               className="h-12 w-auto object-contain rounded-full"
             />
           </div>
@@ -27,7 +30,7 @@ export function Footer() {
         <nav className="flex items-center justify-center flex-wrap gap-y-2 text-xs font-sans tracking-[0.15em] text-[#CBD5E1] my-6">
           <Link href="/about" className="hover:text-white transition-colors px-2">ABOUT</Link>
           <span className="text-[#475569]">|</span>
-          <Link href="/udaan" className="hover:text-white transition-colors px-2">UDAAN</Link>
+          <Link href="/" className="hover:text-white transition-colors px-2">UDAAN</Link>
           <span className="text-[#475569]">|</span>
           <Link href="/#documents" className="hover:text-white transition-colors px-2">DOCUMENTS</Link>
           <span className="text-[#475569]">|</span>

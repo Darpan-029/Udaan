@@ -1,9 +1,6 @@
-"use client"
-
 import * as React from "react"
 import Link from "next/link"
-import { motion } from "framer-motion"
-import { Award, Trophy, Users, ShieldCheck, Download, ArrowRight, Building2, MapPin, Shirt } from "lucide-react"
+import { MapPin, Shirt } from "lucide-react"
 
 export default function AboutPage() {
   return (
@@ -11,11 +8,7 @@ export default function AboutPage() {
       {/* Header Banner */}
       <section className="py-12 border-b border-[#E4DFD7] dark:border-[#212B3B] text-center">
         <div className="container mx-auto px-4 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div>
             <span className="text-[11px] font-sans tracking-[0.25em] text-[#C5A059] uppercase block mb-1">
               INSTITUTIONAL PROFILE
             </span>
@@ -34,13 +27,13 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/docs/brochure.pdf"
-                download
+                download="UDAAN_2026_Brochure.pdf"
                 className="bg-transparent hover:bg-black/5 text-[#142338] dark:text-white px-6 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-[#142338] dark:border-white transition-colors"
               >
                 Download Brochure
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

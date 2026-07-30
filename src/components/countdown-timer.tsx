@@ -3,36 +3,89 @@
 import * as React from "react"
 
 export function CountdownTimer() {
+  const [mounted, setMounted] = React.useState(false)
+  const eventDate = React.useMemo(() => new Date("2026-08-27T09:00:00+05:30"), [])
+
+  const calculateTimeLeft = React.useCallback(() => {
+    const now = new Date().getTime()
+    const distance = eventDate.getTime() - now
+
+    if (distance <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true }
+    }
+
+    return {
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000),
+      isExpired: false,
+    }
+  }, [eventDate])
+
   const [timeLeft, setTimeLeft] = React.useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
+    isExpired: false,
   })
 
   React.useEffect(() => {
-    // Set target date for UDAAN 2026 ceremony: 27 August 2026
-    const eventDate = new Date("2026-08-27T09:00:00+05:30")
+    setMounted(true)
+    setTimeLeft(calculateTimeLeft())
 
     const timer = setInterval(() => {
-      const now = new Date().getTime()
-      const distance = eventDate.getTime() - now
-
-      if (distance <= 0) {
+      const updated = calculateTimeLeft()
+      setTimeLeft(updated)
+      if (updated.isExpired) {
         clearInterval(timer)
-        return
       }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000)
-
-      setTimeLeft({ days, hours, minutes, seconds })
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [])
+  }, [calculateTimeLeft])
+
+  if (!mounted) {
+    const items = [
+      { label: "DAYS", value: "--" },
+      { label: "HOURS", value: "--" },
+      { label: "MINUTES", value: "--" },
+      { label: "SECONDS", value: "--" },
+    ]
+    return (
+      <div className="flex items-center justify-center space-x-4 md:space-x-8">
+        {items.map((item, idx) => (
+          <React.Fragment key={item.label}>
+            <div className="text-center min-w-[60px]">
+              <div className="font-serif text-3xl md:text-4xl text-foreground font-normal">
+                {item.value}
+              </div>
+              <div className="text-[10px] font-sans tracking-[0.2em] text-muted-foreground uppercase mt-1">
+                {item.label}
+              </div>
+            </div>
+            {idx < items.length - 1 && (
+              <span className="text-accent font-serif text-xl select-none">:</span>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    )
+  }
+
+  if (timeLeft.isExpired) {
+    return (
+      <div className="text-center py-2">
+        <span className="font-serif text-2xl md:text-3xl text-accent uppercase tracking-widest block">
+          UDAAN 2026 IS LIVE NOW
+        </span>
+        <span className="text-xs font-sans text-muted-foreground uppercase tracking-widest mt-1 block">
+          SGSITS Golden Jubilee Auditorium, Indore
+        </span>
+      </div>
+    )
+  }
 
   const items = [
     { label: "DAYS", value: timeLeft.days },
@@ -46,15 +99,15 @@ export function CountdownTimer() {
       {items.map((item, idx) => (
         <React.Fragment key={item.label}>
           <div className="text-center min-w-[60px]">
-            <div className="font-serif text-3xl md:text-4xl text-[#142338] dark:text-[#FAF8F5] font-normal">
+            <div className="font-serif text-3xl md:text-4xl text-foreground font-normal">
               {item.value.toString().padStart(2, "0")}
             </div>
-            <div className="text-[10px] font-sans tracking-[0.2em] text-[#64748B] dark:text-[#94A3B8] uppercase mt-1">
+            <div className="text-[10px] font-sans tracking-[0.2em] text-muted-foreground uppercase mt-1">
               {item.label}
             </div>
           </div>
           {idx < items.length - 1 && (
-            <span className="text-[#C5A059] font-serif text-xl select-none">:</span>
+            <span className="text-accent font-serif text-xl select-none">:</span>
           )}
         </React.Fragment>
       ))}

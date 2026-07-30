@@ -1,7 +1,20 @@
 import { NextRequest, NextResponse } from "next/server"
+import { getRegistrationById, updateRegistrationStatus } from "@/lib/registrations-store"
+import { RegistrationStatus } from "@/types"
 
-// Mock data - in production, this would come from a database
-let registrations: any[] = []
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const reg = getRegistrationById(params.id)
+  if (!reg) {
+    return NextResponse.json(
+      { success: false, message: "Registration not found" },
+      { status: 404 }
+    )
+  }
+  return NextResponse.json({ success: true, data: reg })
+}
 
 export async function PATCH(
   request: NextRequest,
@@ -9,30 +22,30 @@ export async function PATCH(
 ) {
   try {
     const body = await request.json()
-    const { id } = params
-    
-    const index = registrations.findIndex((r) => r.id === id)
-    
-    if (index === -1) {
+    const { status } = body
+
+    if (!status || !["pending", "approved", "rejected"].includes(status)) {
+      return NextResponse.json(
+        { success: false, message: "Invalid or missing status" },
+        { status: 400 }
+      )
+    }
+
+    const updated = updateRegistrationStatus(params.id, status as RegistrationStatus)
+
+    if (!updated) {
       return NextResponse.json(
         { success: false, message: "Registration not found" },
         { status: 404 }
       )
     }
-    
-    // Update the registration
-    registrations[index] = {
-      ...registrations[index],
-      ...body,
-      updatedAt: new Date().toISOString(),
-    }
-    
+
     return NextResponse.json({
       success: true,
-      message: "Registration updated successfully",
-      data: registrations[index],
+      message: "Registration status updated successfully",
+      data: updated,
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { success: false, message: "Internal server error" },
       { status: 500 }

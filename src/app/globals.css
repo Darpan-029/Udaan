@@ -62,18 +62,12 @@
   .text-balance {
     text-wrap: balance;
   }
-
-  /* Custom Glassmorphism Utility */
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Custom Scrollbar */

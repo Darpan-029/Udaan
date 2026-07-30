@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
