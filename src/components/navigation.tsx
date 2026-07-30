@@ -42,25 +42,17 @@ export function Navigation() {
   return (
     <header className="w-full bg-[#FAF8F5] dark:bg-[#12161E] border-b border-[#E4DFD7] dark:border-[#212B3B] transition-colors duration-300 relative">
       <div className="container mx-auto px-4 py-6 text-center relative">
-        {/* Left Side: SGSITS Emblem Logo */}
-        <div className="absolute left-4 md:left-8 top-5 flex items-center">
+        {/* Left Side: Standalone SGSITS Official Logo Seal */}
+        <div className="absolute left-4 md:left-8 top-2 md:top-3 flex items-center">
           <Link
             href="/"
-            className="group flex items-center space-x-2.5 p-1 bg-white dark:bg-[#1C2430] border border-[#DCD5C9] dark:border-[#2A3649] rounded-sm shadow-sm transition-transform hover:scale-105"
+            className="inline-block transition-transform hover:scale-105"
           >
             <img
               src="/images/sgsits_logo.png"
-              alt="SGSITS Emblem"
-              className="h-10 md:h-12 w-auto object-contain"
+              alt="SGSITS Official Seal"
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-sm"
             />
-            <span className="hidden lg:block text-left">
-              <span className="block font-serif text-xs font-semibold text-[#142338] dark:text-white leading-tight">
-                SGSITS
-              </span>
-              <span className="block font-sans text-[9px] text-[#64748B] dark:text-[#94A3B8] tracking-widest">
-                INDORE
-              </span>
-            </span>
           </Link>
         </div>
 

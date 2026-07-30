@@ -6,11 +6,11 @@ export function Footer() {
       <div className="container mx-auto px-4 max-w-4xl text-center">
         {/* Emblem */}
         <div className="flex justify-center mb-4">
-          <div className="p-1 bg-white border border-[#DCD5C9] rounded-sm">
+          <div className="p-1 bg-white border border-[#DCD5C9] rounded-full shadow-sm">
             <img
               src="/images/sgsits_logo.png"
-              alt="SGSITS Indore"
-              className="h-10 w-auto object-contain"
+              alt="SGSITS Indore Official Seal"
+              className="h-12 w-auto object-contain rounded-full"
             />
           </div>
         </div>
