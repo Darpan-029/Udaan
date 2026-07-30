@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#142338] text-white border-t border-[#C5A059]/30 py-12">
+    <footer className="w-full bg-primary text-primary-foreground border-t border-accent/30 py-12">
       <div className="container mx-auto px-4 max-w-4xl text-center">
         {/* Emblem */}
         <div className="flex justify-center mb-4">
@@ -11,8 +11,9 @@ export function Footer() {
             <Image
               src="/images/sgsits_logo.png"
               alt="SGSITS Indore Official Seal"
-              width={48}
-              height={48}
+              width={192}
+              height={192}
+              quality={95}
               className="h-12 w-auto object-contain rounded-full"
             />
           </div>

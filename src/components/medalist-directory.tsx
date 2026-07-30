@@ -229,7 +229,7 @@ export function MedalistDirectory() {
                 onClick={() => setSelectedDept(dept.code)}
                 className={`px-3 py-1 text-[11px] font-sans tracking-wider uppercase border transition-colors ${
                   selectedDept === dept.code
-                    ? "bg-[#142338] text-white border-[#142338] dark:bg-accent dark:text-[#12161E]"
+                    ? "bg-primary text-primary-foreground border-primary shadow-md dark:bg-accent dark:text-[#12161E]"
                     : "bg-transparent text-muted-foreground border-border hover:border-foreground"
                 }`}
               >

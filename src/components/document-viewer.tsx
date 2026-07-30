@@ -124,9 +124,9 @@ export function DocumentViewer() {
                 <button
                   key={doc.id}
                   onClick={() => setActiveDocId(doc.id)}
-                  className={`w-full text-left p-4 border transition-all text-xs font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  className={`w-full text-left p-4 border transition-all text-xs font-sans rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     isSelected
-                      ? "bg-[#142338] text-white border-[#142338] dark:bg-[#1C2430] dark:border-accent"
+                      ? "bg-primary text-primary-foreground border-primary shadow-md"
                       : "bg-card text-foreground border-border hover:border-foreground"
                   }`}
                 >
@@ -158,7 +158,7 @@ export function DocumentViewer() {
                 <a
                   href={activeDoc.path}
                   download={activeDoc.filename}
-                  className="bg-[#142338] hover:bg-[#0F1B2B] text-white px-5 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 text-xs font-sans tracking-[0.15em] rounded-xl uppercase border border-transparent transition-colors flex items-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Download className="h-3.5 w-3.5" />
                   <span>Download File</span>

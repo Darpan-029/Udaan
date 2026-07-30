@@ -47,7 +47,7 @@ export function Hero() {
             >
               <a
                 href="#schedule"
-                className="inline-block bg-[#1B2A4A] hover:bg-[#142338] text-white px-7 py-3 text-xs md:text-sm font-sans tracking-[0.18em] uppercase border border-white/20 transition-all shadow-md hover:border-white/40"
+                className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground px-7 py-3 rounded-xl text-xs md:text-sm font-sans tracking-[0.18em] uppercase border border-white/20 transition-all shadow-md hover:border-white/40"
               >
                 VIEW CEREMONY DETAILS
               </a>

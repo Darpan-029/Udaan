@@ -107,7 +107,7 @@ export function Schedule() {
           <a
             href="/docs/schedule.pdf"
             download="UDAAN_2026_Schedule.pdf"
-            className="inline-block bg-[#142338] hover:bg-[#0F1B2B] text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-xl text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             Download Schedule PDF
           </a>
