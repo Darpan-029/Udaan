@@ -6,142 +6,187 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
+import logo from "../../public/images/sgsits_logo.webp"
+
+const navItems = [
+  { name: "ABOUT", href: "/about" },
+  { name: "UDAAN", href: "/udaan" },
+  { name: "DOCUMENTS", href: "/#documents" },
+  { name: "MEDALISTS", href: "/#medalists" },
+  { name: "SCHEDULE", href: "/#schedule" },
+  { name: "GALLERY", href: "/#gallery" },
+  { name: "FAQ", href: "/#faq" },
+  { name: "REGISTRATION", href: "/#register" },
+]
 
 export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false)
+  const [condensed, setCondensed] = React.useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
+  const sentinelRef = React.useRef<HTMLDivElement>(null)
   const pathname = usePathname()
 
+  React.useEffect(() => setMounted(true), [])
+
+  // Fires the moment the page scrolls even 1px -- a sentinel placed at the
+  // very top of the document, observed via IntersectionObserver rather than
+  // a scroll listener, so there is no scroll-jank.
   React.useEffect(() => {
-    setMounted(true)
+    const node = sentinelRef.current
+    if (!node) return
+    const observer = new IntersectionObserver(([entry]) => setCondensed(!entry.isIntersecting))
+    observer.observe(node)
+    return () => observer.disconnect()
   }, [])
 
-  // Auto-close mobile menu on route changes
   React.useEffect(() => {
     setIsOpen(false)
   }, [pathname])
 
-  // Handle Esc key to close mobile menu
   React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false)
-      }
+    if (!isOpen) return
+    document.body.style.overflow = "hidden"
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false)
     }
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [isOpen])
-
-  // Body scroll lock when mobile menu is open
-  React.useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
+    window.addEventListener("keydown", onKeyDown)
     return () => {
       document.body.style.overflow = ""
+      window.removeEventListener("keydown", onKeyDown)
     }
   }, [isOpen])
 
-  const navItems = [
-    { name: "ABOUT", href: "/about" },
-    { name: "DOCUMENTS", href: "/#documents" },
-    { name: "MEDALISTS", href: "/#medalists" },
-    { name: "SCHEDULE", href: "/#schedule" },
-    { name: "GALLERY", href: "/#gallery" },
-    { name: "FAQ", href: "/#faq" },
-    { name: "REGISTRATION", href: "/#register" },
-  ]
-
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 dark:bg-[#12161E]/95 backdrop-blur-md border-b border-border transition-colors duration-200">
-      <div className="container mx-auto px-4 py-4">
-        {/* Header Main Bar: Responsive Flex Layout */}
-        <div className="flex items-center justify-between gap-4">
-          {/* Logo & Seal */}
-          <Link
-            href="/"
-            className="flex items-center gap-3 transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            <Image
-              src="/images/sgsits_logo.png"
-              alt="SGSITS Official Seal"
-              width={64}
-              height={64}
-              priority
-              className="h-12 md:h-14 lg:h-16 w-auto object-contain drop-shadow-sm"
-            />
-            <div className="hidden sm:block text-left">
-              <span className="font-serif text-lg md:text-xl tracking-[0.2em] font-normal text-foreground uppercase block">
-                GRADUATION 2026
-              </span>
-              <span className="text-[10px] font-sans tracking-[0.15em] text-muted-foreground uppercase block">
-                SGSITS INDORE • UDAAN
-              </span>
-            </div>
-          </Link>
-
-          {/* Center Banner Text */}
-          <div className="text-center">
-            <span className="font-serif text-xl sm:text-2xl md:text-3xl text-accent tracking-[0.1em] font-normal inline-block select-none">
-              Udaan &apos;26
-            </span>
-          </div>
-
-          {/* Theme Toggle & Mobile Menu Control */}
-          <div className="flex items-center space-x-2">
-            {mounted && (
-              <button
-                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-                aria-label="Toggle Theme"
-                className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                {resolvedTheme === "dark" ? (
-                  <Sun className="h-5 w-5 text-amber-400" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </button>
+    <>
+      <div ref={sentinelRef} aria-hidden className="h-px" />
+      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur border-b border-border transition-shadow duration-300">
+        <div
+          className={`container mx-auto px-4 text-center transition-[padding] duration-300 ${
+            condensed ? "py-2" : "py-6"
+          }`}
+        >
+          <div className={`flex items-center gap-4 ${condensed ? "justify-between" : "justify-center relative"}`}>
+            {!condensed && (
+              <div className="absolute left-0 top-0 hidden sm:flex items-center">
+                <Link href="/" className="inline-block transition-transform hover:scale-105">
+                  <Image
+                    src={logo}
+                    alt="SGSITS Official Seal"
+                    className="h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-sm"
+                    priority
+                  />
+                </Link>
+              </div>
             )}
 
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-foreground rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            {condensed && (
+              <Link href="/" className="flex items-center gap-3">
+                <Image src={logo} alt="SGSITS Official Seal" className="h-9 w-auto object-contain" />
+                <span className="font-serif text-sm md:text-base tracking-[0.15em] font-normal text-foreground uppercase whitespace-nowrap">
+                  Graduation 2026
+                </span>
+              </Link>
+            )}
+
+            {!condensed && (
+              <Link href="/" className="inline-block">
+                <h1 className="font-serif text-2xl md:text-3xl tracking-[0.25em] font-normal text-foreground uppercase">
+                  GRADUATION 2026
+                </h1>
+                <p className="text-[11px] font-sans tracking-[0.2em] text-muted-foreground uppercase mt-0.5">
+                  SGSITS INDORE • UDAAN CEREMONY
+                </p>
+              </Link>
+            )}
+
+            {/* Desktop nav (condensed state) */}
+            {condensed && (
+              <nav className="hidden md:flex items-center gap-1 text-xs font-sans tracking-[0.15em] text-body">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="hover:text-foreground transition-colors py-1 px-2.5 font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                <ThemeToggle mounted={mounted} resolvedTheme={resolvedTheme} setTheme={setTheme} className="ml-2 p-1" />
+              </nav>
+            )}
+
+            {/* Mobile toggle (condensed state) */}
+            {condensed && (
+              <div className="md:hidden flex items-center gap-2">
+                <ThemeToggle mounted={mounted} resolvedTheme={resolvedTheme} setTheme={setTheme} className="p-1.5" />
+                <button
+                  onClick={() => setIsOpen((v) => !v)}
+                  className="p-1.5 text-foreground"
+                  aria-label="Toggle menu"
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-nav-drawer"
+                >
+                  {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                </button>
+              </div>
+            )}
           </div>
+
+          {!condensed && (
+            <>
+              {/* Animated center wordmark */}
+              <div className="my-3 flex items-center justify-center min-h-[44px]" aria-hidden="true">
+                <span className="udaan-typing font-serif text-2xl md:text-3xl lg:text-4xl text-accent tracking-[0.1em] font-normal select-none">
+                  Udaan&apos; 26
+                </span>
+              </div>
+              <span className="sr-only">Udaan &apos;26</span>
+
+              {/* Desktop nav (expanded state) */}
+              <nav className="hidden md:flex items-center justify-center flex-wrap gap-y-2 text-xs font-sans tracking-[0.15em] text-body pt-2 border-t border-border max-w-4xl mx-auto">
+                {navItems.map((item, idx) => (
+                  <React.Fragment key={item.name}>
+                    <Link href={item.href} className="hover:text-foreground transition-colors py-1 px-2.5 font-medium">
+                      {item.name}
+                    </Link>
+                    {idx < navItems.length - 1 && <span className="text-border select-none">|</span>}
+                  </React.Fragment>
+                ))}
+                <ThemeToggle mounted={mounted} resolvedTheme={resolvedTheme} setTheme={setTheme} className="ml-3 p-1" />
+              </nav>
+
+              {/* Mobile toggle row (expanded state) */}
+              <div className="md:hidden flex items-center justify-between pt-2 border-t border-border">
+                <span className="text-xs tracking-widest text-muted-foreground">MENU</span>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle mounted={mounted} resolvedTheme={resolvedTheme} setTheme={setTheme} className="p-1.5" />
+                  <button
+                    onClick={() => setIsOpen((v) => !v)}
+                    className="p-1.5 text-foreground"
+                    aria-label="Toggle menu"
+                    aria-expanded={isOpen}
+                    aria-controls="mobile-nav-drawer"
+                  >
+                    {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center justify-center flex-wrap gap-y-2 text-xs font-sans tracking-[0.15em] text-foreground/80 pt-3 mt-3 border-t border-border/60 max-w-4xl mx-auto">
-          {navItems.map((item, idx) => (
-            <React.Fragment key={item.name}>
-              <Link
-                href={item.href}
-                className="hover:text-primary transition-colors py-1 px-3 font-medium rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                {item.name}
-              </Link>
-              {idx < navItems.length - 1 && (
-                <span className="text-muted-foreground/40 select-none">|</span>
-              )}
-            </React.Fragment>
-          ))}
-        </nav>
-
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile drawer */}
         {isOpen && (
-          <div className="md:hidden pt-4 pb-4 space-y-3 text-center border-t border-border mt-3 bg-background/95 backdrop-blur-md rounded-b-lg shadow-lg">
+          <div
+            id="mobile-nav-drawer"
+            className="md:hidden pb-2 space-y-1 text-center border-t border-border bg-background"
+          >
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block py-2 text-xs tracking-widest text-foreground/90 hover:text-primary font-medium transition-colors"
+                className="block py-2.5 text-xs tracking-widest text-body hover:text-foreground font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
@@ -149,7 +194,36 @@ export function Navigation() {
             ))}
           </div>
         )}
-      </div>
-    </header>
+      </header>
+    </>
+  )
+}
+
+function ThemeToggle({
+  mounted,
+  resolvedTheme,
+  setTheme,
+  className = "",
+}: {
+  mounted: boolean
+  resolvedTheme: string | undefined
+  setTheme: (t: string) => void
+  className?: string
+}) {
+  // Always renders the same button at the same size -- pre-mount the icon
+  // is just invisible, rather than the button being absent, so there is no
+  // layout shift once the client knows the real theme.
+  return (
+    <button
+      onClick={() => mounted && setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      aria-label="Toggle theme"
+      aria-hidden={!mounted}
+      tabIndex={mounted ? 0 : -1}
+      className={`text-muted-foreground hover:text-foreground transition-colors ${
+        mounted ? "" : "invisible"
+      } ${className}`}
+    >
+      {resolvedTheme === "dark" ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+    </button>
   )
 }

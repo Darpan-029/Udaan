@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Search, Trophy, Medal, GraduationCap } from "lucide-react"
+import { Reveal } from "@/components/reveal"
 
 interface Medalist {
   id: string
@@ -21,129 +22,129 @@ const medalistsData: Medalist[] = [
   {
     id: "m1",
     name: "Aditya Sharma",
-    enrollment: "0801CS221012",
+    enrollment: "0801CS201012",
     branch: "Computer Science & Engineering",
     branchCode: "CSE",
     cgpa: "9.84",
     rank: "1st Rank",
     category: "Gold Medal",
     awardTitle: "Shri G.S. Seksaria Memorial Gold Medal for Academic Excellence in CSE",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
     donorName: "SGSITS Alumni Trust",
   },
   {
     id: "m2",
     name: "Ananya Verma",
-    enrollment: "0801IT221025",
+    enrollment: "0801IT201025",
     branch: "Information Technology",
     branchCode: "IT",
     cgpa: "9.78",
     rank: "1st Rank",
     category: "Gold Medal",
     awardTitle: "Institute Gold Medal for Overall Highest Scorer in IT",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
     donorName: "Late Shri B.D. Toshniwal Endowment",
   },
   {
     id: "m3",
     name: "Rohan Kulkarni",
-    enrollment: "0801EC221048",
+    enrollment: "0801EC201048",
     branch: "Electronics & Telecommunication",
     branchCode: "ECE",
     cgpa: "9.65",
     rank: "1st Rank",
     category: "Gold Medal",
     awardTitle: "Prof. S.M. Dasgupta Memorial Gold Medal in ECE",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
     donorName: "Prof. Dasgupta Family Fund",
   },
   {
     id: "m4",
     name: "Siddharth Jain",
-    enrollment: "0801ME221092",
+    enrollment: "0801ME201092",
     branch: "Mechanical Engineering",
     branchCode: "ME",
     cgpa: "9.58",
     rank: "1st Rank",
     category: "Gold Medal",
     awardTitle: "SGSITS Diamond Jubilee Gold Medal for Mechanical Discipline",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
     donorName: "SGSITS Golden Jubilee Committee",
   },
   {
     id: "m5",
     name: "Pooja Gupta",
-    enrollment: "0801CE221034",
+    enrollment: "0801CE201034",
     branch: "Civil Engineering",
     branchCode: "CE",
     cgpa: "9.52",
     rank: "1st Rank",
     category: "Gold Medal",
     awardTitle: "Er. K.L. Chhabra Gold Medal for Best Graduate in Civil Engineering",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
     donorName: "Chhabra Foundation",
   },
   {
     id: "m6",
     name: "Vikramaditya Singh",
-    enrollment: "0801EE221088",
+    enrollment: "0801EE201088",
     branch: "Electrical Engineering",
     branchCode: "EE",
     cgpa: "9.61",
     rank: "1st Rank",
     category: "Gold Medal",
     awardTitle: "Shri N.L. Joshi Gold Medal for Academic Distinction in Electrical",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
     donorName: "Joshi Family Trust",
   },
   {
     id: "m7",
     name: "Megha Agarwal",
-    enrollment: "0801PY221015",
+    enrollment: "0801PY201015",
     branch: "Pharmacy",
     branchCode: "Pharmacy",
     cgpa: "9.72",
     rank: "1st Rank",
     category: "Gold Medal",
     awardTitle: "Dr. C.P. Trivedi Gold Medal for Best All-Round B.Pharm Student",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
     donorName: "Pharmacy Alumni Network",
   },
   {
     id: "m8",
     name: "Rahul Saxena",
-    enrollment: "0801CS221075",
+    enrollment: "0801CS201075",
     branch: "Computer Science & Engineering",
     branchCode: "CSE",
     cgpa: "9.45",
     rank: "2nd Rank",
     category: "Merit Certificate",
     awardTitle: "Merit Certificate for 2nd Rank in Computer Science",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
   },
   {
     id: "m9",
     name: "Divya Tiwari",
-    enrollment: "0801IT221018",
+    enrollment: "0801IT201018",
     branch: "Information Technology",
     branchCode: "IT",
     cgpa: "9.41",
     rank: "2nd Rank",
     category: "Merit Certificate",
     awardTitle: "Merit Certificate for High Academic Performance in IT",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
   },
   {
     id: "m10",
     name: "Harsh Vardhan",
-    enrollment: "0801EC221031",
+    enrollment: "0801EC201031",
     branch: "Electronics & Telecommunication",
     branchCode: "ECE",
     cgpa: "9.38",
     rank: "2nd Rank",
     category: "Merit Certificate",
     awardTitle: "Merit Certificate for Excellence in Electronics",
-    batch: "2022 - 2026",
+    batch: "2020 - 2024",
   },
 ]
 
@@ -158,30 +159,40 @@ const departments = [
   { label: "Pharmacy", code: "Pharmacy" },
 ]
 
+function useDebouncedValue<T>(value: T, delayMs: number) {
+  const [debounced, setDebounced] = React.useState(value)
+  React.useEffect(() => {
+    const id = setTimeout(() => setDebounced(value), delayMs)
+    return () => clearTimeout(id)
+  }, [value, delayMs])
+  return debounced
+}
+
 export function MedalistDirectory() {
   const [selectedDept, setSelectedDept] = React.useState("ALL")
   const [selectedCategory, setSelectedCategory] = React.useState("ALL")
   const [searchQuery, setSearchQuery] = React.useState("")
+  const debouncedSearch = useDebouncedValue(searchQuery, 200)
 
   const filteredMedalists = React.useMemo(() => {
-    const q = searchQuery.trim().toLowerCase()
+    const query = debouncedSearch.toLowerCase()
     return medalistsData.filter((item) => {
       const matchesDept = selectedDept === "ALL" || item.branchCode === selectedDept
       const matchesCategory = selectedCategory === "ALL" || item.category === selectedCategory
       const matchesSearch =
-        q === "" ||
-        item.name.toLowerCase().includes(q) ||
-        item.enrollment.toLowerCase().includes(q) ||
-        item.branch.toLowerCase().includes(q)
+        query === "" ||
+        item.name.toLowerCase().includes(query) ||
+        item.enrollment.toLowerCase().includes(query) ||
+        item.branch.toLowerCase().includes(query)
 
       return matchesDept && matchesCategory && matchesSearch
     })
-  }, [selectedDept, selectedCategory, searchQuery])
+  }, [debouncedSearch, selectedDept, selectedCategory])
 
   return (
-    <section id="medalists" className="py-16 bg-background text-foreground border-t border-border scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="text-center mb-12">
+    <section id="medalists" className="py-16 bg-background border-t border-border-strong">
+      <div className="mx-auto px-4 max-w-5xl">
+        <Reveal className="text-center mb-12">
           <span className="text-[11px] font-sans tracking-[0.2em] text-accent uppercase block mb-1">
             HONORS &amp; DISTINCTIONS
           </span>
@@ -189,14 +200,16 @@ export function MedalistDirectory() {
             Gold Medalists &amp; Awardees
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
-        </div>
+        </Reveal>
 
         {/* Filters and Search Bar */}
         <div className="bg-card p-6 border border-border mb-8 space-y-4">
           <div className="grid md:grid-cols-12 gap-4 items-center">
             <div className="md:col-span-6 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <label htmlFor="medalist-search" className="sr-only">Search medalists</label>
               <input
+                id="medalist-search"
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -206,7 +219,9 @@ export function MedalistDirectory() {
             </div>
 
             <div className="md:col-span-4">
+              <label htmlFor="medalist-category" className="sr-only">Filter by category</label>
               <select
+                id="medalist-category"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="w-full py-2 px-3 border border-border bg-background text-xs font-sans text-foreground focus:outline-none focus:border-foreground"
@@ -227,9 +242,10 @@ export function MedalistDirectory() {
               <button
                 key={dept.code}
                 onClick={() => setSelectedDept(dept.code)}
+                aria-pressed={selectedDept === dept.code}
                 className={`px-3 py-1 text-[11px] font-sans tracking-wider uppercase border transition-colors ${
                   selectedDept === dept.code
-                    ? "bg-[#142338] text-white border-[#142338] dark:bg-accent dark:text-[#12161E]"
+                    ? "bg-primary text-white border-primary dark:bg-accent dark:text-background dark:border-accent"
                     : "bg-transparent text-muted-foreground border-border hover:border-foreground"
                 }`}
               >
@@ -259,27 +275,27 @@ export function MedalistDirectory() {
                       </h3>
                       <p className="text-[11px] font-mono text-muted-foreground mt-0.5">{student.enrollment}</p>
                     </div>
-                    <div className="p-2 bg-muted/40 border border-border">
+                    <div className="p-2 bg-background border border-border">
                       {isGold ? <Trophy className="h-4 w-4 text-accent" /> : <Medal className="h-4 w-4 text-muted-foreground" />}
                     </div>
                   </div>
 
-                  <div className="space-y-1.5 text-xs font-sans text-muted-foreground mb-4">
+                  <div className="space-y-1.5 text-xs font-sans text-body mb-4">
                     <div className="flex justify-between py-0.5">
-                      <span>Department:</span>
+                      <span className="text-muted-foreground">Department:</span>
                       <span className="font-medium text-foreground">{student.branchCode}</span>
                     </div>
                     <div className="flex justify-between py-0.5">
-                      <span>CGPA:</span>
+                      <span className="text-muted-foreground">CGPA:</span>
                       <span className="font-bold text-accent">{student.cgpa} / 10.0</span>
                     </div>
                     <div className="flex justify-between py-0.5">
-                      <span>Rank:</span>
+                      <span className="text-muted-foreground">Rank:</span>
                       <span className="font-medium text-foreground">{student.rank}</span>
                     </div>
                   </div>
 
-                  <div className="bg-muted/30 p-3 border border-border text-[11px] text-muted-foreground mb-4">
+                  <div className="bg-background p-3 border border-border text-[11px] text-body mb-4">
                     <p className="font-serif text-xs text-foreground leading-snug mb-1">{student.awardTitle}</p>
                     {student.donorName && (
                       <p className="italic text-accent">Endowed by: {student.donorName}</p>

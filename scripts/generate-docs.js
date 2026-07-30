@@ -7,17 +7,22 @@ if (!fs.existsSync(docsDir)) {
   fs.mkdirSync(docsDir, { recursive: true });
 }
 
+function escapePdfText(line) {
+  return line.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+}
+
 /**
- * Valid PDF Generator with exact cross-reference (xref) byte offset calculation
+ * Valid PDF generator with exact cross-reference (xref) byte offset
+ * calculation -- every offset is measured from the buffer as it is built,
+ * not hardcoded, so the xref table is actually correct.
  */
 function createSimplePDF(title, subtitle, contentLines) {
-  let textStream = `BT /F1 24 Tf 50 720 Td (${title}) Tj ET\n`;
-  textStream += `BT /F1 14 Tf 50 690 Td (${subtitle}) Tj ET\n`;
-  
+  let textStream = `BT /F1 24 Tf 50 720 Td (${escapePdfText(title)}) Tj ET\n`;
+  textStream += `BT /F1 14 Tf 50 690 Td (${escapePdfText(subtitle)}) Tj ET\n`;
+
   let y = 650;
   contentLines.forEach(line => {
-    const safeLine = line.replace(/\(/g, '\\(').replace(/\)/g, '\\)');
-    textStream += `BT /F1 11 Tf 50 ${y} Td (${safeLine}) Tj ET\n`;
+    textStream += `BT /F1 11 Tf 50 ${y} Td (${escapePdfText(line)}) Tj ET\n`;
     y -= 22;
   });
 
@@ -26,7 +31,7 @@ function createSimplePDF(title, subtitle, contentLines) {
   const obj2 = '2 0 obj <</Type /Pages /Kids [3 0 R] /Count 1>> endobj\n';
   const obj3 = '3 0 obj <</Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources <</Font <</F1 4 0 R>>>> /Contents 5 0 R>> endobj\n';
   const obj4 = '4 0 obj <</Type /Font /Subtype /Type1 /BaseFont /Helvetica>> endobj\n';
-  
+
   const textStreamByteLength = Buffer.byteLength(textStream, 'utf8');
   const obj5 = `5 0 obj <</Length ${textStreamByteLength}>> stream\n${textStream}\nendstream\nendobj\n`;
 
@@ -62,7 +67,9 @@ function createSimplePDF(title, subtitle, contentLines) {
 }
 
 /**
- * Minimal PK ZIP generator for valid .docx OpenXML documents
+ * Minimal real .docx (OOXML) writer. A .docx is a ZIP archive -- this
+ * builds an actual DEFLATE-compressed ZIP with correct CRC-32s and byte
+ * offsets, using only Node's built-in zlib (no dependency).
  */
 function createMinimalDocx(textLines) {
   const contentTypesXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -92,7 +99,6 @@ function createMinimalDocx(textLines) {
     { name: 'word/document.xml', content: Buffer.from(documentXml, 'utf8') },
   ];
 
-  // Helper CRC32
   function crc32(buf) {
     let crc = 0 ^ (-1);
     for (let i = 0; i < buf.length; i++) {
@@ -118,7 +124,6 @@ function createMinimalDocx(textLines) {
     const fileCrc = crc32(file.content);
     const compData = zlib.deflateRawSync(file.content);
 
-    // Local header
     const lh = Buffer.alloc(30 + fileNameBuf.length);
     lh.writeUInt32LE(0x04034b50, 0); // PK\x03\x04
     lh.writeUInt16LE(20, 4); // version needed
@@ -135,7 +140,6 @@ function createMinimalDocx(textLines) {
 
     localHeaders.push(lh, compData);
 
-    // Central header
     const ch = Buffer.alloc(46 + fileNameBuf.length);
     ch.writeUInt32LE(0x02014b50, 0); // PK\x01\x02
     ch.writeUInt16LE(20, 4); // version made by
@@ -165,7 +169,6 @@ function createMinimalDocx(textLines) {
   let centralDirSize = 0;
   centralHeaders.forEach(ch => { centralDirSize += ch.length; });
 
-  // End of central directory record
   const eocd = Buffer.alloc(22);
   eocd.writeUInt32LE(0x06054b50, 0); // PK\x05\x06
   eocd.writeUInt16LE(0, 4); // disk num

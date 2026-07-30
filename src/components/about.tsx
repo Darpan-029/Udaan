@@ -1,34 +1,34 @@
-import * as React from "react"
 import { Award, Target, Users, Trophy } from "lucide-react"
+import { Reveal } from "@/components/reveal"
+
+const features = [
+  {
+    icon: Award,
+    title: "Certificate Distribution",
+    description: "Recognizing academic excellence with formal certificates for outstanding performers across all disciplines.",
+  },
+  {
+    icon: Trophy,
+    title: "Gold Medal Conferral",
+    description: "Honoring top rankers with prestigious donor gold medals for exceptional scholarly achievements.",
+  },
+  {
+    icon: Users,
+    title: "Distinguished Dignitaries",
+    description: "Celebrating in the presence of eminent personalities, industry leaders, faculty, and alumni.",
+  },
+  {
+    icon: Target,
+    title: "Academic Inspiration",
+    description: "Motivating upcoming scholars to pursue higher standards of technical innovation and leadership.",
+  },
+]
 
 export function About() {
-  const features = [
-    {
-      icon: Award,
-      title: "Certificate Distribution",
-      description: "Recognizing academic excellence with formal certificates for outstanding performers across all disciplines.",
-    },
-    {
-      icon: Trophy,
-      title: "Gold Medal Conferral",
-      description: "Honoring top rankers with prestigious donor gold medals for exceptional scholarly achievements.",
-    },
-    {
-      icon: Users,
-      title: "Distinguished Dignitaries",
-      description: "Celebrating in the presence of eminent personalities, industry leaders, faculty, and alumni.",
-    },
-    {
-      icon: Target,
-      title: "Academic Inspiration",
-      description: "Motivating upcoming scholars to pursue higher standards of technical innovation and leadership.",
-    },
-  ]
-
   return (
-    <section id="about" className="py-16 bg-background text-foreground border-t border-border scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="text-center mb-12">
+    <section id="about" className="py-16 bg-background border-t border-border-strong">
+      <div className="mx-auto px-4 max-w-5xl">
+        <Reveal className="text-center mb-12">
           <span className="text-[11px] font-sans tracking-[0.2em] text-accent uppercase block mb-1">
             INSTITUTIONAL HONORS
           </span>
@@ -36,7 +36,7 @@ export function About() {
             About SGSITS &amp; UDAAN
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
-        </div>
+        </Reveal>
 
         {/* Editorial Text Block */}
         <div className="grid md:grid-cols-12 gap-8 items-stretch mb-12">
@@ -44,10 +44,10 @@ export function About() {
             <h3 className="font-serif text-2xl text-foreground mb-4 font-normal">
               Celebrating Academic Excellence
             </h3>
-            <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-4">
+            <p className="font-sans text-sm text-body leading-relaxed mb-4">
               UDAAN is the annual Certificate and Gold Medal Distribution Ceremony organized by Shri Govindram Seksaria Institute of Technology and Science (SGSITS), Indore — established in 1952.
             </p>
-            <p className="font-sans text-sm text-muted-foreground leading-relaxed">
+            <p className="font-sans text-sm text-body leading-relaxed">
               This prestigious occasion recognizes the hard work, perseverance, and academic brilliance of graduating awardees across B.Tech, M.Tech, MCA, B.Pharm, and M.Sc. programs.
             </p>
           </div>
@@ -75,12 +75,9 @@ export function About() {
         {/* 4 Feature Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, idx) => (
-            <div
-              key={idx}
-              className="bg-card p-6 border border-border"
-            >
+            <div key={idx} className="bg-card p-6 border border-border">
               <feature.icon className="h-6 w-6 text-accent mb-3" />
-              <h3 className="font-serif text-base text-foreground mb-2">{feature.title}</h3>
+              <h4 className="font-serif text-base text-foreground mb-2">{feature.title}</h4>
               <p className="font-sans text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
             </div>
           ))}

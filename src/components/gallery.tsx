@@ -1,65 +1,76 @@
 "use client"
 
 import * as React from "react"
-import Image from "next/image"
+import Image, { type StaticImageData } from "next/image"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { Reveal } from "@/components/reveal"
+import stageImage from "../../public/images/udaan_stage.webp"
+import groupImage from "../../public/images/udaan_group.webp"
+import gallery01 from "../../public/images/gallery/gallery-01.webp"
+import gallery02 from "../../public/images/gallery/gallery-02.webp"
+import gallery03 from "../../public/images/gallery/gallery-03.webp"
+import gallery04 from "../../public/images/gallery/gallery-04.webp"
+
+interface GalleryImage {
+  id: number
+  src: StaticImageData
+  alt: string
+}
+
+const images: GalleryImage[] = [
+  { id: 1, src: stageImage, alt: "Graduates Celebration & Ribbon Toss" },
+  { id: 2, src: groupImage, alt: "Gold Medal Awardees & Dignitaries Group" },
+  { id: 3, src: gallery01, alt: "Convocation Address Session" },
+  { id: 4, src: gallery02, alt: "Graduating Batch Group Photo" },
+  { id: 5, src: gallery03, alt: "Degree Certificate Distribution" },
+  { id: 6, src: gallery04, alt: "SGSITS Auditorium Ceremony" },
+]
 
 export function Gallery() {
   const [selectedImage, setSelectedImage] = React.useState<number | null>(null)
-  const backdropRef = React.useRef<HTMLDivElement>(null)
-
-  const images = [
-    { id: 1, src: "/images/udaan_stage.png", alt: "Graduates Celebration & Ribbon Toss" },
-    { id: 2, src: "/images/udaan_group.png", alt: "Gold Medal Awardees & Dignitaries Group" },
-    { id: 3, src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800", alt: "Convocation Address Session" },
-    { id: 4, src: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800", alt: "Graduating Batch Group Photo" },
-    { id: 5, src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800", alt: "Degree Certificate Distribution" },
-    { id: 6, src: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=800", alt: "SGSITS Auditorium Ceremony" },
-  ]
+  const closeButtonRef = React.useRef<HTMLButtonElement>(null)
+  const triggerRef = React.useRef<HTMLElement | null>(null)
 
   const handleNext = React.useCallback(() => {
-    if (selectedImage !== null) {
-      setSelectedImage((prev) => (prev !== null ? (prev + 1) % images.length : null))
-    }
-  }, [selectedImage, images.length])
+    setSelectedImage((current) => (current === null ? null : (current + 1) % images.length))
+  }, [])
 
   const handlePrevious = React.useCallback(() => {
-    if (selectedImage !== null) {
-      setSelectedImage((prev) => (prev !== null ? (prev - 1 + images.length) % images.length : null))
-    }
-  }, [selectedImage, images.length])
+    setSelectedImage((current) => (current === null ? null : (current - 1 + images.length) % images.length))
+  }, [])
 
-  // Body scroll lock and Keyboard event handlers for Lightbox
+  const closeLightbox = React.useCallback(() => {
+    setSelectedImage(null)
+    triggerRef.current?.focus()
+  }, [])
+
+  const openLightbox = (index: number, e: React.MouseEvent<HTMLElement>) => {
+    triggerRef.current = e.currentTarget
+    setSelectedImage(index)
+  }
+
   React.useEffect(() => {
-    if (selectedImage !== null) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
+    if (selectedImage === null) return
+
+    document.body.style.overflow = "hidden"
+    closeButtonRef.current?.focus()
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox()
+      if (e.key === "ArrowRight") handleNext()
+      if (e.key === "ArrowLeft") handlePrevious()
     }
+    window.addEventListener("keydown", onKeyDown)
     return () => {
       document.body.style.overflow = ""
+      window.removeEventListener("keydown", onKeyDown)
     }
-  }, [selectedImage])
-
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedImage === null) return
-      if (e.key === "Escape") {
-        setSelectedImage(null)
-      } else if (e.key === "ArrowRight") {
-        handleNext()
-      } else if (e.key === "ArrowLeft") {
-        handlePrevious()
-      }
-    }
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [selectedImage, handleNext, handlePrevious])
+  }, [selectedImage, closeLightbox, handleNext, handlePrevious])
 
   return (
-    <section id="gallery" className="py-16 bg-background text-foreground border-t border-border scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="text-center mb-12">
+    <section id="gallery" className="py-16 bg-background border-t border-border-strong">
+      <div className="mx-auto px-4 max-w-5xl">
+        <Reveal className="text-center mb-12">
           <span className="text-[11px] font-sans tracking-[0.2em] text-accent uppercase block mb-1">
             CEREMONY ARCHIVES
           </span>
@@ -67,81 +78,86 @@ export function Gallery() {
             Photo Gallery
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {images.map((image, index) => (
-            <div
+            <button
               key={image.id}
-              className="bg-card p-2 border border-border group cursor-pointer hover:border-foreground transition-all"
-              onClick={() => setSelectedImage(index)}
+              type="button"
+              className="bg-card p-2 border border-border group cursor-pointer text-left"
+              onClick={(e) => openLightbox(index, e)}
+              aria-label={`View larger photo: ${image.alt}`}
             >
               <div className="overflow-hidden h-52 relative">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <p className="font-serif text-xs text-center text-foreground/90 py-2 truncate">
+              <p className="font-serif text-xs text-center text-foreground py-2">
                 {image.alt}
               </p>
-            </div>
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Accessible Lightbox Modal */}
+      {/* Lightbox */}
       {selectedImage !== null && (
         <div
-          ref={backdropRef}
+          className="fixed inset-0 bg-[#0F1B2B]/90 z-50 flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
-          aria-label="Image gallery lightbox"
-          className="fixed inset-0 bg-[#0F1B2B]/90 z-50 flex items-center justify-center p-4"
-          onClick={(e) => {
-            if (e.target === backdropRef.current) {
-              setSelectedImage(null)
-            }
-          }}
+          aria-label={images[selectedImage].alt}
+          onClick={closeLightbox}
         >
           <button
-            onClick={() => setSelectedImage(null)}
-            aria-label="Close image lightbox"
-            className="absolute top-6 right-6 text-white/80 hover:text-white p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            ref={closeButtonRef}
+            onClick={closeLightbox}
+            aria-label="Close"
+            className="absolute top-6 right-6 text-white/80 hover:text-white"
           >
             <X className="h-6 w-6" />
           </button>
-
           <button
-            onClick={handlePrevious}
-            aria-label="Previous image"
-            className="absolute left-4 md:left-6 text-white/80 hover:text-white p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            onClick={(e) => {
+              e.stopPropagation()
+              handlePrevious()
+            }}
+            aria-label="Previous photo"
+            className="absolute left-6 text-white/80 hover:text-white"
           >
             <ChevronLeft className="h-8 w-8" />
           </button>
-
           <button
-            onClick={handleNext}
-            aria-label="Next image"
-            className="absolute right-4 md:right-6 text-white/80 hover:text-white p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            onClick={(e) => {
+              e.stopPropagation()
+              handleNext()
+            }}
+            aria-label="Next photo"
+            className="absolute right-6 text-white/80 hover:text-white"
           >
             <ChevronRight className="h-8 w-8" />
           </button>
-
-          <div className="max-w-4xl bg-card p-3 border border-white/20 shadow-2xl">
-            <div className="relative w-full max-h-[75vh] h-[500px]">
+          <div
+            className="max-w-4xl w-full bg-card p-2 border border-white/20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative w-full aspect-[4/3]">
               <Image
                 src={images[selectedImage].src}
                 alt={images[selectedImage].alt}
                 fill
-                sizes="100vw"
+                sizes="90vw"
                 className="object-contain"
               />
             </div>
-            <p className="font-serif text-sm text-center text-foreground pt-3">
+            <p className="font-serif text-sm text-center text-foreground pt-2">
               {images[selectedImage].alt}
             </p>
           </div>

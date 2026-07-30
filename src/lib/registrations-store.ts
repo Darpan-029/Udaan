@@ -1,48 +1,10 @@
 import { Registration, RegistrationStats, RegistrationStatus } from "@/types"
 
-// Shared in-memory store for registrations
-let registrations: Registration[] = [
-  {
-    id: "reg-001",
-    name: "Rahul Sharma",
-    email: "rahul.sharma@sgsits.ac.in",
-    enrollmentNo: "0801CS221001",
-    branch: "Computer Science (CSE)",
-    category: "Gold Medalist",
-    status: "approved",
-    createdAt: "2026-07-20T10:30:00.000Z",
-  },
-  {
-    id: "reg-002",
-    name: "Priya Patel",
-    email: "priya.patel@sgsits.ac.in",
-    enrollmentNo: "0801IT221045",
-    branch: "Information Technology (IT)",
-    category: "Merit Certificate",
-    status: "pending",
-    createdAt: "2026-07-22T14:15:00.000Z",
-  },
-  {
-    id: "reg-003",
-    name: "Amit Kumar",
-    email: "amit.kumar@sgsits.ac.in",
-    enrollmentNo: "0801EC221012",
-    branch: "Electronics & Comm (ECE)",
-    category: "Gold Medalist",
-    status: "approved",
-    createdAt: "2026-07-25T09:00:00.000Z",
-  },
-  {
-    id: "reg-004",
-    name: "Ananya Verma",
-    email: "ananya.v@sgsits.ac.in",
-    enrollmentNo: "0801ME221034",
-    branch: "Mechanical Eng (ME)",
-    category: "Merit Certificate",
-    status: "pending",
-    createdAt: "2026-07-28T16:45:00.000Z",
-  },
-]
+// Shared in-memory store for registrations. Placeholder scaffolding, not a
+// real database -- resets on every cold start. Starts empty; real
+// registration goes through the Google Form linked in the Registration
+// section until this is wired to persistent storage.
+let registrations: Registration[] = []
 
 export function getRegistrations(status?: string | null): Registration[] {
   if (status) {
