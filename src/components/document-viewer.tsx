@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { FileText, Download, Eye, Calendar, Award, Shirt, Info, ExternalLink } from "lucide-react"
+import { FileText, Download, Calendar, Award, Shirt, Info, ExternalLink } from "lucide-react"
 
 interface DocumentItem {
   id: string
@@ -23,13 +23,13 @@ interface DocumentItem {
 const documents: DocumentItem[] = [
   {
     id: "brochure",
-    title: "Official UDAAN 2025 Brochure",
+    title: "Official UDAAN 2026 Brochure",
     subtitle: "Complete event guide, Chief Guests & Institute profile",
     filename: "brochure.pdf",
     path: "/docs/brochure.pdf",
     type: "PDF Document",
     size: "2.8 MB",
-    updated: "October 2025",
+    updated: "October 2026",
     icon: Award,
     badge: "Official Brochure",
     description: "The official event brochure contains the Director's message, details of gold medal awards, institutional legacy of SGSITS Indore since 1952, and profiles of key dignitaries.",
@@ -48,7 +48,7 @@ const documents: DocumentItem[] = [
     path: "/docs/schedule.pdf",
     type: "PDF Document",
     size: "1.4 MB",
-    updated: "October 2025",
+    updated: "October 2026",
     icon: Calendar,
     badge: "Event Timeline",
     description: "Comprehensive timeline of the ceremony starting from morning registration and half-jacket distribution to gold medal conferral and high tea.",
@@ -67,7 +67,7 @@ const documents: DocumentItem[] = [
     path: "/docs/circular.pdf",
     type: "PDF Document",
     size: "950 KB",
-    updated: "September 2025",
+    updated: "September 2026",
     icon: Info,
     badge: "Official Notice",
     description: "Official notification issued by the SGSITS Academic Registrar regarding mandatory pass generation, seating assignments, and entry verification procedures.",
@@ -86,7 +86,7 @@ const documents: DocumentItem[] = [
     path: "/docs/dresscode.docx",
     type: "DOCX File",
     size: "520 KB",
-    updated: "September 2025",
+    updated: "September 2026",
     icon: Shirt,
     badge: "Attire Guidelines",
     description: "Detailed specification of approved traditional Indian formal wear required for receiving gold medals and merit certificates on stage.",
@@ -109,129 +109,108 @@ export function DocumentViewer() {
   const activeDoc = documents.find((doc) => doc.id === activeDocId) || documents[0]
 
   return (
-    <section id="documents" className="py-20 bg-background border-t border-b" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="documents" className="py-16 bg-[#FAF8F5] dark:bg-[#12161E] border-t border-[#E4DFD7] dark:border-[#212B3B]" ref={ref}>
+      <div className="container mx-auto px-4 max-w-5xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center mb-12"
         >
-          <div className="inline-flex items-center space-x-2 bg-amber-500/10 text-amber-600 dark:text-amber-400 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
-            <FileText className="h-4 w-4" />
-            <span>Document Hub</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Brochure & Circular Downloads</h2>
-          <p className="text-lg text-muted-foreground">
-            Access official ceremony documentation, dress code specifications, minute-by-minute schedule, and guidelines issued by SGSITS Indore.
-          </p>
+          <span className="text-[11px] font-sans tracking-[0.2em] text-[#C5A059] uppercase block mb-1">
+            OFFICIAL PUBLICATIONS
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl text-[#142338] dark:text-[#FAF8F5] font-normal">
+            Brochure &amp; Circular Downloads
+          </h2>
+          <div className="w-12 h-px bg-[#C5A059] mx-auto mt-4" />
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8">
-          {/* Sidebar Tabs */}
-          <div className="lg:col-span-5 space-y-3">
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          {/* Sidebar Item List */}
+          <div className="lg:col-span-5 space-y-2">
             {documents.map((doc) => {
-              const Icon = doc.icon
               const isSelected = doc.id === activeDocId
               return (
                 <button
                   key={doc.id}
                   onClick={() => setActiveDocId(doc.id)}
-                  className={`w-full text-left p-5 rounded-2xl border transition-all flex items-start space-x-4 ${
+                  className={`w-full text-left p-4 border transition-all text-xs font-sans ${
                     isSelected
-                      ? "bg-primary text-primary-foreground border-primary shadow-xl scale-[1.02]"
-                      : "bg-card hover:bg-accent border-border hover:border-primary/40 text-foreground"
+                      ? "bg-[#142338] text-white border-[#142338] dark:bg-[#1C2430] dark:border-[#C5A059]"
+                      : "bg-white dark:bg-[#1C2430] text-[#334155] dark:text-[#CBD5E1] border-[#EAE5DC] dark:border-[#212B3B] hover:border-[#142338]"
                   }`}
                 >
-                  <div className={`p-3 rounded-xl ${isSelected ? "bg-white/20 text-white" : "bg-primary/10 text-primary"}`}>
-                    <Icon className="h-6 w-6" />
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="uppercase tracking-widest font-semibold text-[10px] opacity-80">
+                      {doc.badge}
+                    </span>
+                    <span className="opacity-60">{doc.size}</span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2 mb-1">
-                      <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
-                        isSelected ? "bg-white/20 text-white" : "bg-muted text-muted-foreground"
-                      }`}>
-                        {doc.badge}
-                      </span>
-                      <span className={`text-xs ${isSelected ? "text-white/80" : "text-muted-foreground"}`}>
-                        {doc.size}
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-base truncate">{doc.title}</h3>
-                    <p className={`text-xs line-clamp-1 ${isSelected ? "text-white/90" : "text-muted-foreground"}`}>
-                      {doc.subtitle}
-                    </p>
-                  </div>
+                  <h3 className="font-serif text-base font-normal truncate mt-1">{doc.title}</h3>
+                  <p className="opacity-75 truncate mt-0.5">{doc.subtitle}</p>
                 </button>
               )
             })}
           </div>
 
-          {/* Active Document Reader Preview Box */}
+          {/* Active Document Details */}
           <div className="lg:col-span-7">
             <motion.div
               key={activeDoc.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="bg-card rounded-3xl p-8 border shadow-lg h-full flex flex-col justify-between"
+              className="bg-white dark:bg-[#1C2430] p-8 border border-[#EAE5DC] dark:border-[#212B3B]"
             >
-              <div>
-                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b mb-6">
-                  <div>
-                    <div className="inline-flex items-center space-x-2 text-xs font-semibold text-primary uppercase tracking-wider mb-1">
-                      <span>{activeDoc.type}</span>
-                      <span>•</span>
-                      <span>Updated {activeDoc.updated}</span>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold">{activeDoc.title}</h3>
-                  </div>
-                  <a
-                    href={activeDoc.path}
-                    download={activeDoc.filename}
-                    className="inline-flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl font-semibold shadow-md transition-all hover:scale-105"
-                  >
-                    <Download className="h-4 w-4" />
-                    <span>Download</span>
-                  </a>
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#EAE5DC] dark:border-[#212B3B] mb-6">
+                <div>
+                  <span className="text-[10px] font-sans tracking-widest text-[#C5A059] uppercase block">
+                    {activeDoc.type} • {activeDoc.updated}
+                  </span>
+                  <h3 className="font-serif text-2xl text-[#142338] dark:text-[#FAF8F5] mt-1 font-normal">
+                    {activeDoc.title}
+                  </h3>
                 </div>
-
-                <p className="text-muted-foreground text-base leading-relaxed mb-6">
-                  {activeDoc.description}
-                </p>
-
-                <div className="bg-muted/40 rounded-2xl p-6 mb-6">
-                  <h4 className="font-semibold text-sm uppercase tracking-wider text-foreground mb-3 flex items-center gap-2">
-                    <Info className="h-4 w-4 text-primary" /> Key Highlights & Contents
-                  </h4>
-                  <ul className="space-y-2">
-                    {activeDoc.highlights.map((item, idx) => (
-                      <li key={idx} className="flex items-start text-sm text-muted-foreground">
-                        <span className="h-2 w-2 rounded-full bg-amber-500 mt-2 mr-3 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <a
+                  href={activeDoc.path}
+                  download={activeDoc.filename}
+                  className="bg-[#142338] hover:bg-[#0F1B2B] text-white px-5 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center space-x-2"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  <span>Download PDF</span>
+                </a>
               </div>
 
-              {/* Action Toolbar */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t">
-                <div className="text-xs text-muted-foreground flex items-center space-x-2">
-                  <FileText className="h-4 w-4" />
-                  <span>File name: {activeDoc.filename} ({activeDoc.size})</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <a
-                    href={activeDoc.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1.5 text-xs font-semibold text-primary hover:underline"
-                  >
-                    <span>Inline Preview</span>
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                </div>
+              <p className="font-sans text-sm text-[#475569] dark:text-[#CBD5E1] leading-relaxed mb-6">
+                {activeDoc.description}
+              </p>
+
+              <div className="bg-[#FAF8F5] dark:bg-[#12161E] p-5 border border-[#EAE5DC] dark:border-[#212B3B] mb-6">
+                <h4 className="font-sans text-xs uppercase tracking-widest text-[#142338] dark:text-[#FAF8F5] font-semibold mb-3 flex items-center gap-2">
+                  <Info className="h-3.5 w-3.5 text-[#C5A059]" /> Key Contents
+                </h4>
+                <ul className="space-y-2 text-xs font-sans text-[#475569] dark:text-[#CBD5E1]">
+                  {activeDoc.highlights.map((item, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="text-[#C5A059] mr-2">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex items-center justify-between pt-4 border-t border-[#EAE5DC] dark:border-[#212B3B] text-xs font-sans text-[#64748B]">
+                <span>File: {activeDoc.filename} ({activeDoc.size})</span>
+                <a
+                  href={activeDoc.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#142338] dark:text-[#C5A059] hover:underline flex items-center gap-1 font-medium"
+                >
+                  <span>Open Preview</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
               </div>
             </motion.div>
           </div>

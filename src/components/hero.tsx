@@ -2,134 +2,89 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { ArrowRight, Award, Sparkles } from "lucide-react"
 import { CountdownTimer } from "@/components/countdown-timer"
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 flex flex-col items-center justify-center"
-          >
-            <div className="p-3 bg-white dark:bg-card/90 rounded-2xl shadow-xl border border-amber-500/20 mb-4 inline-block backdrop-blur-md">
-              <img
-                src="/images/sgsits_logo.png"
-                alt="Shri Govindram Seksaria Institute of Technology and Science"
-                className="h-20 md:h-24 w-auto object-contain"
-              />
-            </div>
-            <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-              <Sparkles className="h-4 w-4" />
-              <span>Annual Certificate &amp; Gold Medal Distribution Ceremony</span>
-            </div>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-          >
-            UDAAN
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-2xl md:text-3xl font-semibold mb-4 text-foreground"
-          >
-            आज की सफलता, कल की प्रेरणा
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg text-muted-foreground mb-8"
-          >
-            Today&apos;s success, tomorrow&apos;s inspiration
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-12"
-          >
-            <CountdownTimer />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <a
-              href="#register"
-              className="inline-flex items-center space-x-2 bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-all hover:scale-105 shadow-lg"
+    <section className="w-full bg-[#FAF8F5] dark:bg-[#12161E] text-[#1C2430] dark:text-[#FAF8F5]">
+      {/* Main Graduation Banner Container - Styled exactly like reference image */}
+      <div className="relative w-full max-w-6xl mx-auto my-6 px-4">
+        <div className="relative h-[420px] md:h-[500px] w-full overflow-hidden border border-[#DCD5C9] dark:border-[#2A3649] shadow-sm">
+          {/* Background Photo */}
+          <img
+            src="/images/udaan_stage.png"
+            alt="SGSITS Udaan Graduation & Gold Medal Ceremony"
+            className="w-full h-full object-cover object-center filter brightness-[0.85]"
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-[#0F1B2B]/45 flex flex-col items-center justify-center text-center p-6">
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-serif text-3xl md:text-5xl lg:text-6xl text-white font-normal tracking-[0.12em] uppercase leading-tight max-w-3xl drop-shadow-md"
             >
-              <span>Register Now</span>
-              <ArrowRight className="h-5 w-5" />
-            </a>
-            <a
-              href="#about"
-              className="inline-flex items-center space-x-2 bg-secondary text-secondary-foreground px-8 py-4 rounded-lg font-semibold hover:bg-secondary/80 transition-all hover:scale-105"
-            >
-              <Award className="h-5 w-5" />
-              <span>Learn More</span>
-            </a>
-          </motion.div>
+              CELEBRATING THE CLASS OF 2026
+            </motion.h2>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
-          >
-            <div className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border">
-              <div className="text-3xl font-bold text-primary mb-2">500+</div>
-              <div className="text-sm text-muted-foreground">Students Recognized</div>
-            </div>
-            <div className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border">
-              <div className="text-3xl font-bold text-primary mb-2">50+</div>
-              <div className="text-sm text-muted-foreground">Gold Medals Awarded</div>
-            </div>
-            <div className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border">
-              <div className="text-3xl font-bold text-primary mb-2">20+</div>
-              <div className="text-sm text-muted-foreground">Years of Excellence</div>
-            </div>
-          </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-sans text-xs md:text-sm text-white/90 uppercase tracking-[0.2em] mt-4 mb-8"
+            >
+              Annual Certificate &amp; Gold Medal Distribution Ceremony
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <a
+                href="#udaan"
+                className="inline-block bg-[#1B2A4A] hover:bg-[#142338] text-white px-7 py-3 text-xs md:text-sm font-sans tracking-[0.18em] uppercase border border-white/20 transition-all shadow-md hover:border-white/40"
+              >
+                VIEW CEREMONY DETAILS
+              </a>
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-primary rounded-full flex justify-center pt-2"
-        >
-          <div className="w-1 h-3 bg-primary rounded-full" />
-        </motion.div>
-      </motion.div>
+      {/* Sub-Hero Text & Event Details Header */}
+      <div className="max-w-4xl mx-auto text-center px-4 py-8">
+        <h2 className="font-serif text-3xl md:text-4xl text-[#142338] dark:text-[#FAF8F5] font-normal tracking-wide">
+          Congratulations to our graduates.
+        </h2>
+        <p className="font-sans text-sm md:text-base text-[#64748B] dark:text-[#94A3B8] mt-2 tracking-wide">
+          Thursday, 27 August 2026 | SGSITS Auditorium, Indore | Livestream available
+        </p>
+        <p className="font-serif text-sm italic text-[#C5A059] mt-2">
+          &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
+        </p>
+
+        {/* Countdown Timer Component */}
+        <div className="my-8 py-4 border-y border-[#EAE5DC] dark:border-[#212B3B]">
+          <CountdownTimer />
+        </div>
+
+        {/* Minimalist Stats Summary Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-center">
+          <div className="p-4 border border-[#EAE5DC] dark:border-[#212B3B] bg-white dark:bg-[#1C2430]">
+            <span className="block font-serif text-3xl text-[#142338] dark:text-[#C5A059]">500+</span>
+            <span className="text-xs uppercase tracking-widest text-[#64748B] dark:text-[#94A3B8] mt-1 block">Graduating Awardees</span>
+          </div>
+          <div className="p-4 border border-[#EAE5DC] dark:border-[#212B3B] bg-white dark:bg-[#1C2430]">
+            <span className="block font-serif text-3xl text-[#142338] dark:text-[#C5A059]">50+</span>
+            <span className="text-xs uppercase tracking-widest text-[#64748B] dark:text-[#94A3B8] mt-1 block">Gold Medals Awarded</span>
+          </div>
+          <div className="p-4 border border-[#EAE5DC] dark:border-[#212B3B] bg-white dark:bg-[#1C2430]">
+            <span className="block font-serif text-3xl text-[#142338] dark:text-[#C5A059]">70+</span>
+            <span className="text-xs uppercase tracking-widest text-[#64748B] dark:text-[#94A3B8] mt-1 block">Years of Legacy</span>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }

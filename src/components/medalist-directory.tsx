@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Award, Search, Trophy, Medal, GraduationCap, Filter, Star, Sparkles } from "lucide-react"
+import { Search, Trophy, Medal, GraduationCap } from "lucide-react"
 
 interface Medalist {
   id: string
@@ -183,45 +183,42 @@ export function MedalistDirectory() {
   })
 
   return (
-    <section id="medalists" className="py-20 bg-muted/20" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="medalists" className="py-16 bg-[#FAF8F5] dark:bg-[#12161E] border-t border-[#E4DFD7] dark:border-[#212B3B]" ref={ref}>
+      <div className="container mx-auto px-4 max-w-5xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center mb-12"
         >
-          <div className="inline-flex items-center space-x-2 bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
-            <Trophy className="h-4 w-4" />
-            <span>Honors & Awards</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Gold Medalists & Awardees</h2>
-          <p className="text-lg text-muted-foreground">
-            Browse the directory of SGSITS Gold Medal recipients and Merit Certificate awardees for the graduating batch.
-          </p>
+          <span className="text-[11px] font-sans tracking-[0.2em] text-[#C5A059] uppercase block mb-1">
+            HONORS &amp; DISTINCTIONS
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl text-[#142338] dark:text-[#FAF8F5] font-normal">
+            Gold Medalists &amp; Awardees
+          </h2>
+          <div className="w-12 h-px bg-[#C5A059] mx-auto mt-4" />
         </motion.div>
 
         {/* Filters and Search Bar */}
-        <div className="max-w-6xl mx-auto mb-10 bg-card rounded-2xl p-6 border shadow-sm space-y-4">
+        <div className="bg-white dark:bg-[#1C2430] p-6 border border-[#EAE5DC] dark:border-[#212B3B] mb-8 space-y-4">
           <div className="grid md:grid-cols-12 gap-4 items-center">
-            {/* Search Input */}
             <div className="md:col-span-6 relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#94A3B8]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by student name or enrollment no (e.g. 0801CS...)..."
-                className="w-full pl-12 pr-4 py-3 rounded-xl border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-amber-500"
+                placeholder="Search by student name or enrollment..."
+                className="w-full pl-9 pr-3 py-2 border border-[#EAE5DC] dark:border-[#212B3B] bg-[#FAF8F5] dark:bg-[#12161E] text-xs font-sans text-[#142338] dark:text-white focus:outline-none focus:border-[#142338]"
               />
             </div>
 
-            {/* Category Select */}
-            <div className="md:col-span-3">
+            <div className="md:col-span-4">
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full py-3 px-4 rounded-xl border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-amber-500"
+                className="w-full py-2 px-3 border border-[#EAE5DC] dark:border-[#212B3B] bg-[#FAF8F5] dark:bg-[#12161E] text-xs font-sans text-[#142338] dark:text-white focus:outline-none focus:border-[#142338]"
               >
                 <option value="ALL">All Categories</option>
                 <option value="Gold Medal">Gold Medalists Only</option>
@@ -229,22 +226,20 @@ export function MedalistDirectory() {
               </select>
             </div>
 
-            {/* Department Quick Badges count */}
-            <div className="md:col-span-3 text-right text-sm font-medium text-muted-foreground">
-              Showing <span className="text-foreground font-bold">{filteredMedalists.length}</span> awardees
+            <div className="md:col-span-2 text-right text-xs font-sans text-[#64748B]">
+              Showing <span className="font-bold text-[#142338] dark:text-white">{filteredMedalists.length}</span>
             </div>
           </div>
 
-          {/* Department Filter Pills */}
-          <div className="flex flex-wrap gap-2 pt-2 border-t">
+          <div className="flex flex-wrap gap-2 pt-3 border-t border-[#EAE5DC] dark:border-[#212B3B]">
             {departments.map((dept) => (
               <button
                 key={dept.code}
                 onClick={() => setSelectedDept(dept.code)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3 py-1 text-[11px] font-sans tracking-wider uppercase border transition-colors ${
                   selectedDept === dept.code
-                    ? "bg-amber-500 text-white shadow-md"
-                    : "bg-muted hover:bg-accent text-muted-foreground hover:text-foreground"
+                    ? "bg-[#142338] text-white border-[#142338] dark:bg-[#C5A059] dark:text-[#12161E]"
+                    : "bg-transparent text-[#64748B] border-[#EAE5DC] dark:border-[#212B3B] hover:border-[#142338]"
                 }`}
               >
                 {dept.label}
@@ -254,71 +249,62 @@ export function MedalistDirectory() {
         </div>
 
         {/* Directory Grid */}
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredMedalists.map((student) => {
             const isGold = student.category === "Gold Medal"
             return (
               <motion.div
                 key={student.id}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className={`rounded-3xl p-6 border relative overflow-hidden flex flex-col justify-between transition-all hover:shadow-xl ${
-                  isGold
-                    ? "bg-gradient-to-b from-amber-500/10 via-card to-card border-amber-500/40 shadow-amber-500/5"
-                    : "bg-card border-border"
-                }`}
+                className="bg-white dark:bg-[#1C2430] p-6 border border-[#EAE5DC] dark:border-[#212B3B] flex flex-col justify-between"
               >
-                {isGold && (
-                  <div className="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-extrabold uppercase px-4 py-1 rounded-bl-xl tracking-wider flex items-center gap-1 shadow-md">
-                    <Sparkles className="h-3 w-3" /> Gold Medalist
-                  </div>
-                )}
-
                 <div>
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className={`p-3 rounded-2xl ${isGold ? "bg-amber-500 text-white shadow-md shadow-amber-500/30" : "bg-primary/10 text-primary"}`}>
-                      {isGold ? <Trophy className="h-6 w-6" /> : <Medal className="h-6 w-6" />}
-                    </div>
+                  <div className="flex items-start justify-between mb-3 pb-3 border-b border-[#EAE5DC] dark:border-[#212B3B]">
                     <div>
-                      <h3 className="font-bold text-lg text-foreground leading-snug">{student.name}</h3>
-                      <p className="text-xs text-muted-foreground font-mono">{student.enrollment}</p>
+                      <span className="text-[10px] font-sans tracking-widest text-[#C5A059] uppercase block">
+                        {isGold ? "★ Gold Medalist" : "Merit Certificate"}
+                      </span>
+                      <h3 className="font-serif text-lg text-[#142338] dark:text-[#FAF8F5] font-normal mt-0.5">
+                        {student.name}
+                      </h3>
+                      <p className="text-[11px] font-mono text-[#64748B] mt-0.5">{student.enrollment}</p>
+                    </div>
+                    <div className="p-2 bg-[#FAF8F5] dark:bg-[#12161E] border border-[#EAE5DC] dark:border-[#212B3B]">
+                      {isGold ? <Trophy className="h-4 w-4 text-[#C5A059]" /> : <Medal className="h-4 w-4 text-[#64748B]" />}
                     </div>
                   </div>
 
-                  <div className="space-y-2 mb-4 text-xs">
-                    <div className="flex items-center justify-between py-1 border-b border-border/50">
-                      <span className="text-muted-foreground">Department</span>
-                      <span className="font-semibold text-foreground">{student.branch}</span>
+                  <div className="space-y-1.5 text-xs font-sans text-[#475569] dark:text-[#CBD5E1] mb-4">
+                    <div className="flex justify-between py-0.5">
+                      <span className="text-[#64748B]">Department:</span>
+                      <span className="font-medium text-[#142338] dark:text-white">{student.branchCode}</span>
                     </div>
-                    <div className="flex items-center justify-between py-1 border-b border-border/50">
-                      <span className="text-muted-foreground">Cumulative CGPA</span>
-                      <span className="font-bold text-amber-600 dark:text-amber-400 text-sm">{student.cgpa} / 10.0</span>
+                    <div className="flex justify-between py-0.5">
+                      <span className="text-[#64748B]">CGPA:</span>
+                      <span className="font-bold text-[#C5A059]">{student.cgpa} / 10.0</span>
                     </div>
-                    <div className="flex items-center justify-between py-1 border-b border-border/50">
-                      <span className="text-muted-foreground">Academic Rank</span>
-                      <span className="font-semibold text-foreground">{student.rank}</span>
+                    <div className="flex justify-between py-0.5">
+                      <span className="text-[#64748B]">Rank:</span>
+                      <span className="font-medium text-[#142338] dark:text-white">{student.rank}</span>
                     </div>
                   </div>
 
-                  <div className="bg-muted/40 rounded-xl p-3 text-xs text-muted-foreground mb-4">
-                    <p className="font-semibold text-foreground mb-1">{student.awardTitle}</p>
+                  <div className="bg-[#FAF8F5] dark:bg-[#12161E] p-3 border border-[#EAE5DC] dark:border-[#212B3B] text-[11px] text-[#475569] dark:text-[#CBD5E1] mb-4">
+                    <p className="font-serif text-xs text-[#142338] dark:text-white leading-snug mb-1">{student.awardTitle}</p>
                     {student.donorName && (
-                      <p className="text-[11px] italic text-amber-600/90 dark:text-amber-400/90">
-                        Endowed by: {student.donorName}
-                      </p>
+                      <p className="italic text-[#C5A059]">Endowed by: {student.donorName}</p>
                     )}
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-muted-foreground pt-3 border-t">
-                  <span className="inline-flex items-center gap-1">
-                    <GraduationCap className="h-4 w-4 text-primary" /> Batch {student.batch}
+                <div className="flex items-center justify-between text-[11px] font-sans text-[#64748B] pt-3 border-t border-[#EAE5DC] dark:border-[#212B3B]">
+                  <span className="flex items-center gap-1">
+                    <GraduationCap className="h-3.5 w-3.5 text-[#142338] dark:text-[#C5A059]" /> Batch {student.batch}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-secondary font-medium">
-                    SGSITS Indore
-                  </span>
+                  <span>SGSITS Indore</span>
                 </div>
               </motion.div>
             )
@@ -326,12 +312,9 @@ export function MedalistDirectory() {
         </div>
 
         {filteredMedalists.length === 0 && (
-          <div className="text-center py-16 bg-card rounded-3xl border max-w-md mx-auto">
-            <Search className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-            <h3 className="font-bold text-lg mb-1">No Awardees Found</h3>
-            <p className="text-sm text-muted-foreground">
-              Try adjusting your search query or department filter.
-            </p>
+          <div className="text-center py-12 bg-white dark:bg-[#1C2430] border border-[#EAE5DC] dark:border-[#212B3B]">
+            <p className="font-serif text-base text-[#142338] dark:text-white">No Awardees Found</p>
+            <p className="text-xs text-[#64748B] mt-1">Try adjusting your search query or department filter.</p>
           </div>
         )}
       </div>
