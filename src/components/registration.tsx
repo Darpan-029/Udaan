@@ -1,13 +1,14 @@
-import * as React from "react"
 import { ExternalLink, Shirt, FileText, Download, CheckCircle2 } from "lucide-react"
+import { Reveal } from "@/components/reveal"
+
+// Official Google Form link extracted from official SGSITS Udaan site
+const registrationFormUrl = "https://forms.gle/xirfNSVTatEpGbf96"
 
 export function Registration() {
-  const registrationFormUrl = "https://forms.gle/xirfNSVTatEpGbf96"
-
   return (
-    <section id="register" className="py-16 bg-background text-foreground border-t border-border scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-12">
+    <section id="register" className="py-16 bg-background border-t border-border-strong">
+      <div className="mx-auto px-4 max-w-4xl">
+        <Reveal className="text-center mb-12">
           <span className="text-[11px] font-sans tracking-[0.2em] text-accent uppercase block mb-1">
             GRADUATE REGISTRATION
           </span>
@@ -15,7 +16,7 @@ export function Registration() {
             Register for UDAAN 2026
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
-        </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-12 gap-8 items-stretch">
           {/* Main Registration Card */}
@@ -27,7 +28,7 @@ export function Registration() {
               <h3 className="font-serif text-2xl text-foreground font-normal">
                 Degree &amp; Medal Registration
               </h3>
-              <p className="font-sans text-xs text-muted-foreground leading-relaxed">
+              <p className="font-sans text-xs text-body leading-relaxed">
                 All graduating scholars receiving gold medals, merit certificates, or degree certificates must submit their attendance confirmation and guest details via the official Google Form portal.
               </p>
 
@@ -52,7 +53,7 @@ export function Registration() {
                 href={registrationFormUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3.5 px-4 rounded-xl text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center justify-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="w-full bg-primary hover:bg-primary-hover text-white py-3.5 px-4 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center justify-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <span>OPEN REGISTRATION FORM</span>
                 <ExternalLink className="h-4 w-4" />
@@ -68,7 +69,7 @@ export function Registration() {
                 <Shirt className="h-4 w-4 text-accent" />
                 <h3 className="font-serif text-base text-foreground font-normal">Dress Code Policy</h3>
               </div>
-              <div className="text-xs font-sans text-muted-foreground space-y-2 leading-relaxed">
+              <div className="text-xs font-sans text-body space-y-2 leading-relaxed">
                 <p><strong className="text-foreground">Male Candidates:</strong> White / Off-white Kurta Pyjama.</p>
                 <p><strong className="text-foreground">Female Candidates:</strong> White / Off-white Salwar-Kurta or Saree.</p>
                 <p className="text-accent italic pt-1 border-t border-border">
@@ -87,7 +88,7 @@ export function Registration() {
                 <a
                   href="/docs/brochure.pdf"
                   download="UDAAN_2026_Brochure.pdf"
-                  className="flex items-center justify-between p-2.5 bg-muted/30 border border-border hover:border-foreground transition-colors"
+                  className="flex items-center justify-between p-2.5 bg-background border border-border hover:border-foreground transition-colors"
                 >
                   <span className="text-foreground font-medium">Official Brochure (PDF)</span>
                   <Download className="h-3.5 w-3.5 text-accent" />
@@ -95,7 +96,7 @@ export function Registration() {
                 <a
                   href="/docs/dresscode.docx"
                   download="UDAAN_2026_DressCode.docx"
-                  className="flex items-center justify-between p-2.5 bg-muted/30 border border-border hover:border-foreground transition-colors"
+                  className="flex items-center justify-between p-2.5 bg-background border border-border hover:border-foreground transition-colors"
                 >
                   <span className="text-foreground font-medium">Dress Code Document</span>
                   <Download className="h-3.5 w-3.5 text-accent" />

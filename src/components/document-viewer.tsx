@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Download, Calendar, Award, Shirt, Info, ExternalLink } from "lucide-react"
+import { FileText, Download, Calendar, Award, Shirt, Info, ExternalLink } from "lucide-react"
+import { Reveal } from "@/components/reveal"
 
 interface DocumentItem {
   id: string
@@ -27,7 +28,7 @@ const documents: DocumentItem[] = [
     path: "/docs/brochure.pdf",
     type: "PDF Document",
     size: "2.8 MB",
-    updated: "August 2026",
+    updated: "October 2026",
     icon: Award,
     badge: "Official Brochure",
     description: "The official event brochure contains the Director's message, details of gold medal awards, institutional legacy of SGSITS Indore since 1952, and profiles of key dignitaries.",
@@ -35,8 +36,8 @@ const documents: DocumentItem[] = [
       "Director's address and ceremony objective",
       "List of Gold Medal donors and award criteria",
       "Department-wise rank holders and merit lists",
-      "Campus layout map and Auditorium entry points",
-    ],
+      "Campus layout map and Auditorium entry points"
+    ]
   },
   {
     id: "schedule",
@@ -46,16 +47,16 @@ const documents: DocumentItem[] = [
     path: "/docs/schedule.pdf",
     type: "PDF Document",
     size: "1.4 MB",
-    updated: "August 2026",
+    updated: "October 2026",
     icon: Calendar,
     badge: "Event Timeline",
     description: "Comprehensive timeline of the ceremony starting from morning registration and half-jacket distribution to gold medal conferral and high tea.",
     highlights: [
       "09:00 AM - Registration & Jacket Counter Open",
-      "10:00 AM - Academic Procession & Chief Guest Arrival",
-      "10:35 AM - Gold Medal Distribution Ceremony",
-      "12:50 PM - High Tea & Networking at Golden Jubilee Lawn",
-    ],
+      "10:30 AM - Academic Procession & Chief Guest Arrival",
+      "11:15 AM - Gold Medal Distribution Ceremony",
+      "01:30 PM - High Tea & Networking at Golden Jubilee Lawn"
+    ]
   },
   {
     id: "circular",
@@ -65,7 +66,7 @@ const documents: DocumentItem[] = [
     path: "/docs/circular.pdf",
     type: "PDF Document",
     size: "950 KB",
-    updated: "August 2026",
+    updated: "September 2026",
     icon: Info,
     badge: "Official Notice",
     description: "Official notification issued by the SGSITS Academic Registrar regarding mandatory pass generation, seating assignments, and entry verification procedures.",
@@ -73,8 +74,8 @@ const documents: DocumentItem[] = [
       "Mandatory digital QR pass verification at main gate",
       "Guest limits: Maximum 2 family members per awardee",
       "Photo ID requirement (Aadhaar / Institute ID)",
-      "Late arrival policy and stage entry protocols",
-    ],
+      "Late arrival policy and stage entry protocols"
+    ]
   },
   {
     id: "dresscode",
@@ -82,9 +83,9 @@ const documents: DocumentItem[] = [
     subtitle: "Traditional formal attire requirements for degree conferral",
     filename: "dresscode.docx",
     path: "/docs/dresscode.docx",
-    type: "DOCX Document",
+    type: "DOCX File",
     size: "520 KB",
-    updated: "August 2026",
+    updated: "September 2026",
     icon: Shirt,
     badge: "Attire Guidelines",
     description: "Detailed specification of approved traditional Indian formal wear required for receiving gold medals and merit certificates on stage.",
@@ -92,9 +93,9 @@ const documents: DocumentItem[] = [
       "Male Candidates: White / Off-White Kurta Pyjama",
       "Female Candidates: White / Off-White Salwar Suits or Sarees",
       "Ceremonial Half-Jackets provided at counter upon pass validation",
-      "Strict prohibition of casual denim, sneakers, or informal footwear on stage",
-    ],
-  },
+      "Strict prohibition of casual denim, sneakers, or informal footwear on stage"
+    ]
+  }
 ]
 
 export function DocumentViewer() {
@@ -103,9 +104,9 @@ export function DocumentViewer() {
   const activeDoc = documents.find((doc) => doc.id === activeDocId) || documents[0]
 
   return (
-    <section id="documents" className="py-16 bg-background text-foreground border-t border-border scroll-mt-24">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="text-center mb-12">
+    <section id="documents" className="py-16 bg-background border-t border-border-strong">
+      <div className="mx-auto px-4 max-w-5xl">
+        <Reveal className="text-center mb-12">
           <span className="text-[11px] font-sans tracking-[0.2em] text-accent uppercase block mb-1">
             OFFICIAL PUBLICATIONS
           </span>
@@ -113,7 +114,7 @@ export function DocumentViewer() {
             Brochure &amp; Circular Downloads
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
-        </div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* Sidebar Item List */}
@@ -124,10 +125,11 @@ export function DocumentViewer() {
                 <button
                   key={doc.id}
                   onClick={() => setActiveDocId(doc.id)}
-                  className={`w-full text-left p-4 border transition-all text-xs font-sans rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  aria-pressed={isSelected}
+                  className={`w-full text-left p-4 border transition-all text-xs font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     isSelected
-                      ? "bg-primary text-primary-foreground border-primary shadow-md"
-                      : "bg-card text-foreground border-border hover:border-foreground"
+                      ? "bg-primary text-white border-primary shadow-md dark:bg-card dark:border-accent"
+                      : "bg-card text-body border-border hover:border-foreground"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-1">
@@ -145,7 +147,7 @@ export function DocumentViewer() {
 
           {/* Active Document Details */}
           <div className="lg:col-span-7">
-            <div className="bg-card p-8 border border-border">
+            <div key={activeDoc.id} className="bg-card p-8 border border-border">
               <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-border mb-6">
                 <div>
                   <span className="text-[10px] font-sans tracking-widest text-accent uppercase block">
@@ -158,22 +160,22 @@ export function DocumentViewer() {
                 <a
                   href={activeDoc.path}
                   download={activeDoc.filename}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2.5 text-xs font-sans tracking-[0.15em] rounded-xl uppercase border border-transparent transition-colors flex items-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  <span>Download File</span>
+                  <span>Download PDF</span>
                 </a>
               </div>
 
-              <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-6">
+              <p className="font-sans text-sm text-body leading-relaxed mb-6">
                 {activeDoc.description}
               </p>
 
-              <div className="bg-muted/30 p-5 border border-border mb-6">
+              <div className="bg-background p-5 border border-border mb-6">
                 <h4 className="font-sans text-xs uppercase tracking-widest text-foreground font-semibold mb-3 flex items-center gap-2">
                   <Info className="h-3.5 w-3.5 text-accent" /> Key Contents
                 </h4>
-                <ul className="space-y-2 text-xs font-sans text-muted-foreground">
+                <ul className="space-y-2 text-xs font-sans text-body">
                   {activeDoc.highlights.map((item, idx) => (
                     <li key={idx} className="flex items-start">
                       <span className="text-accent mr-2">•</span>

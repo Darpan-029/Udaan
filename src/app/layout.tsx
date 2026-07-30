@@ -13,15 +13,13 @@ export const metadata: Metadata = {
   title: "Udaan 2026 • SGSITS Indore - Graduation & Certificate Ceremony",
   description: "आज की सफलता, कल की प्रेरणा - Today's success, tomorrow's inspiration. Celebrating achievement and excellence at SGSITS Indore.",
   keywords: ["Udaan 2026", "SGSITS", "Indore", "Graduation", "Certificate Ceremony", "Gold Medal"],
-  icons: {
-    icon: "/favicon.ico",
-  },
   openGraph: {
     title: "Udaan 2026 • SGSITS Indore",
-    description: "Annual Certificate & Gold Medal Distribution Ceremony at SGSITS Indore.",
+    description: "Celebrating achievement and excellence — certificates & gold medals for outstanding students, SGSITS Indore.",
     url: "https://udaan.sgsits.ac.in",
-    siteName: "SGSITS UDAAN 2026",
-    locale: "en_US",
+    siteName: "Udaan 2026",
+    images: ["/images/udaan_stage.webp"],
+    locale: "en_IN",
     type: "website",
   },
 }
@@ -33,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased bg-background text-foreground transition-colors duration-200">
+      <body className="font-sans antialiased bg-background text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

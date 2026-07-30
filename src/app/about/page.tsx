@@ -1,14 +1,14 @@
-import * as React from "react"
 import Link from "next/link"
 import { MapPin, Shirt } from "lucide-react"
+import { Reveal } from "@/components/reveal"
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background text-foreground pt-12 pb-16">
       {/* Header Banner */}
-      <section className="py-12 border-b border-border text-center">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div>
+      <section className="py-12 border-b border-border-strong text-center">
+        <div className="mx-auto px-4 max-w-4xl">
+          <Reveal>
             <span className="text-[11px] font-sans tracking-[0.25em] text-accent uppercase block mb-1">
               INSTITUTIONAL PROFILE
             </span>
@@ -21,24 +21,24 @@ export default function AboutPage() {
             <div className="flex flex-wrap justify-center gap-4 mt-6">
               <Link
                 href="/#register"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors"
+                className="bg-primary hover:bg-primary-hover text-white px-6 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors"
               >
                 Register for Ceremony
               </Link>
               <Link
                 href="/docs/brochure.pdf"
                 download="UDAAN_2026_Brochure.pdf"
-                className="bg-transparent hover:bg-black/5 dark:hover:bg-white/5 text-foreground px-6 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-foreground transition-colors"
+                className="bg-transparent hover:bg-foreground/5 text-foreground px-6 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-foreground transition-colors"
               >
                 Download Brochure
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Main Content Body */}
-      <div className="container mx-auto px-4 py-12 max-w-4xl space-y-12">
+      <div className="mx-auto px-4 py-12 max-w-4xl space-y-12">
 
         {/* Section 1: SGSITS Heritage */}
         <div className="grid md:grid-cols-12 gap-8 items-start">
@@ -49,10 +49,10 @@ export default function AboutPage() {
             <h2 className="font-serif text-2xl text-foreground font-normal">
               Shri Govindram Seksaria Institute of Technology and Science
             </h2>
-            <p className="font-sans text-xs text-muted-foreground leading-relaxed">
+            <p className="font-sans text-xs text-body leading-relaxed">
               Shri Govindram Seksaria Institute of Technology and Science (SGSITS), Indore, is a premier autonomous institute affiliated to Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal, and approved by AICTE, New Delhi.
             </p>
-            <p className="font-sans text-xs text-muted-foreground leading-relaxed">
+            <p className="font-sans text-xs text-body leading-relaxed">
               Founded in 1952, it is among Central India’s oldest engineering institutions, renowned for technical education, research laboratories, and an extraordinary alumni global footprint.
             </p>
           </div>
@@ -61,7 +61,7 @@ export default function AboutPage() {
             <h3 className="font-serif text-lg text-foreground font-normal pb-2 border-b border-border">
               Key Institutional Status
             </h3>
-            <ul className="space-y-2.5 text-xs font-sans text-muted-foreground">
+            <ul className="space-y-2.5 text-xs font-sans text-body">
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
                 <span>Autonomous status granted by UGC &amp; Govt. of M.P.</span>
@@ -91,10 +91,10 @@ export default function AboutPage() {
             <h2 className="font-serif text-2xl text-foreground font-normal mb-3">
               What is UDAAN?
             </h2>
-            <p className="font-sans text-xs text-muted-foreground leading-relaxed mb-3">
+            <p className="font-sans text-xs text-body leading-relaxed mb-3">
               <strong>UDAAN</strong> is the flagship Annual Certificate and Gold Medal Distribution Ceremony of SGSITS Indore, honoring graduating scholars and academic achievers in the presence of eminent dignitaries, faculty, and alumni.
             </p>
-            <p className="font-sans text-xs text-muted-foreground leading-relaxed">
+            <p className="font-sans text-xs text-body leading-relaxed">
               The ceremony recognizes student perseverance and academic distinction across B.Tech, M.Tech, MCA, B.Pharm, and M.Sc. programs by awarding prestigious donor gold medals and merit certificates.
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function AboutPage() {
             <h3 className="font-serif text-lg text-foreground font-normal mb-2 flex items-center gap-2">
               <MapPin className="h-4 w-4 text-accent" /> Venue &amp; Location
             </h3>
-            <p className="font-sans text-xs text-muted-foreground leading-relaxed mb-4">
+            <p className="font-sans text-xs text-body leading-relaxed mb-4">
               SGSITS Golden Jubilee Auditorium, 23 Sir M. Visvesvaraya Marg, Indore, Madhya Pradesh 452003.
             </p>
             <div className="space-y-1 text-xs font-sans text-muted-foreground">
@@ -134,7 +134,7 @@ export default function AboutPage() {
             <h3 className="font-serif text-lg text-foreground font-normal mb-2 flex items-center gap-2">
               <Shirt className="h-4 w-4 text-accent" /> Attire Protocol
             </h3>
-            <p className="font-sans text-xs text-muted-foreground leading-relaxed mb-4">
+            <p className="font-sans text-xs text-body leading-relaxed mb-4">
               Traditional Indian formal wear is mandatory for receiving certificates and gold medals on stage.
             </p>
             <div className="space-y-1 text-xs font-sans text-muted-foreground">
@@ -145,15 +145,15 @@ export default function AboutPage() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center bg-primary text-primary-foreground p-8 border border-accent/30 space-y-4">
+        <div className="text-center bg-primary text-white p-8 border border-accent/30 space-y-4">
           <h3 className="font-serif text-2xl font-normal">Ready to Join UDAAN 2026?</h3>
-          <p className="font-sans text-xs opacity-90 max-w-md mx-auto">
+          <p className="font-sans text-xs text-white/80 max-w-md mx-auto">
             Complete your registration, view official documents, or check the gold medalists directory.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <Link
               href="/#documents"
-              className="bg-card text-foreground px-5 py-2.5 text-xs font-sans tracking-widest uppercase font-semibold"
+              className="bg-white text-primary px-5 py-2.5 text-xs font-sans tracking-widest uppercase font-semibold"
             >
               View Documents
             </Link>

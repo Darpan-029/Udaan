@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
+// Placeholder scaffolding: validates the payload but only logs it -- nothing
+// is persisted. Real registration goes through the Google Form linked in
+// the Registration section.
 const registrationSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
