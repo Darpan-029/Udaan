@@ -53,7 +53,7 @@ export function Registration() {
                 href={registrationFormUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-primary hover:bg-primary-hover text-white py-3.5 px-4 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center justify-center space-x-2 shadow-sm"
+                className="w-full bg-primary hover:bg-primary-hover text-white py-3.5 px-4 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center justify-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <span>OPEN REGISTRATION FORM</span>
                 <ExternalLink className="h-4 w-4" />

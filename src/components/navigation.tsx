@@ -180,7 +180,7 @@ export function Navigation() {
         {isOpen && (
           <div
             id="mobile-nav-drawer"
-            className="md:hidden pb-2 space-y-1 text-center border-t border-border bg-background"
+            className="md:hidden pb-2 space-y-1 text-center border-t border-border bg-background/98 backdrop-blur-md rounded-b-lg shadow-lg"
           >
             {navItems.map((item) => (
               <Link

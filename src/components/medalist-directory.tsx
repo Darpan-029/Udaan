@@ -245,7 +245,7 @@ export function MedalistDirectory() {
                 aria-pressed={selectedDept === dept.code}
                 className={`px-3 py-1 text-[11px] font-sans tracking-wider uppercase border transition-colors ${
                   selectedDept === dept.code
-                    ? "bg-primary text-white border-primary dark:bg-accent dark:text-background dark:border-accent"
+                    ? "bg-primary text-white border-primary shadow-md dark:bg-accent dark:text-background dark:border-accent"
                     : "bg-transparent text-muted-foreground border-border hover:border-foreground"
                 }`}
               >

@@ -159,7 +159,7 @@ export default function AboutPage() {
             </Link>
             <Link
               href="/#medalists"
-              className="bg-transparent text-white border border-white px-5 py-2.5 text-xs font-sans tracking-widest uppercase hover:bg-white/10"
+              className="bg-transparent text-primary-foreground border border-primary-foreground px-5 py-2.5 text-xs font-sans tracking-widest uppercase hover:bg-white/10"
             >
               Explore Medalists
             </Link>

@@ -126,9 +126,9 @@ export function DocumentViewer() {
                   key={doc.id}
                   onClick={() => setActiveDocId(doc.id)}
                   aria-pressed={isSelected}
-                  className={`w-full text-left p-4 border transition-all text-xs font-sans ${
+                  className={`w-full text-left p-4 border transition-all text-xs font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     isSelected
-                      ? "bg-primary text-white border-primary dark:bg-card dark:border-accent"
+                      ? "bg-primary text-white border-primary shadow-md dark:bg-card dark:border-accent"
                       : "bg-card text-body border-border hover:border-foreground"
                   }`}
                 >
@@ -160,7 +160,7 @@ export function DocumentViewer() {
                 <a
                   href={activeDoc.path}
                   download={activeDoc.filename}
-                  className="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center space-x-2"
+                  className="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <Download className="h-3.5 w-3.5" />
                   <span>Download PDF</span>
