@@ -203,7 +203,7 @@ export function MedalistDirectory() {
         </Reveal>
 
         {/* Filters and Search Bar */}
-        <div className="bg-card p-6 border border-border mb-8 space-y-4">
+        <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl shadow-md mb-8 space-y-4 card-pop">
           <div className="grid md:grid-cols-12 gap-4 items-center">
             <div className="md:col-span-6 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -214,7 +214,7 @@ export function MedalistDirectory() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by student name or enrollment..."
-                className="w-full pl-9 pr-3 py-2 border border-border bg-background text-xs font-sans text-foreground focus:outline-none focus:border-foreground"
+                className="w-full pl-9 pr-3 py-2 border border-border dark:border-slate-800 bg-background dark:bg-slate-900 rounded-xl text-xs font-sans text-foreground focus:outline-none focus:border-accent"
               />
             </div>
 
@@ -224,7 +224,7 @@ export function MedalistDirectory() {
                 id="medalist-category"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full py-2 px-3 border border-border bg-background text-xs font-sans text-foreground focus:outline-none focus:border-foreground"
+                className="w-full py-2 px-3 border border-border dark:border-slate-800 bg-background dark:bg-slate-900 rounded-xl text-xs font-sans text-foreground focus:outline-none focus:border-accent"
               >
                 <option value="ALL">All Categories</option>
                 <option value="Gold Medal">Gold Medalists Only</option>
@@ -237,16 +237,16 @@ export function MedalistDirectory() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 pt-3 border-t border-border">
+          <div className="flex flex-wrap gap-2 pt-3 border-t border-border dark:border-slate-800">
             {departments.map((dept) => (
               <button
                 key={dept.code}
                 onClick={() => setSelectedDept(dept.code)}
                 aria-pressed={selectedDept === dept.code}
-                className={`px-3 py-1 text-[11px] font-sans tracking-wider uppercase border transition-colors ${
+                className={`px-3 py-1 text-[11px] font-sans tracking-wider uppercase border rounded-lg transition-all ${
                   selectedDept === dept.code
                     ? "bg-primary text-white border-primary shadow-md dark:bg-accent dark:text-background dark:border-accent"
-                    : "bg-transparent text-muted-foreground border-border hover:border-foreground"
+                    : "bg-transparent text-muted-foreground border-border dark:border-slate-800 hover:border-accent"
                 }`}
               >
                 {dept.label}
@@ -262,12 +262,12 @@ export function MedalistDirectory() {
             return (
               <div
                 key={student.id}
-                className="bg-card p-6 border border-border flex flex-col justify-between"
+                className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl shadow-sm flex flex-col justify-between card-pop"
               >
                 <div>
-                  <div className="flex items-start justify-between mb-3 pb-3 border-b border-border">
+                  <div className="flex items-start justify-between mb-3 pb-3 border-b border-border dark:border-slate-800">
                     <div>
-                      <span className="text-[10px] font-sans tracking-widest text-accent uppercase block">
+                      <span className="text-[10px] font-sans tracking-widest text-accent uppercase block font-semibold">
                         {isGold ? "★ Gold Medalist" : "Merit Certificate"}
                       </span>
                       <h3 className="font-serif text-lg text-foreground font-normal mt-0.5">
@@ -275,7 +275,7 @@ export function MedalistDirectory() {
                       </h3>
                       <p className="text-[11px] font-mono text-muted-foreground mt-0.5">{student.enrollment}</p>
                     </div>
-                    <div className="p-2 bg-background border border-border">
+                    <div className="p-2 bg-background dark:bg-slate-900 border border-border dark:border-slate-800 rounded-xl">
                       {isGold ? <Trophy className="h-4 w-4 text-accent" /> : <Medal className="h-4 w-4 text-muted-foreground" />}
                     </div>
                   </div>
@@ -295,7 +295,7 @@ export function MedalistDirectory() {
                     </div>
                   </div>
 
-                  <div className="bg-background p-3 border border-border text-[11px] text-body mb-4">
+                  <div className="bg-background dark:bg-slate-900/80 p-3 border border-border dark:border-slate-800 rounded-xl text-[11px] text-body mb-4">
                     <p className="font-serif text-xs text-foreground leading-snug mb-1">{student.awardTitle}</p>
                     {student.donorName && (
                       <p className="italic text-accent">Endowed by: {student.donorName}</p>
@@ -303,7 +303,7 @@ export function MedalistDirectory() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] font-sans text-muted-foreground pt-3 border-t border-border">
+                <div className="flex items-center justify-between text-[11px] font-sans text-muted-foreground pt-3 border-t border-border dark:border-slate-800">
                   <span className="flex items-center gap-1">
                     <GraduationCap className="h-3.5 w-3.5 text-foreground dark:text-accent" /> Batch {student.batch}
                   </span>

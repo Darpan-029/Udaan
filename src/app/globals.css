@@ -67,13 +67,13 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+html {
+  scroll-behavior: smooth !important;
 }
 
 /* Anchor targets sit below the sticky header. */
+#dignitaries,
+#hero,
 #about,
 #documents,
 #medalists,
@@ -81,7 +81,7 @@
 #gallery,
 #faq,
 #register {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 90px;
 }
 
 /* Custom Scrollbar */
@@ -125,23 +125,38 @@
 }
 
 /*
+ * Card hover pop micro-animation and rounded border utility
+ */
+.card-pop {
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-pop:hover {
+  transform: translateY(-6px) scale(1.012);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+}
+
+.dark .card-pop:hover {
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(197, 160, 89, 0.2);
+}
+
+/*
  * Header typing animation -- pure CSS replacement for a setInterval-driven
- * re-render. "Udaan' 26" types in, holds, deletes, and loops forever with
- * zero JS and zero React re-renders. The blinking caret is the element's
- * own right border, so it always sits exactly at the current reveal edge
- * instead of needing to be repositioned as the text grows.
+ * re-render. "उड़ान 2026" types in, holds, deletes, and loops forever with
+ * zero JS and zero React re-renders.
  */
 @keyframes udaan-type {
   0% {
     width: 0;
-    animation-timing-function: steps(9, jump-end);
+    animation-timing-function: steps(10, jump-end);
   }
   35% {
-    width: 9ch;
+    width: 10.5ch;
   }
   65% {
-    width: 9ch;
-    animation-timing-function: steps(9, jump-end);
+    width: 10.5ch;
+    animation-timing-function: steps(10, jump-end);
   }
   88%, 100% {
     width: 0;
@@ -174,7 +189,7 @@
 
   .udaan-typing {
     animation: none;
-    width: 9ch;
+    width: 10.5ch;
     border-right-color: transparent;
   }
 

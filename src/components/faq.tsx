@@ -50,14 +50,14 @@ export function FAQ() {
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
         </Reveal>
 
-        <div className="bg-card border border-border divide-y divide-border">
+        <div className="bg-card dark:bg-[#0D1527] border border-border dark:border-slate-800 rounded-2xl shadow-md overflow-hidden divide-y divide-border dark:divide-slate-800/80 card-pop">
           {faqs.map((faq, index) => (
             <details key={index} className="group">
-              <summary className="w-full p-5 flex items-center justify-between gap-4 text-left hover:bg-background transition-colors cursor-pointer list-none marker:content-none [&::-webkit-details-marker]:hidden">
+              <summary className="w-full p-5 flex items-center justify-between gap-4 text-left hover:bg-background/80 dark:hover:bg-slate-900/50 transition-colors cursor-pointer list-none marker:content-none [&::-webkit-details-marker]:hidden">
                 <span className="font-serif text-base text-foreground font-normal">{faq.question}</span>
                 <ChevronDown className="h-4 w-4 text-accent flex-shrink-0 transition-transform group-open:rotate-180" />
               </summary>
-              <div className="px-5 pb-5 font-sans text-xs text-muted-foreground leading-relaxed border-t border-dashed border-border pt-3">
+              <div className="px-5 pb-5 font-sans text-xs text-muted-foreground leading-relaxed border-t border-dashed border-border dark:border-slate-800/80 pt-3">
                 {faq.answer}
               </div>
             </details>

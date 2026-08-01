@@ -61,7 +61,7 @@ export function Schedule() {
         </Reveal>
 
         {/* Schedule Info Ribbon */}
-        <div className="bg-card p-6 border border-border grid md:grid-cols-3 gap-6 mb-8 text-xs font-sans">
+        <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl shadow-md grid md:grid-cols-3 gap-6 mb-8 text-xs font-sans card-pop">
           <div className="flex items-center space-x-3">
             <Calendar className="h-4 w-4 text-accent" />
             <div>
@@ -85,17 +85,20 @@ export function Schedule() {
           </div>
         </div>
 
-        {/* Minimalist Editorial Timeline Table */}
-        <div className="bg-card border border-border divide-y divide-border">
+        {/* Timeline Items Cards */}
+        <div className="space-y-4">
           {scheduleItems.map((item, idx) => (
-            <div key={idx} className="p-5 flex flex-col md:flex-row items-start gap-4 hover:bg-background transition-colors">
+            <div
+              key={idx}
+              className="bg-card dark:bg-[#0D1527] p-5 border border-border dark:border-slate-800 rounded-2xl shadow-sm flex flex-col md:flex-row items-start gap-4 hover:border-accent/40 transition-all card-pop"
+            >
               <div className="md:w-32 flex-shrink-0">
-                <span className="font-serif text-base text-foreground dark:text-accent font-normal">{item.time}</span>
+                <span className="font-serif text-base text-accent font-semibold">{item.time}</span>
               </div>
               <div className="flex-1">
                 <h3 className="font-serif text-base text-foreground font-normal mb-1">{item.title}</h3>
                 <p className="font-sans text-xs text-muted-foreground leading-relaxed mb-2">{item.description}</p>
-                <span className="inline-flex items-center gap-1 text-[11px] font-sans text-accent">
+                <span className="inline-flex items-center gap-1 text-[11px] font-sans text-accent font-medium">
                   <MapPin className="h-3 w-3" /> {item.location}
                 </span>
               </div>
@@ -107,7 +110,7 @@ export function Schedule() {
           <a
             href="/docs/schedule.pdf"
             download="UDAAN_2026_Schedule.pdf"
-            className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-all shadow-md rounded-xl card-pop focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Download Schedule PDF
           </a>

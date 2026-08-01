@@ -118,7 +118,7 @@ export function DocumentViewer() {
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* Sidebar Item List */}
-          <div className="lg:col-span-5 space-y-2">
+          <div className="lg:col-span-5 space-y-3">
             {documents.map((doc) => {
               const isSelected = doc.id === activeDocId
               return (
@@ -126,10 +126,10 @@ export function DocumentViewer() {
                   key={doc.id}
                   onClick={() => setActiveDocId(doc.id)}
                   aria-pressed={isSelected}
-                  className={`w-full text-left p-4 border transition-all text-xs font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  className={`w-full text-left p-4 border transition-all text-xs font-sans rounded-xl card-pop focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     isSelected
-                      ? "bg-primary text-white border-primary shadow-md dark:bg-card dark:border-accent"
-                      : "bg-card text-body border-border hover:border-foreground"
+                      ? "bg-primary text-white border-primary shadow-md dark:bg-[#0D1527] dark:border-accent"
+                      : "bg-card text-body border-border hover:border-accent/60"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-1">
@@ -147,10 +147,10 @@ export function DocumentViewer() {
 
           {/* Active Document Details */}
           <div className="lg:col-span-7">
-            <div key={activeDoc.id} className="bg-card p-8 border border-border">
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-border mb-6">
+            <div key={activeDoc.id} className="bg-card dark:bg-[#0D1527] p-8 border border-border dark:border-slate-800 rounded-2xl shadow-xl card-pop">
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-border dark:border-slate-800 mb-6">
                 <div>
-                  <span className="text-[10px] font-sans tracking-widest text-accent uppercase block">
+                  <span className="text-[10px] font-sans tracking-widest text-accent uppercase block font-semibold">
                     {activeDoc.type} • {activeDoc.updated}
                   </span>
                   <h3 className="font-serif text-2xl text-foreground mt-1 font-normal">
@@ -160,7 +160,7 @@ export function DocumentViewer() {
                 <a
                   href={activeDoc.path}
                   download={activeDoc.filename}
-                  className="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors flex items-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors rounded-xl flex items-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <Download className="h-3.5 w-3.5" />
                   <span>Download PDF</span>
@@ -171,7 +171,7 @@ export function DocumentViewer() {
                 {activeDoc.description}
               </p>
 
-              <div className="bg-background p-5 border border-border mb-6">
+              <div className="bg-background dark:bg-slate-900/80 p-5 border border-border dark:border-slate-800 rounded-xl mb-6">
                 <h4 className="font-sans text-xs uppercase tracking-widest text-foreground font-semibold mb-3 flex items-center gap-2">
                   <Info className="h-3.5 w-3.5 text-accent" /> Key Contents
                 </h4>
@@ -185,7 +185,7 @@ export function DocumentViewer() {
                 </ul>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-border text-xs font-sans text-muted-foreground">
+              <div className="flex items-center justify-between pt-4 border-t border-border dark:border-slate-800 text-xs font-sans text-muted-foreground">
                 <span>File: {activeDoc.filename} ({activeDoc.size})</span>
                 <a
                   href={activeDoc.path}

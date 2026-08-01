@@ -1,6 +1,7 @@
+import { Dignitaries } from "@/components/dignitaries"
 import { Hero } from "@/components/hero"
-import { About } from "@/components/about"
 import { DocumentViewer } from "@/components/document-viewer"
+import { About } from "@/components/about"
 import { MedalistDirectory } from "@/components/medalist-directory"
 import { Schedule } from "@/components/schedule"
 import { Gallery } from "@/components/gallery"
@@ -10,9 +11,10 @@ import { Registration } from "@/components/registration"
 export function UdaanSections() {
   return (
     <>
+      <Dignitaries />
       <Hero />
-      <About />
       <DocumentViewer />
+      <About />
       <MedalistDirectory />
       <Schedule />
       <Gallery />

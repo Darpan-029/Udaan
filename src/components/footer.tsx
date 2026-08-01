@@ -1,20 +1,49 @@
+"use client"
+
+import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import logo from "../../public/images/sgsits_logo.webp"
 
+const footerNavItems = [
+  { name: "DIGNITARIES", href: "#dignitaries" },
+  { name: "DOCUMENTS", href: "#documents" },
+  { name: "ABOUT", href: "#about" },
+  { name: "MEDALISTS", href: "#medalists" },
+  { name: "SCHEDULE", href: "#schedule" },
+  { name: "GALLERY", href: "#gallery" },
+  { name: "FAQ", href: "#faq" },
+  { name: "REGISTRATION", href: "#register" },
+]
+
 export function Footer() {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault()
+      const targetId = href.replace("#", "")
+      const elem = document.getElementById(targetId)
+      if (elem) {
+        elem.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
+    }
+  }
+
   return (
     <footer className="w-full bg-primary text-white border-t border-accent/30 py-12">
       <div className="mx-auto px-4 max-w-4xl text-center">
-        {/* Emblem */}
-        <div className="flex justify-center mb-4">
-          <div className="p-1 bg-white border border-border rounded-full shadow-sm">
+        {/* Emblem - Matching top navbar logo */}
+        <div className="flex justify-center mb-5">
+          <Link
+            href="#dignitaries"
+            onClick={(e) => handleNavClick(e, "#dignitaries")}
+            className="inline-block transition-transform hover:scale-105"
+          >
             <Image
               src={logo}
               alt="SGSITS Indore Official Seal"
-              className="h-12 w-auto object-contain rounded-full"
+              className="h-16 md:h-20 w-auto object-contain drop-shadow-md"
             />
-          </div>
+          </Link>
         </div>
 
         {/* Title */}
@@ -25,19 +54,20 @@ export function Footer() {
           SHRI GOVINDRAM SEKSARIA INSTITUTE OF TECHNOLOGY AND SCIENCE, INDORE
         </p>
 
-        {/* Links bar with pipes */}
+        {/* Links bar with pipes & smooth scrolling */}
         <nav className="flex items-center justify-center flex-wrap gap-y-2 text-xs font-sans tracking-[0.15em] text-white/80 my-6">
-          <Link href="/about" className="hover:text-white transition-colors px-2">ABOUT</Link>
-          <span className="text-white/30">|</span>
-          <Link href="/udaan" className="hover:text-white transition-colors px-2">UDAAN</Link>
-          <span className="text-white/30">|</span>
-          <Link href="/#documents" className="hover:text-white transition-colors px-2">DOCUMENTS</Link>
-          <span className="text-white/30">|</span>
-          <Link href="/#medalists" className="hover:text-white transition-colors px-2">MEDALISTS</Link>
-          <span className="text-white/30">|</span>
-          <Link href="/#schedule" className="hover:text-white transition-colors px-2">SCHEDULE</Link>
-          <span className="text-white/30">|</span>
-          <Link href="/#register" className="hover:text-white transition-colors px-2">REGISTRATION</Link>
+          {footerNavItems.map((item, idx) => (
+            <React.Fragment key={item.name}>
+              <a
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="hover:text-accent transition-colors px-2 font-medium"
+              >
+                {item.name}
+              </a>
+              {idx < footerNavItems.length - 1 && <span className="text-white/30 select-none">|</span>}
+            </React.Fragment>
+          ))}
         </nav>
 
         <p className="font-serif italic text-xs text-accent/80 mb-6">

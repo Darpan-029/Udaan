@@ -5,9 +5,9 @@ import heroImage from "../../public/images/udaan_stage.webp"
 
 export function Hero() {
   return (
-    <section className="w-full bg-background text-foreground">
+    <section className="w-full bg-background text-foreground border-t border-border-strong pt-4">
       <div className="relative w-[90%] max-w-6xl mx-auto my-6 px-4">
-        <div className="relative h-[420px] md:h-[500px] w-full overflow-hidden border border-border shadow-sm">
+        <div className="relative h-[420px] md:h-[500px] w-full overflow-hidden border border-border shadow-md rounded-2xl card-pop">
           <Image
             src={heroImage}
             alt="SGSITS Udaan Graduation & Gold Medal Ceremony"
@@ -32,7 +32,7 @@ export function Hero() {
             <Reveal>
               <a
                 href="#schedule"
-                className="inline-block bg-[#1B2A4A] hover:bg-primary text-white px-7 py-3 text-xs md:text-sm font-sans tracking-[0.18em] uppercase border border-white/20 transition-all shadow-md hover:border-white/40"
+                className="inline-block bg-[#1B2A4A] hover:bg-primary text-white px-7 py-3 text-xs md:text-sm font-sans tracking-[0.18em] uppercase border border-white/20 transition-all shadow-md hover:border-white/40 rounded-xl"
               >
                 VIEW CEREMONY DETAILS
               </a>
@@ -60,15 +60,15 @@ export function Hero() {
 
         {/* Minimalist Stats Summary Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-center">
-          <div className="p-4 border border-border bg-card">
+          <div className="p-5 border border-border bg-card rounded-2xl card-pop">
             <span className="block font-serif text-3xl text-foreground dark:text-accent">500+</span>
             <span className="text-xs uppercase tracking-widest text-muted-foreground mt-1 block">Graduating Awardees</span>
           </div>
-          <div className="p-4 border border-border bg-card">
+          <div className="p-5 border border-border bg-card rounded-2xl card-pop">
             <span className="block font-serif text-3xl text-foreground dark:text-accent">50+</span>
             <span className="text-xs uppercase tracking-widest text-muted-foreground mt-1 block">Gold Medals Awarded</span>
           </div>
-          <div className="p-4 border border-border bg-card">
+          <div className="p-5 border border-border bg-card rounded-2xl card-pop">
             <span className="block font-serif text-3xl text-foreground dark:text-accent">70+</span>
             <span className="text-xs uppercase tracking-widest text-muted-foreground mt-1 block">Years of Legacy</span>
           </div>

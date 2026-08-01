@@ -40,7 +40,7 @@ export function About() {
 
         {/* Editorial Text Block */}
         <div className="grid md:grid-cols-12 gap-8 items-stretch mb-12">
-          <div className="md:col-span-7 bg-card p-8 border border-border">
+          <div className="md:col-span-7 bg-card dark:bg-[#0D1527] p-8 border border-border dark:border-slate-800 rounded-2xl shadow-md card-pop">
             <h3 className="font-serif text-2xl text-foreground mb-4 font-normal">
               Celebrating Academic Excellence
             </h3>
@@ -53,19 +53,19 @@ export function About() {
           </div>
 
           <div className="md:col-span-5 grid grid-cols-2 gap-4">
-            <div className="bg-card p-6 border border-border text-center flex flex-col justify-center">
+            <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl text-center flex flex-col justify-center shadow-sm card-pop">
               <span className="font-serif text-3xl text-foreground dark:text-accent block">70+</span>
               <span className="text-[10px] font-sans tracking-widest text-muted-foreground uppercase mt-1">Years Legacy</span>
             </div>
-            <div className="bg-card p-6 border border-border text-center flex flex-col justify-center">
+            <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl text-center flex flex-col justify-center shadow-sm card-pop">
               <span className="font-serif text-3xl text-foreground dark:text-accent block">500+</span>
               <span className="text-[10px] font-sans tracking-widest text-muted-foreground uppercase mt-1">Awards Given</span>
             </div>
-            <div className="bg-card p-6 border border-border text-center flex flex-col justify-center">
+            <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl text-center flex flex-col justify-center shadow-sm card-pop">
               <span className="font-serif text-3xl text-foreground dark:text-accent block">50+</span>
               <span className="text-[10px] font-sans tracking-widest text-muted-foreground uppercase mt-1">Gold Medals</span>
             </div>
-            <div className="bg-card p-6 border border-border text-center flex flex-col justify-center">
+            <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl text-center flex flex-col justify-center shadow-sm card-pop">
               <span className="font-serif text-3xl text-foreground dark:text-accent block">1000+</span>
               <span className="text-[10px] font-sans tracking-widest text-muted-foreground uppercase mt-1">Attendees</span>
             </div>
@@ -75,7 +75,7 @@ export function About() {
         {/* 4 Feature Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, idx) => (
-            <div key={idx} className="bg-card p-6 border border-border">
+            <div key={idx} className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl shadow-sm card-pop">
               <feature.icon className="h-6 w-6 text-accent mb-3" />
               <h4 className="font-serif text-base text-foreground mb-2">{feature.title}</h4>
               <p className="font-sans text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
