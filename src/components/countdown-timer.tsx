@@ -69,7 +69,7 @@ export function CountdownTimer() {
     return (
       <div className="text-center py-2">
         <span className="font-serif text-2xl md:text-3xl text-accent uppercase tracking-widest block">
-          UDAAN 2026 IS LIVE NOW
+          उड़ान 2026 IS LIVE NOW
         </span>
         <span className="text-xs font-sans text-muted-foreground uppercase tracking-widest mt-1 block">
           SGSITS Golden Jubilee Auditorium, Indore

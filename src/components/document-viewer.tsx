@@ -22,7 +22,7 @@ interface DocumentItem {
 const documents: DocumentItem[] = [
   {
     id: "brochure",
-    title: "Official UDAAN 2026 Brochure",
+    title: "Official उड़ान 2026 Brochure",
     subtitle: "Complete event guide, Chief Guests & Institute profile",
     filename: "brochure.pdf",
     path: "/docs/brochure.pdf",

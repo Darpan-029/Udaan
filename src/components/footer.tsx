@@ -48,7 +48,7 @@ export function Footer() {
 
         {/* Title */}
         <h3 className="font-serif text-xl md:text-2xl tracking-[0.2em] font-normal uppercase text-white">
-          GRADUATION 2026 • UDAAN
+          GRADUATION 2026 • उड़ान
         </h3>
         <p className="text-xs font-sans text-accent tracking-[0.15em] uppercase mt-1">
           SHRI GOVINDRAM SEKSARIA INSTITUTE OF TECHNOLOGY AND SCIENCE, INDORE

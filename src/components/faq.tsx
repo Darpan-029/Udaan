@@ -3,7 +3,7 @@ import { Reveal } from "@/components/reveal"
 
 const faqs = [
   {
-    question: "Who is eligible to attend UDAAN 2026?",
+    question: "Who is eligible to attend उड़ान 2026?",
     answer: "All graduating scholars receiving certificates or donor gold medals, their parents, and faculty members are eligible to attend. Special invitations are issued to distinguished alumni and chief guests.",
   },
   {

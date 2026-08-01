@@ -33,7 +33,7 @@ export function About() {
             INSTITUTIONAL HONORS
           </span>
           <h2 className="font-serif text-3xl md:text-4xl text-foreground font-normal">
-            About SGSITS &amp; UDAAN
+            About SGSITS &amp; उड़ान
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
         </Reveal>
@@ -45,7 +45,7 @@ export function About() {
               Celebrating Academic Excellence
             </h3>
             <p className="font-sans text-sm text-body leading-relaxed mb-4">
-              UDAAN is the annual Certificate and Gold Medal Distribution Ceremony organized by Shri Govindram Seksaria Institute of Technology and Science (SGSITS), Indore — established in 1952.
+              उड़ान is the annual Certificate and Gold Medal Distribution Ceremony organized by Shri Govindram Seksaria Institute of Technology and Science (SGSITS), Indore — established in 1952.
             </p>
             <p className="font-sans text-sm text-body leading-relaxed">
               This prestigious occasion recognizes the hard work, perseverance, and academic brilliance of graduating awardees across B.Tech, M.Tech, MCA, B.Pharm, and M.Sc. programs.

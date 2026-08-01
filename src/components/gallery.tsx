@@ -91,7 +91,7 @@ export function Gallery() {
             Photo Gallery
           </h2>
           <p className="text-xs md:text-sm text-muted-foreground max-w-xl mx-auto mt-2 font-sans">
-            Glimpses of academic excellence, award conferrals, and joyful moments from the UDAAN Graduation Ceremony.
+            Glimpses of academic excellence, award conferrals, and joyful moments from the उड़ान Graduation Ceremony.
           </p>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
         </Reveal>

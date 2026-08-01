@@ -10,7 +10,7 @@ export function Hero() {
         <div className="relative h-[420px] md:h-[500px] w-full overflow-hidden border border-border shadow-md rounded-2xl card-pop">
           <Image
             src={heroImage}
-            alt="SGSITS Udaan Graduation & Gold Medal Ceremony"
+            alt="SGSITS उड़ान Graduation & Gold Medal Ceremony"
             fill
             priority
             sizes="90vw"

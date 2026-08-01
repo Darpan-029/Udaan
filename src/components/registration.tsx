@@ -13,7 +13,7 @@ export function Registration() {
             GRADUATE REGISTRATION
           </span>
           <h2 className="font-serif text-3xl md:text-4xl text-foreground font-normal">
-            Register for UDAAN 2026
+            Register for उड़ान 2026
           </h2>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
         </Reveal>

@@ -77,7 +77,7 @@ export function Dignitaries() {
             Chief Guest &amp; Guests of Honour
           </h2>
           <p className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto mt-2 font-sans">
-            Honoring eminent leaders, scientific visionaries, and academic patrons gracing the UDAAN 2026 Convocation &amp; Medal Distribution Ceremony.
+            Honoring eminent leaders, scientific visionaries, and academic patrons gracing the उड़ान 2026 Convocation &amp; Medal Distribution Ceremony.
           </p>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
         </Reveal>
