@@ -221,14 +221,7 @@ export function Navigation() {
               {/* Expanded Header 3-Column Balanced Layout */}
               <div className="grid grid-cols-12 items-center gap-4 py-1">
                 {/* Left Column: Symmetrical balance spacer */}
-                <div className="hidden md:block md:col-span-3 text-left">
-                  <span className="text-[10px] font-sans tracking-[0.2em] text-accent/80 uppercase font-semibold block">
-                    SGSITS INDORE
-                  </span>
-                  <span className="text-[10px] font-sans text-muted-foreground block">
-                    Est. 1952
-                  </span>
-                </div>
+                <div className="hidden md:block md:col-span-3" />
 
                 {/* Center Column: Udaan Brand Emblem & Title */}
                 <div className="col-span-12 md:col-span-6 flex flex-col items-center justify-center text-center">
