@@ -144,48 +144,58 @@ export function Navigation() {
       <div ref={sentinelRef} aria-hidden className="h-px" />
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-500 ease-in-out ${condensed
-            ? "bg-[#0F1B2B]/[0.97] dark:bg-[#06090F]/[0.97] text-slate-100 dark:text-slate-100 border-b border-slate-700/60 dark:border-slate-900/80 shadow-xl shadow-black/20 dark:shadow-black/50 backdrop-blur-md"
+            ? "bg-[#0A1628] text-slate-100 border-y border-[#D4AF37]/50 shadow-2xl backdrop-blur-md"
             : "bg-white/90 dark:bg-[#0A0F1A]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/60"
           }`}
       >
         <div
-          className={`container mx-auto px-4 text-center transition-all duration-500 ease-in-out ${condensed ? "py-2.5" : "py-4 md:py-5"
+          className={`container mx-auto px-4 text-center transition-all duration-500 ease-in-out ${condensed ? "py-2" : "py-4 md:py-5"
             }`}
         >
           {condensed ? (
             <div className="flex items-center justify-between gap-4">
+              {/* Left Brand block: Logo + उड़ान 2026 + Academic Award Ceremony */}
               <a
                 href="#dignitaries"
                 onClick={(e) => handleNavClick(e, "#dignitaries")}
-                className="flex items-center gap-2.5 transition-transform hover:opacity-90"
+                className="flex items-center gap-3 transition-transform hover:opacity-90 text-left shrink-0"
               >
-                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-10 md:h-12 w-auto object-contain shrink-0" />
-                <span className="font-serif text-sm md:text-base tracking-[0.15em] font-medium text-white uppercase whitespace-nowrap flex items-center gap-1.5">
-                  <span className="udaan-brand font-bold">उड़ान</span>
-                  <span className="text-accent/80 font-light text-xs tracking-widest">2026</span>
-                  <span className="text-white/50 text-xs ml-1 hidden md:inline">Academic Award Ceremony</span>
-                </span>
+                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-9 md:h-11 w-auto object-contain shrink-0" />
+                <div className="flex flex-col items-start justify-center">
+                  <div className="flex items-baseline gap-2 select-none">
+                    <span className="font-serif text-xl md:text-2xl font-bold text-[#E6CA65] tracking-wide">उड़ान</span>
+                    <span className="font-serif text-sm md:text-base text-[#D4AF37] font-light tracking-widest">2026</span>
+                  </div>
+                  <span className="font-serif text-[10px] md:text-[11px] text-[#D4AF37]/80 tracking-wider font-normal -mt-0.5 whitespace-nowrap">
+                    Academic Award Ceremony
+                  </span>
+                </div>
               </a>
 
-              {/* Desktop nav (condensed state) */}
-              <nav className="hidden md:flex items-center gap-3 text-xs font-sans tracking-[0.15em] text-slate-200">
-                {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="hover:text-accent transition-colors py-1 px-2 font-medium text-slate-200"
-                  >
-                    {item.name}
-                  </a>
+              {/* Desktop Nav Items with Pipe Separators & Gold Underline */}
+              <nav className="hidden lg:flex items-center gap-4 text-xs font-sans tracking-[0.2em] uppercase">
+                {navItems.map((item, idx) => (
+                  <React.Fragment key={item.name}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className="hover:text-amber-200 text-[#D4AF37] font-semibold transition-colors py-1 px-1 relative group"
+                    >
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E6CA65] transition-all duration-300 group-hover:w-full" />
+                    </a>
+                    {idx < navItems.length - 1 && (
+                      <span className="text-[#C59B27]/40 font-light select-none">|</span>
+                    )}
+                  </React.Fragment>
                 ))}
               </nav>
 
-              {/* QR Button & Mobile menu toggle (condensed state) */}
-              <div className="flex items-center gap-2">
+              {/* Right Action: Gold Pill SCAN QR & Mobile Menu Toggle */}
+              <div className="flex items-center gap-3 shrink-0">
                 <button
                   onClick={() => setIsQrOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent hover:bg-accent/90 text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-sm hover:scale-105"
+                  className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F5E096] to-[#C59B27] text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-[#FFE89C]/50"
                   title="Scan QR Code to Register"
                   aria-label="Open QR Code Modal"
                 >
@@ -193,10 +203,10 @@ export function Navigation() {
                   <span>Scan QR</span>
                 </button>
 
-                <div className="md:hidden flex items-center">
+                <div className="lg:hidden flex items-center">
                   <button
                     onClick={() => setIsOpen((v) => !v)}
-                    className="p-1.5 text-white"
+                    className="p-1.5 text-[#E6CA65]"
                     aria-label="Toggle menu"
                     aria-expanded={isOpen}
                     aria-controls="mobile-nav-drawer"
@@ -208,69 +218,81 @@ export function Navigation() {
             </div>
           ) : (
             <>
-              <div className="relative flex items-center justify-between">
-                {/* Spacer for symmetrical layout */}
-                <div className="w-10 sm:w-28 hidden md:block" />
+              {/* Expanded Header 3-Column Balanced Layout */}
+              <div className="grid grid-cols-12 items-center gap-4 py-1">
+                {/* Left Column: Symmetrical balance spacer */}
+                <div className="hidden md:block md:col-span-3 text-left">
+                  <span className="text-[10px] font-sans tracking-[0.2em] text-accent/80 uppercase font-semibold block">
+                    SGSITS INDORE
+                  </span>
+                  <span className="text-[10px] font-sans text-muted-foreground block">
+                    Est. 1952
+                  </span>
+                </div>
 
-                {/* उड़ान brand with logo placed beside headline */}
-                <div className="flex flex-col items-center justify-center gap-0.5 mx-auto">
-                  <div className="flex items-center justify-center gap-4 select-none" aria-label="उड़ान 2026">
+                {/* Center Column: Udaan Brand Emblem & Title */}
+                <div className="col-span-12 md:col-span-6 flex flex-col items-center justify-center text-center">
+                  <div className="flex items-center justify-center gap-3.5 md:gap-4 select-none" aria-label="उड़ान 2026">
                     <Image
                       src={logo}
                       alt="SGSITS Official Seal"
-                      width={110}
-                      height={110}
-                      className="h-18 md:h-22 lg:h-28 w-auto object-contain"
+                      width={100}
+                      height={100}
+                      className="h-18 md:h-22 lg:h-26 w-auto object-contain"
                       priority
                     />
                     <div className="flex items-baseline gap-2 md:gap-3">
-                      <span className="udaan-brand font-serif text-3xl md:text-5xl lg:text-6xl tracking-[0.08em] font-bold">
+                      <span className="udaan-brand font-serif text-3xl md:text-4xl lg:text-5xl tracking-[0.06em] font-bold">
                         उड़ान
                       </span>
-                      <span className="font-serif text-xl md:text-3xl lg:text-4xl font-light text-accent/70 tracking-widest">
+                      <span className="font-serif text-xl md:text-2xl lg:text-3xl font-light text-accent/80 tracking-widest">
                         2026
                       </span>
                     </div>
                   </div>
-                  <p className="font-serif text-xs md:text-sm lg:text-base text-foreground tracking-[0.12em] mt-1 font-normal">
+                  <p className="font-serif text-xs md:text-sm text-foreground tracking-[0.18em] uppercase mt-1.5 font-medium">
                     Academic Award Ceremony
                   </p>
-                  <p className="font-serif text-[11px] md:text-xs italic text-accent/75 mt-0.5">
+                  <p className="font-serif text-[11px] md:text-xs italic text-accent/80 mt-0.5">
                     &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
                   </p>
                 </div>
 
-                {/* Top-Right QR Button */}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                {/* Right Column: Scan QR Action */}
+                <div className="hidden md:flex md:col-span-3 justify-end items-center">
                   <button
                     onClick={() => setIsQrOpen(true)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent hover:bg-accent/90 text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent hover:bg-accent/90 text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-accent/40"
                     title="Scan QR Code to Register"
                     aria-label="Open QR Code Modal"
                   >
                     <QrCode className="h-4 w-4" />
-                    <span className="hidden sm:inline">Scan QR</span>
+                    <span>Scan QR</span>
                   </button>
                 </div>
 
                 <span className="sr-only">उड़ान 2026 — Academic Award Ceremony</span>
               </div>
 
-              {/* Desktop nav (expanded state) */}
-              <nav className="hidden md:flex items-center justify-center flex-wrap gap-y-2 text-xs font-sans tracking-[0.15em] text-body pt-3 mt-3 border-t border-border/80 max-w-4xl mx-auto">
-                {navItems.map((item, idx) => (
-                  <React.Fragment key={item.name}>
-                    <a
-                      href={item.href}
-                      onClick={(e) => handleNavClick(e, item.href)}
-                      className="hover:text-foreground transition-colors py-1 px-2.5 font-medium"
-                    >
-                      {item.name}
-                    </a>
-                    {idx < navItems.length - 1 && <span className="text-border select-none">|</span>}
-                  </React.Fragment>
-                ))}
-              </nav>
+              {/* Refined Navigation Bar */}
+              <div className="pt-2.5 mt-2.5 border-t border-accent/20 max-w-3xl mx-auto">
+                <nav className="hidden md:flex items-center justify-center gap-1 text-xs font-sans tracking-[0.18em] text-body">
+                  {navItems.map((item, idx) => (
+                    <React.Fragment key={item.name}>
+                      <a
+                        href={item.href}
+                        onClick={(e) => handleNavClick(e, item.href)}
+                        className="hover:text-accent font-semibold tracking-[0.18em] py-1.5 px-4 rounded-lg transition-all hover:bg-accent/10"
+                      >
+                        {item.name}
+                      </a>
+                      {idx < navItems.length - 1 && (
+                        <span className="text-accent/30 font-light select-none px-1">•</span>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </nav>
+              </div>
 
               {/* Mobile toggle row (expanded state) */}
               <div className="md:hidden flex items-center justify-between pt-2 mt-2 border-t border-border">
