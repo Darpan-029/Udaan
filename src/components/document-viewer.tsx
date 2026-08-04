@@ -109,45 +109,45 @@ export function DocumentViewer() {
 
           {/* Active Document Details */}
           <div className="lg:col-span-7">
-            <div key={activeDoc.id} className="bg-card dark:bg-[#0D1527] p-8 border border-border dark:border-slate-800 rounded-2xl shadow-xl card-pop">
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-border dark:border-slate-800 mb-6">
+            <div key={activeDoc.id} className="bg-card dark:bg-[#0D1527] p-5 md:p-6 border border-border dark:border-slate-800 rounded-2xl shadow-lg card-pop">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-border dark:border-slate-800 mb-4">
                 <div>
                   <span className="text-[10px] font-sans tracking-widest text-accent uppercase block font-semibold">
                     {activeDoc.type} • {activeDoc.updated}
                   </span>
-                  <h3 className="font-serif text-2xl text-foreground mt-1 font-normal">
+                  <h3 className="font-serif text-xl md:text-2xl text-foreground mt-0.5 font-normal">
                     {activeDoc.title}
                   </h3>
                 </div>
                 <a
                   href={activeDoc.path}
                   download={activeDoc.filename}
-                  className="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-colors rounded-xl flex items-center space-x-2 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="bg-primary hover:bg-primary-hover text-white px-4 py-2 text-xs font-sans tracking-[0.12em] uppercase transition-all rounded-xl flex items-center space-x-2 shadow-sm font-semibold hover:scale-105"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  <span>Download PDF</span>
+                  <span>Download {activeDoc.type.includes("PDF") ? "PDF" : "DOCX"}</span>
                 </a>
               </div>
 
-              <p className="font-sans text-sm text-body leading-relaxed mb-6">
+              <p className="font-sans text-xs md:text-sm text-muted-foreground leading-relaxed mb-4">
                 {activeDoc.description}
               </p>
 
-              <div className="bg-background dark:bg-slate-900/80 p-5 border border-border dark:border-slate-800 rounded-xl mb-6">
-                <h4 className="font-sans text-xs uppercase tracking-widest text-foreground font-semibold mb-3 flex items-center gap-2">
+              <div className="bg-background dark:bg-slate-900/80 p-3.5 border border-border dark:border-slate-800 rounded-xl mb-4">
+                <h4 className="font-sans text-[11px] uppercase tracking-widest text-foreground font-semibold mb-2 flex items-center gap-1.5">
                   <Info className="h-3.5 w-3.5 text-accent" /> Key Contents
                 </h4>
-                <ul className="space-y-2 text-xs font-sans text-body">
+                <ul className="grid sm:grid-cols-2 gap-2 text-xs font-sans text-muted-foreground">
                   {activeDoc.highlights.map((item, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="text-accent mr-2">•</span>
-                      <span>{item}</span>
+                    <li key={idx} className="flex items-start gap-1.5">
+                      <span className="text-accent font-bold">•</span>
+                      <span className="leading-tight">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-border dark:border-slate-800 text-xs font-sans text-muted-foreground">
+              <div className="flex items-center justify-between pt-3 border-t border-border dark:border-slate-800 text-[11px] font-sans text-muted-foreground">
                 <span>File: {activeDoc.filename} ({activeDoc.size})</span>
                 <a
                   href={activeDoc.path}

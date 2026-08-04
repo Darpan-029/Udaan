@@ -4,9 +4,10 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Sun, Moon } from "lucide-react"
+import { Menu, X, Sun, Moon, QrCode, ExternalLink } from "lucide-react"
 import { useTheme } from "next-themes"
-import logo from "../../public/images/sgsits_logo.webp"
+import logo from "../../public/docs/sgsits_logo.jpeg"
+import footerLogo from "../../public/images/sgsits_logo.webp"
 import { TimelineModal } from "@/components/timeline-modal"
 
 const navItems = [
@@ -16,10 +17,79 @@ const navItems = [
   { name: "REGISTRATION", href: "#register" },
 ]
 
+function QrModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  React.useEffect(() => {
+    if (!isOpen) return
+    document.body.style.overflow = "hidden"
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose()
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+      <div
+        className="fixed inset-0 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div className="relative z-10 w-full max-w-md bg-background dark:bg-[#0D1527] border border-border dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col items-center p-6 text-center animate-in zoom-in-95 duration-200">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-1.5 text-muted-foreground hover:text-foreground rounded-full hover:bg-muted/50 transition-colors"
+          aria-label="Close QR Modal"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="w-12 h-12 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center text-accent mb-3">
+          <QrCode className="h-6 w-6" />
+        </div>
+
+        <h3 className="font-serif text-xl md:text-2xl text-foreground font-normal mb-1">
+          Scan &amp; Register Directly
+        </h3>
+        <p className="font-sans text-xs text-muted-foreground mb-4 max-w-xs leading-relaxed">
+          Scan this official QR code to open and submit your student registration for उड़ान 2026.
+        </p>
+
+        <div className="relative p-3 bg-white rounded-xl shadow-lg border border-slate-200 mb-5">
+          <Image
+            src="/docs/QR_code.png"
+            alt="UDAAN 2026 Registration QR Code"
+            width={220}
+            height={220}
+            className="w-52 h-52 object-contain rounded-lg"
+            priority
+          />
+        </div>
+
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSe8TeeVoAveBtiZdZLuZ6Ep6YqbmiQltxQUBG0eAK1yqaF7jQ/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-slate-950 px-4 py-2.5 text-xs font-sans font-bold tracking-wider uppercase rounded-xl shadow-md transition-all hover:scale-[1.02]"
+        >
+          <ExternalLink className="h-4 w-4" />
+          <span>Open Direct Registration Form</span>
+        </a>
+      </div>
+    </div>
+  )
+}
+
 export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [condensed, setCondensed] = React.useState(false)
   const [isTimelineOpen, setIsTimelineOpen] = React.useState(false)
+  const [isQrOpen, setIsQrOpen] = React.useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   const sentinelRef = React.useRef<HTMLDivElement>(null)
@@ -73,16 +143,14 @@ export function Navigation() {
     <>
       <div ref={sentinelRef} aria-hidden className="h-px" />
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-500 ease-in-out ${
-          condensed
+        className={`sticky top-0 z-50 w-full transition-all duration-500 ease-in-out ${condensed
             ? "bg-[#0F1B2B]/[0.97] dark:bg-[#06090F]/[0.97] text-slate-100 dark:text-slate-100 border-b border-slate-700/60 dark:border-slate-900/80 shadow-xl shadow-black/20 dark:shadow-black/50 backdrop-blur-md"
             : "bg-white/90 dark:bg-[#0A0F1A]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/60"
-        }`}
+          }`}
       >
         <div
-          className={`container mx-auto px-4 text-center transition-all duration-500 ease-in-out ${
-            condensed ? "py-2.5" : "py-4 md:py-5"
-          }`}
+          className={`container mx-auto px-4 text-center transition-all duration-500 ease-in-out ${condensed ? "py-2.5" : "py-4 md:py-5"
+            }`}
         >
           {condensed ? (
             <div className="flex items-center justify-between gap-4">
@@ -91,7 +159,7 @@ export function Navigation() {
                 onClick={(e) => handleNavClick(e, "#dignitaries")}
                 className="flex items-center gap-2.5 transition-transform hover:opacity-90"
               >
-                <Image src={logo} alt="SGSITS Official Seal" className="h-8 md:h-9 w-auto object-contain shrink-0" />
+                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-10 md:h-12 w-auto object-contain shrink-0" />
                 <span className="font-serif text-sm md:text-base tracking-[0.15em] font-medium text-white uppercase whitespace-nowrap flex items-center gap-1.5">
                   <span className="udaan-brand font-bold">उड़ान</span>
                   <span className="text-accent/80 font-light text-xs tracking-widest">2026</span>
@@ -100,7 +168,7 @@ export function Navigation() {
               </a>
 
               {/* Desktop nav (condensed state) */}
-              <nav className="hidden md:flex items-center gap-1 text-xs font-sans tracking-[0.15em] text-slate-200">
+              <nav className="hidden md:flex items-center gap-3 text-xs font-sans tracking-[0.15em] text-slate-200">
                 {navItems.map((item) => (
                   <a
                     key={item.name}
@@ -113,64 +181,83 @@ export function Navigation() {
                 ))}
               </nav>
 
-              {/* Mobile menu button (condensed state) */}
-              <div className="md:hidden flex items-center">
+              {/* QR Button & Mobile menu toggle (condensed state) */}
+              <div className="flex items-center gap-2">
                 <button
-                  onClick={() => setIsOpen((v) => !v)}
-                  className="p-1.5 text-white"
-                  aria-label="Toggle menu"
-                  aria-expanded={isOpen}
-                  aria-controls="mobile-nav-drawer"
+                  onClick={() => setIsQrOpen(true)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent hover:bg-accent/90 text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-sm hover:scale-105"
+                  title="Scan QR Code to Register"
+                  aria-label="Open QR Code Modal"
                 >
-                  {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                  <QrCode className="h-3.5 w-3.5" />
+                  <span>Scan QR</span>
                 </button>
+
+                <div className="md:hidden flex items-center">
+                  <button
+                    onClick={() => setIsOpen((v) => !v)}
+                    className="p-1.5 text-white"
+                    aria-label="Toggle menu"
+                    aria-expanded={isOpen}
+                    aria-controls="mobile-nav-drawer"
+                  >
+                    {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                  </button>
+                </div>
               </div>
             </div>
           ) : (
             <>
-              <div className="relative">
-              {/* SGSITS Logo — far left of navbar */}
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block">
-                <a
-                  href="#"
-                  onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
-                  className="transition-transform hover:scale-105 inline-block"
-                  aria-label="SGSITS Indore"
-                >
-                  <Image
-                    src={logo}
-                    alt="SGSITS Official Seal"
-                    width={110}
-                    height={110}
-                    className="h-18 md:h-22 lg:h-28 w-auto object-contain drop-shadow-md"
-                    priority
-                  />
-                </a>
-              </div>
+              <div className="relative flex items-center justify-between">
+                {/* Spacer for symmetrical layout */}
+                <div className="w-10 sm:w-28 hidden md:block" />
 
-              {/* उड़ान brand — centered */}
-              <div className="flex flex-col items-center justify-center gap-0.5 mb-3">
-                <div className="flex items-baseline gap-3 select-none" aria-label="उड़ान 2026">
-                  <span className="udaan-brand font-serif text-4xl md:text-5xl lg:text-6xl tracking-[0.08em] font-bold">
-                    उड़ान
-                  </span>
-                  <span className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-accent/70 tracking-widest">
-                    2026
-                  </span>
+                {/* उड़ान brand with logo placed beside headline */}
+                <div className="flex flex-col items-center justify-center gap-0.5 mx-auto">
+                  <div className="flex items-center justify-center gap-4 select-none" aria-label="उड़ान 2026">
+                    <Image
+                      src={logo}
+                      alt="SGSITS Official Seal"
+                      width={110}
+                      height={110}
+                      className="h-18 md:h-22 lg:h-28 w-auto object-contain"
+                      priority
+                    />
+                    <div className="flex items-baseline gap-2 md:gap-3">
+                      <span className="udaan-brand font-serif text-3xl md:text-5xl lg:text-6xl tracking-[0.08em] font-bold">
+                        उड़ान
+                      </span>
+                      <span className="font-serif text-xl md:text-3xl lg:text-4xl font-light text-accent/70 tracking-widest">
+                        2026
+                      </span>
+                    </div>
+                  </div>
+                  <p className="font-serif text-xs md:text-sm lg:text-base text-foreground tracking-[0.12em] mt-1 font-normal">
+                    Academic Award Ceremony
+                  </p>
+                  <p className="font-serif text-[11px] md:text-xs italic text-accent/75 mt-0.5">
+                    &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
+                  </p>
                 </div>
-                <p className="font-serif text-sm md:text-base lg:text-lg text-foreground tracking-[0.12em] mt-0.5 font-normal">
-                  Academic Award Ceremony
-                </p>
-                <p className="font-serif text-[11px] md:text-xs italic text-accent/75 mt-0.5">
-                  &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
-                </p>
-              </div>
 
-              <span className="sr-only">उड़ान 2026 — Academic Award Ceremony</span>
-            </div>
+                {/* Top-Right QR Button */}
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                  <button
+                    onClick={() => setIsQrOpen(true)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent hover:bg-accent/90 text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105"
+                    title="Scan QR Code to Register"
+                    aria-label="Open QR Code Modal"
+                  >
+                    <QrCode className="h-4 w-4" />
+                    <span className="hidden sm:inline">Scan QR</span>
+                  </button>
+                </div>
+
+                <span className="sr-only">उड़ान 2026 — Academic Award Ceremony</span>
+              </div>
 
               {/* Desktop nav (expanded state) */}
-              <nav className="hidden md:flex items-center justify-center flex-wrap gap-y-2 text-xs font-sans tracking-[0.15em] text-body pt-2 border-t border-border/80 max-w-4xl mx-auto">
+              <nav className="hidden md:flex items-center justify-center flex-wrap gap-y-2 text-xs font-sans tracking-[0.15em] text-body pt-3 mt-3 border-t border-border/80 max-w-4xl mx-auto">
                 {navItems.map((item, idx) => (
                   <React.Fragment key={item.name}>
                     <a
@@ -186,7 +273,14 @@ export function Navigation() {
               </nav>
 
               {/* Mobile toggle row (expanded state) */}
-              <div className="md:hidden flex items-center justify-end pt-2 border-t border-border">
+              <div className="md:hidden flex items-center justify-between pt-2 mt-2 border-t border-border">
+                <button
+                  onClick={() => setIsQrOpen(true)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-slate-950 font-sans text-xs font-bold uppercase"
+                >
+                  <QrCode className="h-3.5 w-3.5" />
+                  <span>Scan QR</span>
+                </button>
                 <button
                   onClick={() => setIsOpen((v) => !v)}
                   className="p-1.5 text-foreground"
@@ -205,19 +299,17 @@ export function Navigation() {
         {isOpen && (
           <div
             id="mobile-nav-drawer"
-            className={`md:hidden pb-3 space-y-1 text-center border-t ${
-              condensed
+            className={`md:hidden pb-3 space-y-1 text-center border-t ${condensed
                 ? "border-slate-800 bg-[#0B132B] text-slate-100"
                 : "border-border bg-background/98"
-            } backdrop-blur-md rounded-b-lg shadow-lg`}
+              } backdrop-blur-md rounded-b-lg shadow-lg`}
           >
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`block py-2.5 text-xs tracking-widest ${
-                  condensed ? "text-slate-200 hover:text-accent" : "text-body hover:text-foreground"
-                } font-medium`}
+                className={`block py-2.5 text-xs tracking-widest ${condensed ? "text-slate-200 hover:text-accent" : "text-body hover:text-foreground"
+                  } font-medium`}
                 onClick={(e) => handleNavClick(e, item.href)}
               >
                 {item.name}
@@ -229,6 +321,8 @@ export function Navigation() {
 
       {/* Program Timeline Popup Modal */}
       <TimelineModal isOpen={isTimelineOpen} onClose={() => setIsTimelineOpen(false)} />
+      {/* Scan & Register QR Modal */}
+      <QrModal isOpen={isQrOpen} onClose={() => setIsQrOpen(false)} />
     </>
   )
 }
@@ -267,9 +361,8 @@ function ThemeToggle({
         aria-label="Toggle theme"
         aria-hidden={!mounted}
         tabIndex={mounted ? 0 : -1}
-        className={`hover:text-foreground transition-colors relative ${
-          mounted ? "" : "invisible"
-        } ${className}`}
+        className={`hover:text-foreground transition-colors relative ${mounted ? "" : "invisible"
+          } ${className}`}
       >
         {isDark ? <Sun className="h-3.5 w-3.5 text-accent" /> : <Moon className="h-3.5 w-3.5 text-slate-700 dark:text-slate-200" />}
       </button>

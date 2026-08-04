@@ -216,30 +216,36 @@ export function ActionButtons() {
               onClick={() => setIsBrochureOpen(true)}
               className="group relative flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border transition-all duration-300 overflow-hidden"
               style={{
-                background: "hsl(0 0% 100% / 0.04)",
-                borderColor: "hsl(0 0% 100% / 0.15)",
+                background: "hsl(39 55% 52% / 0.08)",
+                borderColor: "hsl(39 55% 52% / 0.35)",
               }}
             >
-              {/* Hover fill */}
+              {/* Hover fill — consistent beige/gold theme */}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
                 style={{
                   background:
-                    "linear-gradient(135deg, hsl(215 48% 28%) 0%, hsl(215 48% 22%) 100%)",
+                    "linear-gradient(135deg, hsl(39 58% 52%) 0%, hsl(39 65% 60%) 100%)",
                 }}
               />
               <div className="relative z-10 flex flex-col items-center gap-3">
                 <div
                   className="p-2 rounded-xl transition-colors duration-300"
-                  style={{ background: "hsl(0 0% 100% / 0.08)" }}
+                  style={{ background: "hsl(39 55% 52% / 0.15)" }}
                 >
-                  <FileText className="h-5 w-5 text-white/70 group-hover:text-white transition-colors group-hover:scale-110 duration-300" />
+                  <FileText
+                    className="h-5 w-5 transition-transform group-hover:scale-110 duration-300 group-hover:text-slate-950"
+                    style={{ color: "hsl(39 65% 68%)" }}
+                  />
                 </div>
                 <div className="text-center">
-                  <span className="block font-sans font-bold text-xs tracking-wider uppercase text-white/80 group-hover:text-white transition-colors">
+                  <span
+                    className="block font-sans font-bold text-xs tracking-wider uppercase group-hover:text-slate-950 transition-colors"
+                    style={{ color: "hsl(39 65% 72%)" }}
+                  >
                     Official Circular
                   </span>
-                  <span className="block text-[10px] font-sans text-white/40 group-hover:text-white/60 transition-colors">
+                  <span className="block text-[10px] font-sans text-white/50 group-hover:text-slate-950/70 transition-colors">
                     View &amp; download guidelines
                   </span>
                 </div>
