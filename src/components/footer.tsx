@@ -8,11 +8,7 @@ import logo from "../../public/images/sgsits_logo.webp"
 const footerNavItems = [
   { name: "DIGNITARIES", href: "#dignitaries" },
   { name: "DOCUMENTS", href: "#documents" },
-  { name: "ABOUT", href: "#about" },
-  { name: "MEDALISTS", href: "#medalists" },
-  { name: "SCHEDULE", href: "#schedule" },
   { name: "GALLERY", href: "#gallery" },
-  { name: "FAQ", href: "#faq" },
   { name: "REGISTRATION", href: "#register" },
 ]
 
@@ -48,7 +44,7 @@ export function Footer() {
 
         {/* Title */}
         <h3 className="font-serif text-xl md:text-2xl tracking-[0.2em] font-normal uppercase text-white">
-          GRADUATION 2026 • उड़ान
+          उड़ान • Academic Award Ceremony
         </h3>
         <p className="text-xs font-sans text-accent tracking-[0.15em] uppercase mt-1">
           SHRI GOVINDRAM SEKSARIA INSTITUTE OF TECHNOLOGY AND SCIENCE, INDORE

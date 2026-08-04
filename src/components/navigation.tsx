@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Sun, Moon, Clock, UserCheck } from "lucide-react"
+import { Menu, X, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
 import logo from "../../public/images/sgsits_logo.webp"
 import { TimelineModal } from "@/components/timeline-modal"
@@ -12,11 +12,7 @@ import { TimelineModal } from "@/components/timeline-modal"
 const navItems = [
   { name: "DIGNITARIES", href: "#dignitaries" },
   { name: "BROCHURE", href: "#documents" },
-  { name: "ABOUT", href: "#about" },
-  { name: "MEDALISTS", href: "#medalists" },
-  { name: "SCHEDULE", href: "#schedule" },
   { name: "GALLERY", href: "#gallery" },
-  { name: "FAQ", href: "#faq" },
   { name: "REGISTRATION", href: "#register" },
 ]
 
@@ -31,13 +27,11 @@ export function Navigation() {
 
   React.useEffect(() => {
     setMounted(true)
-    // Prevent initial scroll jump to anchor if no hash was specified
     if (typeof window !== "undefined" && !window.location.hash) {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" })
     }
   }, [])
 
-  // Observer for top scroll sentinel
   React.useEffect(() => {
     const node = sentinelRef.current
     if (!node) return
@@ -90,68 +84,22 @@ export function Navigation() {
             condensed ? "py-2.5" : "py-4 md:py-5"
           }`}
         >
-          <div className={`flex items-center gap-4 ${condensed ? "justify-between" : "justify-center relative"}`}>
-            {condensed && (
+          {condensed ? (
+            <div className="flex items-center justify-between gap-4">
               <a
                 href="#dignitaries"
                 onClick={(e) => handleNavClick(e, "#dignitaries")}
                 className="flex items-center gap-2.5 transition-transform hover:opacity-90"
               >
                 <Image src={logo} alt="SGSITS Official Seal" className="h-8 md:h-9 w-auto object-contain shrink-0" />
-                <span className="font-serif text-sm md:text-base tracking-[0.15em] font-medium text-white uppercase whitespace-nowrap">
-                  Graduation <span className="text-accent font-sans font-bold">उड़ान 2026</span>
+                <span className="font-serif text-sm md:text-base tracking-[0.15em] font-medium text-white uppercase whitespace-nowrap flex items-center gap-1.5">
+                  <span className="udaan-brand font-bold">उड़ान</span>
+                  <span className="text-accent/80 font-light text-xs tracking-widest">2026</span>
+                  <span className="text-white/50 text-xs ml-1 hidden md:inline">Academic Award Ceremony</span>
                 </span>
               </a>
-            )}
 
-            {!condensed && (
-              <div className="flex items-center justify-center">
-                <a
-                  href="#dignitaries"
-                  onClick={(e) => handleNavClick(e, "#dignitaries")}
-                  className="inline-flex items-center gap-3 md:gap-4 transition-transform hover:scale-[1.01]"
-                >
-                  <Image
-                    src={logo}
-                    alt="SGSITS Official Seal"
-                    className="h-11 md:h-14 lg:h-16 w-auto object-contain drop-shadow-sm shrink-0"
-                    priority
-                  />
-                  <div className="text-left">
-                    <h1 className="font-serif text-xl md:text-2xl lg:text-3xl tracking-[0.2em] font-normal text-foreground uppercase leading-tight">
-                      GRADUATION 2026
-                    </h1>
-                    <p className="text-[10px] md:text-[11px] font-sans tracking-[0.2em] text-muted-foreground uppercase mt-0.5">
-                      SGSITS INDORE • उड़ान CEREMONY
-                    </p>
-                  </div>
-                </a>
-              </div>
-            )}
-
-            {/* Top Side Action Buttons: Program Timeline & Register */}
-            {!condensed && (
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:flex items-center gap-2.5">
-                <button
-                  onClick={() => setIsTimelineOpen(true)}
-                  className="inline-flex items-center gap-2 bg-accent/15 hover:bg-accent hover:text-slate-950 text-accent font-sans text-xs tracking-wider uppercase px-3.5 py-2 rounded-xl border border-accent/40 transition-all font-semibold shadow-sm card-pop"
-                >
-                  <Clock className="h-3.5 w-3.5" />
-                  <span>Program Timeline</span>
-                </button>
-                <a
-                  href="#register"
-                  onClick={(e) => handleNavClick(e, "#register")}
-                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white font-sans text-xs tracking-wider uppercase px-4 py-2 rounded-xl border border-transparent transition-all font-semibold shadow-sm card-pop"
-                >
-                  <UserCheck className="h-3.5 w-3.5" />
-                  <span>Register</span>
-                </a>
-              </div>
-            )}
-
-            {/* Desktop nav (condensed state) */}
-            {condensed && (
+              {/* Desktop nav (condensed state) */}
               <nav className="hidden md:flex items-center gap-1 text-xs font-sans tracking-[0.15em] text-slate-200">
                 {navItems.map((item) => (
                   <a
@@ -163,48 +111,10 @@ export function Navigation() {
                     {item.name}
                   </a>
                 ))}
-                
-                {/* Timeline Popup trigger in condensed top bar */}
-                <button
-                  onClick={() => setIsTimelineOpen(true)}
-                  className="ml-1.5 inline-flex items-center gap-1 bg-accent/20 hover:bg-accent hover:text-slate-950 text-accent font-sans text-[11px] tracking-wider uppercase px-2.5 py-1.5 rounded-lg border border-accent/40 transition-all font-semibold"
-                >
-                  <Clock className="h-3 w-3" />
-                  <span>Timeline</span>
-                </button>
-
-                <a
-                  href="#register"
-                  onClick={(e) => handleNavClick(e, "#register")}
-                  className="ml-1 inline-flex items-center gap-1 bg-accent hover:bg-accent-hover text-slate-950 font-sans text-[11px] tracking-wider uppercase px-2.5 py-1.5 rounded-lg border border-accent transition-all font-bold"
-                >
-                  <UserCheck className="h-3 w-3" />
-                  <span>Register</span>
-                </a>
-
-                <ThemeToggle mounted={mounted} resolvedTheme={resolvedTheme} setTheme={setTheme} className="ml-2 p-1 text-slate-300 hover:text-white" />
               </nav>
-            )}
 
-            {/* Mobile toggle (condensed state) */}
-            {condensed && (
-              <div className="md:hidden flex items-center gap-1.5">
-                <button
-                  onClick={() => setIsTimelineOpen(true)}
-                  className="p-1.5 text-accent border border-accent/30 rounded-lg bg-accent/10 text-xs font-sans font-semibold flex items-center gap-1"
-                >
-                  <Clock className="h-3.5 w-3.5" />
-                  <span>Timeline</span>
-                </button>
-                <a
-                  href="#register"
-                  onClick={(e) => handleNavClick(e, "#register")}
-                  className="p-1.5 bg-accent text-slate-950 font-bold rounded-lg text-xs font-sans flex items-center gap-1"
-                >
-                  <UserCheck className="h-3.5 w-3.5" />
-                  <span>Register</span>
-                </a>
-                <ThemeToggle mounted={mounted} resolvedTheme={resolvedTheme} setTheme={setTheme} className="p-1.5 text-slate-300" />
+              {/* Mobile menu button (condensed state) */}
+              <div className="md:hidden flex items-center">
                 <button
                   onClick={() => setIsOpen((v) => !v)}
                   className="p-1.5 text-white"
@@ -215,18 +125,49 @@ export function Navigation() {
                   {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </button>
               </div>
-            )}
-          </div>
-
-          {!condensed && (
+            </div>
+          ) : (
             <>
-              {/* Animated center wordmark - Hindi उड़ान 2026 */}
-              <div className="my-2.5 flex items-center justify-center min-h-[40px]" aria-hidden="true">
-                <span className="udaan-typing font-serif text-2xl md:text-3xl lg:text-4xl text-accent tracking-[0.1em] font-semibold select-none">
-                  उड़ान 2026
-                </span>
+              <div className="relative">
+              {/* SGSITS Logo — far left of navbar */}
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block">
+                <a
+                  href="#"
+                  onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
+                  className="transition-transform hover:scale-105 inline-block"
+                  aria-label="SGSITS Indore"
+                >
+                  <Image
+                    src={logo}
+                    alt="SGSITS Official Seal"
+                    width={110}
+                    height={110}
+                    className="h-18 md:h-22 lg:h-28 w-auto object-contain drop-shadow-md"
+                    priority
+                  />
+                </a>
               </div>
-              <span className="sr-only">उड़ान 2026</span>
+
+              {/* उड़ान brand — centered */}
+              <div className="flex flex-col items-center justify-center gap-0.5 mb-3">
+                <div className="flex items-baseline gap-3 select-none" aria-label="उड़ान 2026">
+                  <span className="udaan-brand font-serif text-4xl md:text-5xl lg:text-6xl tracking-[0.08em] font-bold">
+                    उड़ान
+                  </span>
+                  <span className="font-serif text-2xl md:text-3xl lg:text-4xl font-light text-accent/70 tracking-widest">
+                    2026
+                  </span>
+                </div>
+                <p className="font-serif text-sm md:text-base lg:text-lg text-foreground tracking-[0.12em] mt-0.5 font-normal">
+                  Academic Award Ceremony
+                </p>
+                <p className="font-serif text-[11px] md:text-xs italic text-accent/75 mt-0.5">
+                  &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
+                </p>
+              </div>
+
+              <span className="sr-only">उड़ान 2026 — Academic Award Ceremony</span>
+            </div>
 
               {/* Desktop nav (expanded state) */}
               <nav className="hidden md:flex items-center justify-center flex-wrap gap-y-2 text-xs font-sans tracking-[0.15em] text-body pt-2 border-t border-border/80 max-w-4xl mx-auto">
@@ -242,40 +183,19 @@ export function Navigation() {
                     {idx < navItems.length - 1 && <span className="text-border select-none">|</span>}
                   </React.Fragment>
                 ))}
-                <ThemeToggle mounted={mounted} resolvedTheme={resolvedTheme} setTheme={setTheme} className="ml-3 p-1" />
               </nav>
 
               {/* Mobile toggle row (expanded state) */}
-              <div className="md:hidden flex items-center justify-between pt-2 border-t border-border">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setIsTimelineOpen(true)}
-                    className="text-xs tracking-wider text-accent font-semibold flex items-center gap-1 bg-accent/10 px-2.5 py-1 rounded-md border border-accent/20"
-                  >
-                    <Clock className="h-3.5 w-3.5" />
-                    <span>Timeline</span>
-                  </button>
-                  <a
-                    href="#register"
-                    onClick={(e) => handleNavClick(e, "#register")}
-                    className="text-xs tracking-wider text-white bg-primary font-semibold flex items-center gap-1 px-2.5 py-1 rounded-md border border-primary"
-                  >
-                    <UserCheck className="h-3.5 w-3.5" />
-                    <span>Register</span>
-                  </a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ThemeToggle mounted={mounted} resolvedTheme={resolvedTheme} setTheme={setTheme} className="p-1.5" />
-                  <button
-                    onClick={() => setIsOpen((v) => !v)}
-                    className="p-1.5 text-foreground"
-                    aria-label="Toggle menu"
-                    aria-expanded={isOpen}
-                    aria-controls="mobile-nav-drawer"
-                  >
-                    {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                  </button>
-                </div>
+              <div className="md:hidden flex items-center justify-end pt-2 border-t border-border">
+                <button
+                  onClick={() => setIsOpen((v) => !v)}
+                  className="p-1.5 text-foreground"
+                  aria-label="Toggle menu"
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-nav-drawer"
+                >
+                  {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                </button>
               </div>
             </>
           )}
@@ -291,26 +211,6 @@ export function Navigation() {
                 : "border-border bg-background/98"
             } backdrop-blur-md rounded-b-lg shadow-lg`}
           >
-            <div className="p-2 grid grid-cols-2 gap-2">
-              <button
-                onClick={() => {
-                  setIsOpen(false)
-                  setIsTimelineOpen(true)
-                }}
-                className="w-full py-2 bg-accent text-slate-950 font-sans text-xs font-bold uppercase tracking-wider rounded-lg flex items-center justify-center gap-1.5"
-              >
-                <Clock className="h-3.5 w-3.5" />
-                <span>Timeline</span>
-              </button>
-              <a
-                href="#register"
-                onClick={(e) => handleNavClick(e, "#register")}
-                className="w-full py-2 bg-primary text-white font-sans text-xs font-bold uppercase tracking-wider rounded-lg flex items-center justify-center gap-1.5"
-              >
-                <UserCheck className="h-3.5 w-3.5" />
-                <span>Register</span>
-              </a>
-            </div>
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -345,12 +245,10 @@ function ThemeToggle({
   className?: string
 }) {
   const isDark = mounted && resolvedTheme === "dark"
-  // Always show the tooltip on every page load; auto-dismiss after 7 seconds
   const [showTooltip, setShowTooltip] = React.useState(false)
 
   React.useEffect(() => {
     if (!mounted) return
-    // Small delay so it appears after the page has settled
     const show = setTimeout(() => setShowTooltip(true), 1000)
     const hide = setTimeout(() => setShowTooltip(false), 8000)
     return () => {
@@ -376,10 +274,8 @@ function ThemeToggle({
         {isDark ? <Sun className="h-3.5 w-3.5 text-accent" /> : <Moon className="h-3.5 w-3.5 text-slate-700 dark:text-slate-200" />}
       </button>
 
-      {/* Switch Themes Pop-up Tooltip Badge */}
       {showTooltip && (
         <div className="absolute right-0 top-full mt-2.5 z-50 whitespace-nowrap bg-accent text-slate-950 text-[10px] font-sans font-bold tracking-wider uppercase px-2.5 py-1 rounded-lg shadow-xl border border-accent/40 animate-in fade-in zoom-in-90 duration-300 flex items-center gap-1.5 pointer-events-auto">
-          {/* Arrow pointer pointing up to theme icon */}
           <div className="absolute -top-1 right-2 w-2 h-2 bg-accent rotate-45" />
           <span>Switch themes</span>
           <button

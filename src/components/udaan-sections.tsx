@@ -1,24 +1,29 @@
 import { Dignitaries } from "@/components/dignitaries"
-import { Hero } from "@/components/hero"
+import { ActionButtons } from "@/components/action-buttons"
+import { YoutubeSection } from "@/components/youtube-section"
 import { DocumentViewer } from "@/components/document-viewer"
-import { About } from "@/components/about"
-import { MedalistDirectory } from "@/components/medalist-directory"
-import { Schedule } from "@/components/schedule"
 import { Gallery } from "@/components/gallery"
-import { FAQ } from "@/components/faq"
 import { Registration } from "@/components/registration"
 
 export function UdaanSections() {
   return (
     <>
+      {/* 1. Quick Actions — prominent CTA buttons at the very top */}
+      <ActionButtons />
+
+      {/* 2. Distinguished Dignitary — Chief Guest section */}
       <Dignitaries />
-      <Hero />
+
+      {/* 3. Previous Year YouTube Highlights */}
+      <YoutubeSection />
+
+      {/* 5. Brochure & Documents */}
       <DocumentViewer />
-      <About />
-      <MedalistDirectory />
-      <Schedule />
+
+      {/* 7. Photo Gallery */}
       <Gallery />
-      <FAQ />
+
+      {/* 8. Registration */}
       <Registration />
     </>
   )

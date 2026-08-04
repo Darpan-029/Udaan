@@ -1,30 +1,68 @@
 "use client"
 
 import * as React from "react"
-import Image, { type StaticImageData } from "next/image"
+import Image from "next/image"
 import { X, ChevronLeft, ChevronRight, Maximize2, Pause, Play } from "lucide-react"
 import { Reveal } from "@/components/reveal"
-import stageImage from "../../public/images/udaan_stage.webp"
-import groupImage from "../../public/images/udaan_group.webp"
-import gallery01 from "../../public/images/gallery/gallery-01.webp"
-import gallery02 from "../../public/images/gallery/gallery-02.webp"
-import gallery03 from "../../public/images/gallery/gallery-03.webp"
-import gallery04 from "../../public/images/gallery/gallery-04.webp"
 
 interface GalleryImage {
   id: number
-  src: StaticImageData
+  src: string
   alt: string
   subtitle: string
+  isStatic?: boolean
 }
 
+// Mix of real WhatsApp event photos + existing webp images
 const images: GalleryImage[] = [
-  { id: 1, src: stageImage, alt: "Graduates Celebration & Ribbon Toss", subtitle: "Grand Finale Celebrations at Main Stage" },
-  { id: 2, src: groupImage, alt: "Gold Medal Awardees & Dignitaries Group", subtitle: "Meritorious Scholars & Chief Guests Group Photo" },
-  { id: 3, src: gallery01, alt: "Convocation Address Session", subtitle: "Eminent Keynote Speakers & Audience" },
-  { id: 4, src: gallery02, alt: "Graduating Batch Group Photo", subtitle: "Class of 2026 Scholars on Auditorium Steps" },
-  { id: 5, src: gallery03, alt: "Degree Certificate Distribution", subtitle: "Conferral of Honors by Director & Dignitaries" },
-  { id: 6, src: gallery04, alt: "SGSITS Auditorium Ceremony", subtitle: "Traditional Ceremonial Ambience & Lamp Lighting" },
+  {
+    id: 1,
+    src: "/images/gallery/WhatsApp Image 2026-08-04 at 1.31.37 PM.jpeg",
+    alt: "Academic Procession — Faculty & Dignitaries",
+    subtitle: "Faculty march in ceremonial half-jackets at SGSITS Campus",
+  },
+  {
+    id: 2,
+    src: "/images/gallery/WhatsApp Image 2026-08-04 at 1.31.51 PM.jpeg",
+    alt: "Guard of Honour — NCC Cadets",
+    subtitle: "NCC Guard of Honour escorting the Chief Guest",
+  },
+  {
+    id: 3,
+    src: "/images/gallery/WhatsApp Image 2026-08-04 at 1.31.56 PM.jpeg",
+    alt: "Ceremony Stage — Dignitaries Seated",
+    subtitle: "Distinguished guests and faculty on the main stage",
+  },
+  {
+    id: 4,
+    src: "/images/gallery/WhatsApp Image 2026-08-04 at 1.32.23 PM.jpeg",
+    alt: "Award Distribution — On Stage",
+    subtitle: "Awardees receiving certificates from dignitaries",
+  },
+  {
+    id: 5,
+    src: "/images/gallery/WhatsApp Image 2026-08-04 at 1.32.28 PM.jpeg",
+    alt: "उड़ान Ceremony Celebrations",
+    subtitle: "Moments of pride and joy at SGSITS Auditorium",
+  },
+  {
+    id: 6,
+    src: "/images/gallery/WhatsApp Image 2026-08-04 at 1.32.45 PM.jpeg",
+    alt: "Awardees — Group Portrait",
+    subtitle: "Graduating scholars celebrating their achievement",
+  },
+  {
+    id: 7,
+    src: "/images/gallery/WhatsApp Image 2026-08-04 at 1.33.00 PM.jpeg",
+    alt: "Ceremony Highlights",
+    subtitle: "Highlights from the previous उड़ान ceremony",
+  },
+  {
+    id: 8,
+    src: "/images/gallery/udaan1.jfif.jpeg",
+    alt: "उड़ान Event Memories",
+    subtitle: "Special moments from the Academic Award Ceremony",
+  },
 ]
 
 export function Gallery() {
@@ -44,13 +82,11 @@ export function Gallery() {
   // Auto-play timer
   React.useEffect(() => {
     if (!isPlaying || isLightboxOpen) return
-    const timer = setInterval(() => {
-      handleNext()
-    }, 4500)
+    const timer = setInterval(() => { handleNext() }, 4500)
     return () => clearInterval(timer)
   }, [isPlaying, isLightboxOpen, handleNext])
 
-  // Safely center active thumbnail horizontally without scrolling the window/viewport
+  // Scroll active thumbnail into view
   React.useEffect(() => {
     const container = thumbnailContainerRef.current
     if (!container) return
@@ -61,7 +97,7 @@ export function Gallery() {
     }
   }, [currentIndex])
 
-  // Keyboard navigation for Lightbox
+  // Keyboard navigation for lightbox
   React.useEffect(() => {
     if (!isLightboxOpen) return
     document.body.style.overflow = "hidden"
@@ -91,41 +127,49 @@ export function Gallery() {
             Photo Gallery
           </h2>
           <p className="text-xs md:text-sm text-muted-foreground max-w-xl mx-auto mt-2 font-sans">
-            Glimpses of academic excellence, award conferrals, and joyful moments from the उड़ान Graduation Ceremony.
+            Glimpses of academic excellence, award conferrals, and joyful moments from the उड़ान Ceremony.
           </p>
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
         </Reveal>
 
-        {/* Featured 1-Photo Slider Container */}
+        {/* Featured Slider */}
         <Reveal>
           <div className="relative group/slider max-w-4xl mx-auto mb-6">
-            {/* Main Featured Big Card */}
-            <div className="relative h-[380px] md:h-[480px] lg:h-[520px] w-full rounded-2xl overflow-hidden border border-border dark:border-slate-800 shadow-2xl bg-card dark:bg-[#0D1527] card-pop">
+            <div className="relative h-[380px] md:h-[500px] lg:h-[540px] w-full rounded-2xl overflow-hidden border border-border dark:border-slate-800 shadow-2xl bg-card dark:bg-[#0D1527] card-pop">
               <Image
+                key={activePhoto.id}
                 src={activePhoto.src}
                 alt={activePhoto.alt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 80vw, 100vw"
                 className="object-cover object-center transition-all duration-700 ease-out"
+                unoptimized
               />
 
-              {/* Dark Gradient Overlay for text */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent flex flex-col justify-end p-6 md:p-8">
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-transparent flex flex-col justify-end p-6 md:p-8">
                 <div className="flex flex-wrap items-end justify-between gap-4">
                   <div className="space-y-1 max-w-2xl">
-                    <span className="text-[10px] md:text-xs font-sans tracking-widest text-accent uppercase font-bold px-2.5 py-1 bg-accent/20 border border-accent/40 rounded-full inline-block backdrop-blur-md">
+                    <span
+                      className="text-[10px] md:text-xs font-sans tracking-widest uppercase font-bold px-2.5 py-1 rounded-full inline-block backdrop-blur-md"
+                      style={{
+                        color: "hsl(39 65% 68%)",
+                        background: "hsl(39 55% 52% / 0.2)",
+                        border: "1px solid hsl(39 55% 52% / 0.4)",
+                      }}
+                    >
                       Photo {currentIndex + 1} of {images.length}
                     </span>
                     <h3 className="font-serif text-xl md:text-3xl text-white font-medium drop-shadow-md">
                       {activePhoto.alt}
                     </h3>
-                    <p className="text-xs md:text-sm text-white/80 font-sans tracking-wide">
+                    <p className="text-xs md:text-sm text-white/75 font-sans tracking-wide">
                       {activePhoto.subtitle}
                     </p>
                   </div>
 
-                  {/* Expand / Pause controls */}
+                  {/* Controls */}
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setIsPlaying((p) => !p)}
@@ -147,7 +191,7 @@ export function Gallery() {
                 </div>
               </div>
 
-              {/* Side Moving Arrows */}
+              {/* Nav Arrows */}
               <button
                 onClick={handlePrevious}
                 aria-label="Previous photo"
@@ -163,10 +207,26 @@ export function Gallery() {
                 <ChevronRight className="h-6 w-6" />
               </button>
             </div>
+
+            {/* Dot indicators */}
+            <div className="flex items-center justify-center gap-1.5 mt-4">
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  aria-label={`Go to photo ${idx + 1}`}
+                  className={`rounded-full transition-all duration-300 ${
+                    idx === currentIndex
+                      ? "w-6 h-2 bg-accent"
+                      : "w-2 h-2 bg-border hover:bg-accent/50"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </Reveal>
 
-        {/* Front Thumbnail Strip with Navigation */}
+        {/* Thumbnail Strip */}
         <Reveal>
           <div className="relative max-w-4xl mx-auto px-2">
             <div
@@ -179,10 +239,10 @@ export function Gallery() {
                   <button
                     key={img.id}
                     onClick={() => setCurrentIndex(idx)}
-                    className={`relative shrink-0 h-20 w-32 md:h-24 md:w-36 rounded-xl overflow-hidden border-2 transition-all duration-300 snap-center ${
+                    className={`relative shrink-0 h-20 w-28 md:h-24 md:w-36 rounded-xl overflow-hidden border-2 transition-all duration-300 snap-center ${
                       isActive
-                        ? "border-accent ring-2 ring-accent/50 scale-105 shadow-lg"
-                        : "border-border dark:border-slate-800 opacity-65 hover:opacity-100 hover:scale-100"
+                        ? "border-accent ring-2 ring-accent/40 scale-105 shadow-lg"
+                        : "border-border dark:border-slate-800 opacity-55 hover:opacity-90 hover:border-accent/40"
                     }`}
                     aria-label={`Switch to photo ${idx + 1}: ${img.alt}`}
                   >
@@ -192,10 +252,11 @@ export function Gallery() {
                       fill
                       sizes="150px"
                       className="object-cover"
+                      unoptimized
                     />
                     <div
                       className={`absolute inset-0 transition-colors ${
-                        isActive ? "bg-accent/10" : "bg-slate-950/30"
+                        isActive ? "bg-accent/10" : "bg-slate-950/25"
                       }`}
                     />
                     <span className="absolute bottom-1 right-1 px-1.5 py-0.5 text-[9px] font-sans font-bold bg-slate-950/80 text-white rounded">
@@ -209,16 +270,16 @@ export function Gallery() {
         </Reveal>
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
+      {/* Fullscreen Lightbox */}
       {isLightboxOpen && (
         <div
-          className="fixed inset-0 bg-slate-950/95 z-50 flex items-center justify-center p-4 md:p-8 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 bg-slate-950/96 z-50 flex items-center justify-center p-4 md:p-8 backdrop-blur-md animate-in fade-in duration-200"
           role="dialog"
           aria-modal="true"
           aria-label={activePhoto.alt}
           onClick={() => setIsLightboxOpen(false)}
         >
-          {/* Close button */}
+          {/* Close */}
           <button
             onClick={() => setIsLightboxOpen(false)}
             aria-label="Close modal"
@@ -227,40 +288,35 @@ export function Gallery() {
             <X className="h-6 w-6" />
           </button>
 
-          {/* Left / Right Nav Arrows */}
+          {/* Arrows */}
           <button
-            onClick={(e) => {
-              e.stopPropagation()
-              handlePrevious()
-            }}
+            onClick={(e) => { e.stopPropagation(); handlePrevious() }}
             aria-label="Previous photo"
             className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/10 text-white hover:bg-accent hover:text-slate-950 transition-all z-10"
           >
             <ChevronLeft className="h-8 w-8" />
           </button>
           <button
-            onClick={(e) => {
-              e.stopPropagation()
-              handleNext()
-            }}
+            onClick={(e) => { e.stopPropagation(); handleNext() }}
             aria-label="Next photo"
             className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/10 text-white hover:bg-accent hover:text-slate-950 transition-all z-10"
           >
             <ChevronRight className="h-8 w-8" />
           </button>
 
-          {/* Lightbox Content */}
+          {/* Content */}
           <div
             className="max-w-5xl w-full bg-card dark:bg-[#0D1527] border border-border dark:border-slate-800 rounded-2xl overflow-hidden shadow-2xl p-4 md:p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full h-[60vh] md:h-[70vh]">
+            <div className="relative w-full h-[58vh] md:h-[68vh]">
               <Image
                 src={activePhoto.src}
                 alt={activePhoto.alt}
                 fill
                 sizes="95vw"
                 className="object-contain"
+                unoptimized
               />
             </div>
             <div className="text-center pt-4 border-t border-border dark:border-slate-800 mt-3">

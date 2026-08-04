@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { FileText, Download, Calendar, Award, Shirt, Info, ExternalLink } from "lucide-react"
+import { FileText, Download, Shirt, Info, ExternalLink } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 interface DocumentItem {
@@ -21,60 +21,22 @@ interface DocumentItem {
 
 const documents: DocumentItem[] = [
   {
-    id: "brochure",
-    title: "Official उड़ान 2026 Brochure",
-    subtitle: "Complete event guide, Chief Guests & Institute profile",
-    filename: "brochure.pdf",
-    path: "/docs/brochure.pdf",
-    type: "PDF Document",
-    size: "2.8 MB",
-    updated: "October 2026",
-    icon: Award,
-    badge: "Official Brochure",
-    description: "The official event brochure contains the Director's message, details of gold medal awards, institutional legacy of SGSITS Indore since 1952, and profiles of key dignitaries.",
-    highlights: [
-      "Director's address and ceremony objective",
-      "List of Gold Medal donors and award criteria",
-      "Department-wise rank holders and merit lists",
-      "Campus layout map and Auditorium entry points"
-    ]
-  },
-  {
-    id: "schedule",
-    title: "Detailed Ceremony Schedule",
-    subtitle: "Minute-by-minute order of events & track breakdown",
-    filename: "schedule.pdf",
-    path: "/docs/schedule.pdf",
-    type: "PDF Document",
-    size: "1.4 MB",
-    updated: "October 2026",
-    icon: Calendar,
-    badge: "Event Timeline",
-    description: "Comprehensive timeline of the ceremony starting from morning registration and half-jacket distribution to gold medal conferral and high tea.",
-    highlights: [
-      "09:00 AM - Registration & Jacket Counter Open",
-      "10:30 AM - Academic Procession & Chief Guest Arrival",
-      "11:15 AM - Gold Medal Distribution Ceremony",
-      "01:30 PM - High Tea & Networking at Golden Jubilee Lawn"
-    ]
-  },
-  {
     id: "circular",
     title: "Official Circular & Guidelines",
-    subtitle: "Mandatory instructions for awardees & guests",
-    filename: "circular.pdf",
-    path: "/docs/circular.pdf",
+    subtitle: "Mandatory instructions for awardees & guests — 2026 Batch",
+    filename: "Circular For 2026 Batch.pdf",
+    path: "/docs/Circular For 2026 Batch.pdf",
     type: "PDF Document",
-    size: "950 KB",
-    updated: "September 2026",
+    size: "175 KB",
+    updated: "August 2026",
     icon: Info,
-    badge: "Official Notice",
-    description: "Official notification issued by the SGSITS Academic Registrar regarding mandatory pass generation, seating assignments, and entry verification procedures.",
+    badge: "Official Circular",
+    description: "Official notification issued by the SGSITS Dean (Academic & Research) regarding mandatory registration for the उड़ान 2026 Academic Award Ceremony. All students of the 2026 batch are required to complete registration by 10:00 PM, 15th August 2026.",
     highlights: [
-      "Mandatory digital QR pass verification at main gate",
-      "Guest limits: Maximum 2 family members per awardee",
-      "Photo ID requirement (Aadhaar / Institute ID)",
-      "Late arrival policy and stage entry protocols"
+      "Registration deadline: 10:00 PM, 15th August 2026",
+      "Registration link provided via QR code",
+      "Issued by DEAN (ARS) — SGSITS, Indore",
+      "Mandatory for all 2026 batch awardees"
     ]
   },
   {
@@ -84,11 +46,11 @@ const documents: DocumentItem[] = [
     filename: "dresscode.docx",
     path: "/docs/dresscode.docx",
     type: "DOCX File",
-    size: "520 KB",
-    updated: "September 2026",
+    size: "1 KB",
+    updated: "August 2026",
     icon: Shirt,
     badge: "Attire Guidelines",
-    description: "Detailed specification of approved traditional Indian formal wear required for receiving gold medals and merit certificates on stage.",
+    description: "Detailed specification of approved traditional Indian formal wear required for receiving certificates and awards on stage at the उड़ान 2026 Academic Award Ceremony.",
     highlights: [
       "Male Candidates: White / Off-White Kurta Pyjama",
       "Female Candidates: White / Off-White Salwar Suits or Sarees",
@@ -99,7 +61,7 @@ const documents: DocumentItem[] = [
 ]
 
 export function DocumentViewer() {
-  const [activeDocId, setActiveDocId] = React.useState("brochure")
+  const [activeDocId, setActiveDocId] = React.useState("circular")
 
   const activeDoc = documents.find((doc) => doc.id === activeDocId) || documents[0]
 

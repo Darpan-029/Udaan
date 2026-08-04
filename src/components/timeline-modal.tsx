@@ -1,57 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { X, Clock, MapPin, Calendar, Download, ChevronRight } from "lucide-react"
+import { X, Clock, MapPin, Calendar } from "lucide-react"
 
 interface TimelineModalProps {
   isOpen: boolean
   onClose: () => void
 }
-
-const scheduleItems = [
-  {
-    time: "09:00 AM",
-    title: "Registration & Half-Jacket Counter",
-    description: "Verification of entry passes, guest registration, and ceremonial half-jacket distribution.",
-    location: "Main Auditorium Foyer",
-  },
-  {
-    time: "10:00 AM",
-    title: "Inaugural Ceremony & Lamp Lighting",
-    description: "Academic procession entry, Saraswati Vandana, and welcome address by Director SGSITS.",
-    location: "Main Auditorium",
-  },
-  {
-    time: "10:30 AM",
-    title: "Degree Certificate Conferral",
-    description: "Conferring degree certificates to meritorious graduating scholars across departments.",
-    location: "Main Auditorium",
-  },
-  {
-    time: "12:00 PM",
-    title: "Donor Gold Medal Distribution",
-    description: "Awarding institutional donor gold medals to overall rank holders by Dignitaries.",
-    location: "Main Auditorium",
-  },
-  {
-    time: "01:00 PM",
-    title: "Networking High Tea",
-    description: "High tea and interaction session for awardees, faculty, and family guests.",
-    location: "Golden Jubilee Lawn",
-  },
-  {
-    time: "02:30 PM",
-    title: "Keynote Address by Chief Guest",
-    description: "Inspiring convocation address by eminent chief guest and distinguished alumni.",
-    location: "Main Auditorium",
-  },
-  {
-    time: "03:30 PM",
-    title: "National Anthem & Group Photograph",
-    description: "Formal conclusion of ceremony followed by department group photo sessions.",
-    location: "Main Auditorium Steps",
-  },
-]
 
 export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
   React.useEffect(() => {
@@ -133,55 +88,35 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
             </div>
           </div>
 
-          {/* Timeline Table / Cards */}
-          <div className="space-y-3">
-            {scheduleItems.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-4 border border-border dark:border-slate-800/80 bg-card dark:bg-slate-900/40 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3 hover:border-accent/50 transition-all card-pop"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="px-3 py-1.5 bg-accent/10 border border-accent/20 rounded-lg text-center min-w-[95px] shrink-0">
-                    <span className="font-serif text-sm font-semibold text-accent block">{item.time}</span>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-base font-medium text-foreground flex items-center gap-1.5">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-                <div className="text-xs font-sans text-accent flex items-center gap-1 shrink-0 self-end md:self-center bg-background dark:bg-slate-800/50 px-2.5 py-1 rounded-md border border-border/50">
-                  <MapPin className="h-3 w-3" />
-                  <span>{item.location}</span>
-                </div>
-              </div>
-            ))}
+          {/* To be announced later notice banner */}
+          <div className="py-12 px-6 text-center border border-border dark:border-slate-800/80 bg-card dark:bg-slate-900/40 rounded-2xl flex flex-col items-center justify-center gap-3">
+            <div className="p-3.5 rounded-full bg-accent/10 border border-accent/20 text-accent">
+              <Clock className="h-8 w-8" />
+            </div>
+            <h3 className="font-serif text-xl font-medium text-foreground">
+              To Be Announced Later
+            </h3>
+            <p className="text-xs md:text-sm text-muted-foreground max-w-md mx-auto font-sans leading-relaxed">
+              The detailed minute-by-minute event timeline and schedule for the उड़ान 2026 Academic Award Ceremony will be announced soon by the organizing committee.
+            </p>
+            <span className="mt-2 text-[10px] font-sans tracking-widest uppercase text-accent font-semibold px-3 py-1 bg-accent/10 border border-accent/20 rounded-full">
+              Updates Will Be Posted Here
+            </span>
           </div>
         </div>
 
         {/* Modal Footer */}
         <div className="px-6 py-4 border-t border-border dark:border-slate-800 bg-card/60 dark:bg-slate-900/60 flex flex-wrap items-center justify-between gap-3">
           <span className="text-xs text-muted-foreground">
-            Please report at least 30 minutes prior to scheduled events.
+            Check back closer to event date for finalized timeline details.
           </span>
           <div className="flex items-center gap-3">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-xs font-sans tracking-wider uppercase border border-border rounded-lg hover:bg-muted transition-colors"
+              className="px-5 py-2 text-xs font-sans tracking-wider uppercase bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors font-medium"
             >
               Close
             </button>
-            <a
-              href="/docs/schedule.pdf"
-              download="UDAAN_2026_Schedule.pdf"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-4 py-2 text-xs font-sans tracking-wider uppercase rounded-lg shadow-sm transition-all"
-            >
-              <Download className="h-3.5 w-3.5" />
-              <span>Download PDF</span>
-            </a>
           </div>
         </div>
       </div>

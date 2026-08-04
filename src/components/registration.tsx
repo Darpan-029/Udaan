@@ -1,8 +1,9 @@
 import { ExternalLink, Shirt, FileText, Download, CheckCircle2 } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
-// Official Google Form link extracted from official SGSITS Udaan site
-const registrationFormUrl = "https://forms.gle/xirfNSVTatEpGbf96"
+// Updated official Google Form link
+const registrationFormUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSe8TeeVoAveBtiZdZLuZ6Ep6YqbmiQltxQUBG0eAK1yqaF7jQ/viewform"
 
 export function Registration() {
   return (
@@ -10,7 +11,7 @@ export function Registration() {
       <div className="mx-auto px-4 max-w-4xl">
         <Reveal className="text-center mb-12">
           <span className="text-[11px] font-sans tracking-[0.2em] text-accent uppercase block mb-1">
-            GRADUATE REGISTRATION
+            AWARDEE REGISTRATION
           </span>
           <h2 className="font-serif text-3xl md:text-4xl text-foreground font-normal">
             Register for उड़ान 2026
@@ -26,10 +27,10 @@ export function Registration() {
                 OFFICIAL PORTAL
               </span>
               <h3 className="font-serif text-2xl text-foreground font-normal">
-                Degree &amp; Medal Registration
+                Award Ceremony Registration
               </h3>
               <p className="font-sans text-xs text-body leading-relaxed">
-                All graduating scholars receiving gold medals, merit certificates, or degree certificates must submit their attendance confirmation and guest details via the official Google Form portal.
+                All graduating scholars receiving merit certificates or degree certificates must submit their attendance confirmation and guest details via the official Google Form portal. Registration deadline is 15th August 2026, 10:00 PM.
               </p>
 
               <ul className="space-y-2 text-xs font-sans text-muted-foreground pt-2">
@@ -86,11 +87,12 @@ export function Registration() {
               </div>
               <div className="space-y-2 text-xs font-sans">
                 <a
-                  href="/docs/brochure.pdf"
-                  download="UDAAN_2026_Brochure.pdf"
+                  href="/docs/Circular For 2026 Batch.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-between p-2.5 bg-background dark:bg-slate-900 border border-border dark:border-slate-800 rounded-xl hover:border-accent transition-colors"
                 >
-                  <span className="text-foreground font-medium">Official Brochure (PDF)</span>
+                  <span className="text-foreground font-medium">Official Circular (PDF)</span>
                   <Download className="h-3.5 w-3.5 text-accent" />
                 </a>
                 <a

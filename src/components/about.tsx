@@ -1,4 +1,4 @@
-import { Award, Target, Users, Trophy } from "lucide-react"
+import { Award, Target, Users } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 const features = [
@@ -6,11 +6,6 @@ const features = [
     icon: Award,
     title: "Certificate Distribution",
     description: "Recognizing academic excellence with formal certificates for outstanding performers across all disciplines.",
-  },
-  {
-    icon: Trophy,
-    title: "Gold Medal Conferral",
-    description: "Honoring top rankers with prestigious donor gold medals for exceptional scholarly achievements.",
   },
   {
     icon: Users,
@@ -45,7 +40,7 @@ export function About() {
               Celebrating Academic Excellence
             </h3>
             <p className="font-sans text-sm text-body leading-relaxed mb-4">
-              उड़ान is the annual Certificate and Gold Medal Distribution Ceremony organized by Shri Govindram Seksaria Institute of Technology and Science (SGSITS), Indore — established in 1952.
+              उड़ान is the annual Academic Award Ceremony organized by Shri Govindram Seksaria Institute of Technology and Science (SGSITS), Indore — established in 1952.
             </p>
             <p className="font-sans text-sm text-body leading-relaxed">
               This prestigious occasion recognizes the hard work, perseverance, and academic brilliance of graduating awardees across B.Tech, M.Tech, MCA, B.Pharm, and M.Sc. programs.
@@ -61,19 +56,15 @@ export function About() {
               <span className="font-serif text-3xl text-foreground dark:text-accent block">500+</span>
               <span className="text-[10px] font-sans tracking-widest text-muted-foreground uppercase mt-1">Awards Given</span>
             </div>
-            <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl text-center flex flex-col justify-center shadow-sm card-pop">
-              <span className="font-serif text-3xl text-foreground dark:text-accent block">50+</span>
-              <span className="text-[10px] font-sans tracking-widest text-muted-foreground uppercase mt-1">Gold Medals</span>
-            </div>
-            <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl text-center flex flex-col justify-center shadow-sm card-pop">
+            <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl text-center flex flex-col justify-center shadow-sm card-pop col-span-2">
               <span className="font-serif text-3xl text-foreground dark:text-accent block">1000+</span>
               <span className="text-[10px] font-sans tracking-widest text-muted-foreground uppercase mt-1">Attendees</span>
             </div>
           </div>
         </div>
 
-        {/* 4 Feature Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 3 Feature Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((feature, idx) => (
             <div key={idx} className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl shadow-sm card-pop">
               <feature.icon className="h-6 w-6 text-accent mb-3" />

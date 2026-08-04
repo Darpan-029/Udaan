@@ -10,7 +10,7 @@ export function Hero() {
         <div className="relative h-[420px] md:h-[500px] w-full overflow-hidden border border-border shadow-md rounded-2xl card-pop">
           <Image
             src={heroImage}
-            alt="SGSITS उड़ान Graduation & Gold Medal Ceremony"
+            alt="SGSITS उड़ान Academic Award Ceremony"
             fill
             priority
             sizes="90vw"
@@ -25,13 +25,13 @@ export function Hero() {
 
             <Reveal className="mt-4 mb-8">
               <p className="font-sans text-xs md:text-sm text-white/90 uppercase tracking-[0.2em]">
-                Annual Certificate &amp; Gold Medal Distribution Ceremony
+                Academic Award Ceremony — SGSITS Indore
               </p>
             </Reveal>
 
             <Reveal>
               <a
-                href="#schedule"
+                href="#dignitaries"
                 className="inline-block bg-[#1B2A4A] hover:bg-primary text-white px-7 py-3 text-xs md:text-sm font-sans tracking-[0.18em] uppercase border border-white/20 transition-all shadow-md hover:border-white/40 rounded-xl"
               >
                 VIEW CEREMONY DETAILS
@@ -47,7 +47,7 @@ export function Hero() {
           Congratulations to our graduates.
         </h2>
         <p className="font-sans text-sm md:text-base text-muted-foreground mt-2 tracking-wide">
-          Thursday, 27 August 2026 | SGSITS Auditorium, Indore | Livestream available
+          Thursday, 27 August 2026 | SGSITS Auditorium, Indore
         </p>
         <p className="font-serif text-sm italic text-accent mt-2">
           &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
@@ -58,19 +58,29 @@ export function Hero() {
           <CountdownTimer />
         </div>
 
-        {/* Minimalist Stats Summary Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-center">
-          <div className="p-5 border border-border bg-card rounded-2xl card-pop">
-            <span className="block font-serif text-3xl text-foreground dark:text-accent">500+</span>
-            <span className="text-xs uppercase tracking-widest text-muted-foreground mt-1 block">Graduating Awardees</span>
+        {/* Stats row with gradient accent cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4 text-center">
+          <div
+            className="p-6 rounded-2xl card-pop relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, hsl(215 52% 14%) 0%, hsl(215 48% 20%) 100%)",
+              border: "1px solid hsl(39 55% 52% / 0.25)",
+            }}
+          >
+            <div className="absolute inset-0 opacity-10" style={{ background: "radial-gradient(circle at 30% 50%, hsl(39 58% 52%) 0%, transparent 65%)" }} />
+            <span className="block font-serif text-4xl font-light relative z-10" style={{ color: "hsl(39 65% 68%)" }}>500+</span>
+            <span className="text-xs uppercase tracking-widest text-white/60 mt-1 block relative z-10">Graduating Awardees</span>
           </div>
-          <div className="p-5 border border-border bg-card rounded-2xl card-pop">
-            <span className="block font-serif text-3xl text-foreground dark:text-accent">50+</span>
-            <span className="text-xs uppercase tracking-widest text-muted-foreground mt-1 block">Gold Medals Awarded</span>
-          </div>
-          <div className="p-5 border border-border bg-card rounded-2xl card-pop">
-            <span className="block font-serif text-3xl text-foreground dark:text-accent">70+</span>
-            <span className="text-xs uppercase tracking-widest text-muted-foreground mt-1 block">Years of Legacy</span>
+          <div
+            className="p-6 rounded-2xl card-pop relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, hsl(215 48% 20%) 0%, hsl(215 44% 26%) 100%)",
+              border: "1px solid hsl(39 55% 52% / 0.18)",
+            }}
+          >
+            <div className="absolute inset-0 opacity-10" style={{ background: "radial-gradient(circle at 70% 50%, hsl(39 58% 52%) 0%, transparent 65%)" }} />
+            <span className="block font-serif text-4xl font-light relative z-10" style={{ color: "hsl(39 65% 68%)" }}>70+</span>
+            <span className="text-xs uppercase tracking-widest text-white/60 mt-1 block relative z-10">Years of Legacy</span>
           </div>
         </div>
       </div>
