@@ -4,9 +4,11 @@ import * as React from "react"
 import { Clock, UserCheck, FileText, X, ExternalLink } from "lucide-react"
 import { TimelineModal } from "@/components/timeline-modal"
 import { Reveal } from "@/components/reveal"
+import { WhatsAppIcon } from "@/components/whatsapp-icon"
 
 const registrationFormUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSe8TeeVoAveBtiZdZLuZ6Ep6YqbmiQltxQUBG0eAK1yqaF7jQ/viewform"
+const whatsappGroupUrl = "https://chat.whatsapp.com/HWvvBf4oraHDfnleGcEe86"
 const circularPath = "/docs/Circular For 2026 Batch.pdf"
 
 // Brochure / circular modal

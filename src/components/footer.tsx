@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import logo from "../../public/images/sgsits_logo.webp"
+import { WhatsAppIcon } from "@/components/whatsapp-icon"
 
 const footerNavItems = [
   { name: "DIGNITARIES", href: "#dignitaries" },

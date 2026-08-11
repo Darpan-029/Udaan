@@ -9,6 +9,7 @@ import { useTheme } from "next-themes"
 import logo from "../../public/docs/sgsits_logo.jpeg"
 import footerLogo from "../../public/images/sgsits_logo.webp"
 import { TimelineModal } from "@/components/timeline-modal"
+import { WhatsAppIcon } from "@/components/whatsapp-icon"
 
 const navItems = [
   { name: "DIGNITARIES", href: "#dignitaries" },
@@ -17,7 +18,7 @@ const navItems = [
   { name: "REGISTRATION", href: "#register" },
 ]
 
-function QrModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+function RegistrationQrModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   React.useEffect(() => {
     if (!isOpen) return
     document.body.style.overflow = "hidden"
@@ -44,7 +45,7 @@ function QrModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-1.5 text-muted-foreground hover:text-foreground rounded-full hover:bg-muted/50 transition-colors"
-          aria-label="Close QR Modal"
+          aria-label="Close Registration QR Modal"
         >
           <X className="h-5 w-5" />
         </button>
@@ -85,11 +86,90 @@ function QrModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
   )
 }
 
+function WhatsAppQrModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  React.useEffect(() => {
+    if (!isOpen) return
+    document.body.style.overflow = "hidden"
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose()
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+      <div
+        className="fixed inset-0 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div className="relative z-10 w-full max-w-md bg-background dark:bg-[#0D1527] border border-emerald-500/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col items-center p-6 text-center animate-in zoom-in-95 duration-200">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-1.5 text-muted-foreground hover:text-foreground rounded-full hover:bg-muted/50 transition-colors"
+          aria-label="Close WhatsApp QR Modal"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="w-12 h-12 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-500 dark:text-emerald-400 mb-3">
+          <WhatsAppIcon className="h-6 w-6" />
+        </div>
+
+        <h3 className="font-serif text-xl md:text-2xl text-foreground font-normal mb-1">
+          Official WhatsApp Group QR
+        </h3>
+
+        {/* Clear & Highlighted Statement */}
+        <div className="w-full bg-amber-500/15 border-2 border-amber-500/80 rounded-xl p-3 my-3 text-center shadow-sm">
+          <span className="inline-block text-[10px] font-sans font-extrabold tracking-widest text-amber-600 dark:text-amber-400 uppercase mb-0.5">
+            ⚠️ IMPORTANT REQUIREMENT
+          </span>
+          <p className="font-sans text-xs sm:text-sm font-extrabold text-amber-900 dark:text-amber-200 leading-snug">
+            Only join group after filling in registration form
+          </p>
+        </div>
+
+        <p className="font-sans text-xs text-muted-foreground mb-4 max-w-xs leading-relaxed">
+          Scan this QR code to join the official WhatsApp group for live ceremony alerts and updates.
+        </p>
+
+        <div className="relative p-3 bg-white rounded-xl shadow-lg border border-slate-200 mb-5">
+          <Image
+            src="/docs/Whatsapp_group_QR.jpeg"
+            alt="UDAAN 2026 WhatsApp Group QR Code"
+            width={220}
+            height={220}
+            className="w-52 h-52 object-contain rounded-lg"
+          />
+        </div>
+
+        <a
+          href="https://chat.whatsapp.com/HWvvBf4oraHDfnleGcEe86"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 text-xs font-sans font-bold tracking-wider uppercase rounded-xl shadow-md transition-all hover:scale-[1.02]"
+        >
+          <WhatsAppIcon className="h-4 w-4" />
+          <span>Join WhatsApp Group</span>
+        </a>
+      </div>
+    </div>
+  )
+}
+
 export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [condensed, setCondensed] = React.useState(false)
   const [isTimelineOpen, setIsTimelineOpen] = React.useState(false)
-  const [isQrOpen, setIsQrOpen] = React.useState(false)
+  const [isRegQrOpen, setIsRegQrOpen] = React.useState(false)
+  const [isWaQrOpen, setIsWaQrOpen] = React.useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   const sentinelRef = React.useRef<HTMLDivElement>(null)
@@ -191,19 +271,31 @@ export function Navigation() {
                 ))}
               </nav>
 
-              {/* Right Action: Gold Pill SCAN QR & Mobile Menu Toggle */}
-              <div className="flex items-center gap-3 shrink-0">
+              {/* Right Action: QR Buttons & Mobile Menu Toggle */}
+              <div className="flex items-center gap-2 shrink-0">
                 <button
-                  onClick={() => setIsQrOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F5E096] to-[#C59B27] text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-[#FFE89C]/50"
-                  title="Scan QR Code to Register"
-                  aria-label="Open QR Code Modal"
+                  onClick={() => setIsRegQrOpen(true)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F5E096] to-[#C59B27] text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-[#FFE89C]/50"
+                  title="Scan Registration QR Code"
+                  aria-label="Open Registration QR Code Modal"
                 >
                   <QrCode className="h-3.5 w-3.5" />
-                  <span>Scan QR</span>
+                  <span className="hidden sm:inline">Registration QR</span>
+                  <span className="sm:hidden">Reg QR</span>
                 </button>
 
-                <div className="lg:hidden flex items-center">
+                <button
+                  onClick={() => setIsWaQrOpen(true)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-emerald-400/50"
+                  title="Scan WhatsApp Group QR Code"
+                  aria-label="Open WhatsApp Group QR Code Modal"
+                >
+                  <WhatsAppIcon className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">WhatsApp QR</span>
+                  <span className="sm:hidden">WA QR</span>
+                </button>
+
+                <div className="lg:hidden flex items-center ml-1">
                   <button
                     onClick={() => setIsOpen((v) => !v)}
                     className="p-1.5 text-[#E6CA65]"
@@ -251,16 +343,26 @@ export function Navigation() {
                   </p>
                 </div>
 
-                {/* Right Column: Scan QR Action */}
-                <div className="hidden md:flex md:col-span-3 justify-end items-center">
+                {/* Right Column: Scan QR Actions */}
+                <div className="hidden md:flex md:col-span-3 justify-end items-center gap-2">
                   <button
-                    onClick={() => setIsQrOpen(true)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent hover:bg-accent/90 text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-accent/40"
-                    title="Scan QR Code to Register"
-                    aria-label="Open QR Code Modal"
+                    onClick={() => setIsRegQrOpen(true)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-accent hover:bg-accent/90 text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-accent/40"
+                    title="Scan Registration QR Code"
+                    aria-label="Open Registration QR Code Modal"
                   >
                     <QrCode className="h-4 w-4" />
-                    <span>Scan QR</span>
+                    <span>Registration QR</span>
+                  </button>
+
+                  <button
+                    onClick={() => setIsWaQrOpen(true)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-emerald-400/50"
+                    title="Scan WhatsApp Group QR Code"
+                    aria-label="Open WhatsApp Group QR Code Modal"
+                  >
+                    <WhatsAppIcon className="h-4 w-4" />
+                    <span>WhatsApp QR</span>
                   </button>
                 </div>
 
@@ -289,13 +391,24 @@ export function Navigation() {
 
               {/* Mobile toggle row (expanded state) */}
               <div className="md:hidden flex items-center justify-between pt-2 mt-2 border-t border-border">
-                <button
-                  onClick={() => setIsQrOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-slate-950 font-sans text-xs font-bold uppercase"
-                >
-                  <QrCode className="h-3.5 w-3.5" />
-                  <span>Scan QR</span>
-                </button>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => setIsRegQrOpen(true)}
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent text-slate-950 font-sans text-xs font-bold uppercase"
+                  >
+                    <QrCode className="h-3.5 w-3.5" />
+                    <span>Reg QR</span>
+                  </button>
+
+                  <button
+                    onClick={() => setIsWaQrOpen(true)}
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-600 text-white font-sans text-xs font-bold uppercase"
+                  >
+                    <WhatsAppIcon className="h-3.5 w-3.5" />
+                    <span>WhatsApp QR</span>
+                  </button>
+                </div>
+
                 <button
                   onClick={() => setIsOpen((v) => !v)}
                   className="p-1.5 text-foreground"
@@ -336,8 +449,10 @@ export function Navigation() {
 
       {/* Program Timeline Popup Modal */}
       <TimelineModal isOpen={isTimelineOpen} onClose={() => setIsTimelineOpen(false)} />
-      {/* Scan & Register QR Modal */}
-      <QrModal isOpen={isQrOpen} onClose={() => setIsQrOpen(false)} />
+      {/* Registration QR Modal */}
+      <RegistrationQrModal isOpen={isRegQrOpen} onClose={() => setIsRegQrOpen(false)} />
+      {/* WhatsApp Group QR Modal */}
+      <WhatsAppQrModal isOpen={isWaQrOpen} onClose={() => setIsWaQrOpen(false)} />
     </>
   )
 }

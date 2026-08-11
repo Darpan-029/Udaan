@@ -1,7 +1,7 @@
 import { ExternalLink, Shirt, FileText, Download, CheckCircle2 } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
-// Updated official Google Form link
+// Updated official links
 const registrationFormUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSe8TeeVoAveBtiZdZLuZ6Ep6YqbmiQltxQUBG0eAK1yqaF7jQ/viewform"
 
@@ -54,7 +54,7 @@ export function Registration() {
                 href={registrationFormUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-primary hover:bg-primary-hover text-white py-3.5 px-4 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-all rounded-xl flex items-center justify-center space-x-2 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full bg-primary hover:bg-primary-hover text-white py-3.5 px-4 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-all rounded-xl flex items-center justify-center space-x-2 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring font-bold"
               >
                 <span>OPEN REGISTRATION FORM</span>
                 <ExternalLink className="h-4 w-4" />
