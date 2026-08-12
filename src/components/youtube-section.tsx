@@ -24,7 +24,7 @@ export function YoutubeSection() {
 
       <div className="mx-auto px-4 max-w-3xl relative z-10">
         <Reveal className="text-center mb-4">
-          <span className="text-[10px] font-sans tracking-[0.25em] text-amber-400/80 uppercase block mb-1 font-semibold">
+          <span className="text-[10px] font-sans tracking-[0.25em] text-amber-300 uppercase block mb-1 font-bold drop-shadow-sm">
             PREVIOUS YEAR
           </span>
           <h2 className="font-serif text-2xl md:text-3xl text-white font-normal">

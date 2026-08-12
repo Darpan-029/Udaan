@@ -6,8 +6,8 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X, Sun, Moon, QrCode, ExternalLink } from "lucide-react"
 import { useTheme } from "next-themes"
-import logo from "../../public/docs/sgsits_logo.jpeg"
-import footerLogo from "../../public/images/sgsits_logo.webp"
+import logo from "../../public/docs/sgsits_logo.png"
+import footerLogo from "../../public/docs/sgsits_logo.png"
 import { TimelineModal } from "@/components/timeline-modal"
 import { WhatsAppIcon } from "@/components/whatsapp-icon"
 
@@ -126,12 +126,11 @@ function WhatsAppQrModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
           Official WhatsApp Group QR
         </h3>
 
-        {/* Clear & Highlighted Statement */}
         <div className="w-full bg-amber-500/15 border-2 border-amber-500/80 rounded-xl p-3 my-3 text-center shadow-sm">
-          <span className="inline-block text-[10px] font-sans font-extrabold tracking-widest text-amber-600 dark:text-amber-400 uppercase mb-0.5">
+          <span className="inline-block text-[10px] font-sans font-black tracking-widest text-amber-800 dark:text-amber-300 uppercase mb-0.5">
             ⚠️ IMPORTANT REQUIREMENT
           </span>
-          <p className="font-sans text-xs sm:text-sm font-extrabold text-amber-900 dark:text-amber-200 leading-snug">
+          <p className="font-sans text-xs sm:text-sm font-extrabold text-amber-950 dark:text-amber-100 leading-snug">
             Only join group after filling in registration form
           </p>
         </div>
@@ -243,10 +242,10 @@ export function Navigation() {
                 <Image src={footerLogo} alt="SGSITS Official Seal" className="h-9 md:h-11 w-auto object-contain shrink-0" />
                 <div className="flex flex-col items-start justify-center">
                   <div className="flex items-baseline gap-2 select-none">
-                    <span className="font-serif text-xl md:text-2xl font-bold text-[#E6CA65] tracking-wide">उड़ान</span>
-                    <span className="font-serif text-sm md:text-base text-[#D4AF37] font-light tracking-widest">2026</span>
+                    <span className="font-serif text-xl md:text-2xl font-extrabold text-amber-300 tracking-wide drop-shadow-sm">उड़ान</span>
+                    <span className="font-serif text-sm md:text-base text-amber-300/90 font-bold tracking-widest">2026</span>
                   </div>
-                  <span className="font-serif text-[10px] md:text-[11px] text-[#D4AF37]/80 tracking-wider font-normal -mt-0.5 whitespace-nowrap">
+                  <span className="font-serif text-[10px] md:text-[11px] text-amber-300/80 tracking-wider font-semibold -mt-0.5 whitespace-nowrap">
                     Academic Award Ceremony
                   </span>
                 </div>
@@ -259,13 +258,13 @@ export function Navigation() {
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className="hover:text-amber-200 text-[#D4AF37] font-semibold transition-colors py-1 px-1 relative group"
+                      className="hover:text-yellow-200 text-amber-300 font-bold transition-colors py-1 px-1 relative group drop-shadow-sm"
                     >
                       {item.name}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E6CA65] transition-all duration-300 group-hover:w-full" />
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full" />
                     </a>
                     {idx < navItems.length - 1 && (
-                      <span className="text-[#C59B27]/40 font-light select-none">|</span>
+                      <span className="text-amber-400/60 font-medium select-none">|</span>
                     )}
                   </React.Fragment>
                 ))}

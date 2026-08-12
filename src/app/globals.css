@@ -21,10 +21,10 @@
     --muted: 39 22% 90%;
     --muted-foreground: 215 16% 48%;
 
-    /* Gold accent — primary brand colour */
-    --accent: 39 55% 52%;
-    --accent-light: 39 65% 68%;
-    --accent-dark: 39 60% 38%;
+    /* High-contrast Gold accent — primary brand color */
+    --accent: 38 92% 34%;
+    --accent-light: 38 85% 44%;
+    --accent-dark: 38 95% 26%;
     --accent-foreground: 215 50% 13%;
 
     --destructive: 0 70% 50%;
@@ -41,7 +41,7 @@
     --primary-hover: 214 55% 10%;
     --primary-foreground: 0 0% 100%;
 
-    --ring: 39 55% 52%;
+    --ring: 38 92% 34%;
     --radius: 0rem;
   }
 
@@ -62,10 +62,10 @@
     --muted: 219 26% 18%;
     --muted-foreground: 215 18% 63%;
 
-    /* Gold in dark mode */
-    --accent: 39 58% 58%;
-    --accent-light: 39 65% 70%;
-    --accent-dark: 39 55% 42%;
+    /* High-intensity Gold in dark mode */
+    --accent: 43 100% 55%;
+    --accent-light: 45 100% 68%;
+    --accent-dark: 40 95% 42%;
     --accent-foreground: 222 28% 8%;
 
     --destructive: 0 62% 40%;

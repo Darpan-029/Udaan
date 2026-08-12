@@ -49,7 +49,7 @@ export function Hero() {
         <p className="font-sans text-sm md:text-base text-muted-foreground mt-2 tracking-wide">
           Thursday, 27 August 2026 | SGSITS Auditorium, Indore
         </p>
-        <p className="font-serif text-sm italic text-accent mt-2">
+        <p className="font-serif text-sm md:text-base italic text-accent mt-2 font-semibold drop-shadow-sm">
           &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
         </p>
 
