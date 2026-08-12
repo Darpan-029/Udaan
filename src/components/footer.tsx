@@ -26,7 +26,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="w-full bg-primary text-white border-t border-accent/30 py-12">
+    <footer className="w-full bg-gradient-to-b from-[#0F1C30] to-[#0C1626] text-white border-t border-amber-300/20 py-12">
       <div className="mx-auto px-4 max-w-4xl text-center">
         {/* Emblem - Matching top navbar logo */}
         <div className="flex justify-center mb-5">

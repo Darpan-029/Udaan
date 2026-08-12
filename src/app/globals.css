@@ -112,7 +112,14 @@
 }
 
 html {
-  scroll-behavior: smooth !important;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+}
+
+/* GPU acceleration helper */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Anchor targets sit below the sticky header */
@@ -141,26 +148,26 @@ html {
   background: linear-gradient(180deg, hsl(39 58% 58%) 0%, hsl(215 52% 20%) 100%);
   border-radius: 9999px;
   border: 2px solid hsl(var(--background));
-  transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, hsl(39 65% 65%) 0%, hsl(215 55% 25%) 100%);
-  box-shadow: 0 0 8px hsl(39 55% 52% / 0.6);
 }
 
 /*
- * Scroll reveal
+ * Scroll reveal — hardware accelerated
  */
 [data-reveal].reveal-armed {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transform: translateY(12px) translateZ(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  will-change: opacity, transform;
 }
 
 [data-reveal].reveal-armed.reveal-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
+  will-change: auto;
 }
 
 /*
@@ -168,42 +175,36 @@ html {
  */
 .card-pop {
   border-radius: 1rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .card-pop:hover {
-  transform: translateY(-5px) scale(1.01);
+  transform: translateY(-4px) scale(1.005) translateZ(0);
   box-shadow:
-    0 20px 30px -10px rgba(0, 0, 0, 0.1),
-    0 8px 10px -6px rgba(0, 0, 0, 0.06),
+    0 15px 25px -8px rgba(0, 0, 0, 0.08),
+    0 6px 8px -4px rgba(0, 0, 0, 0.04),
     0 0 0 1px hsl(39 55% 52% / 0.08);
 }
 
 .dark .card-pop:hover {
   box-shadow:
-    0 20px 35px -10px rgba(0, 0, 0, 0.55),
-    0 0 18px hsl(39 55% 52% / 0.18);
+    0 18px 30px -8px rgba(0, 0, 0, 0.5),
+    0 0 15px hsl(39 55% 52% / 0.15);
 }
 
-/* === उड़ान Gradient Glow Branding Text === */
+/* === उड़ान Fast GPU Text Branding === */
 .udaan-brand {
   background: linear-gradient(
     135deg,
-    hsl(39 65% 68%) 0%,
-    hsl(39 58% 55%) 35%,
-    hsl(39 70% 72%) 60%,
-    hsl(39 58% 50%) 100%
+    #FFF2C6 0%,
+    #F7D463 30%,
+    #E5BA38 65%,
+    #C99318 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 18px hsl(39 55% 52% / 0.35));
-  animation: udaan-shimmer 4s ease-in-out infinite;
-}
-
-@keyframes udaan-shimmer {
-  0%, 100% { filter: drop-shadow(0 0 14px hsl(39 55% 52% / 0.3)); }
-  50%       { filter: drop-shadow(0 0 28px hsl(39 65% 65% / 0.55)); }
 }
 
 /*

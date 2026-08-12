@@ -10,42 +10,25 @@ export function YoutubeSection() {
   return (
     <section
       id="previous-event"
-      className="py-6 md:py-8 border-t border-border-strong relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, hsl(215 52% 14%) 0%, hsl(215 48% 18%) 50%, hsl(215 44% 22%) 100%)",
-      }}
+      className="py-10 md:py-14 bg-background border-t border-border relative overflow-hidden"
     >
-      {/* Decorative glow blobs */}
-      <div className="absolute top-0 left-1/4 w-72 h-72 rounded-full opacity-10 pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(39 58% 58%) 0%, transparent 70%)" }} />
-      <div className="absolute bottom-0 right-1/4 w-48 h-48 rounded-full opacity-8 pointer-events-none"
-        style={{ background: "radial-gradient(circle, hsl(39 65% 68%) 0%, transparent 70%)" }} />
-
-      <div className="mx-auto px-4 max-w-3xl relative z-10">
-        <Reveal className="text-center mb-4">
-          <span className="text-[10px] font-sans tracking-[0.25em] text-amber-300 uppercase block mb-1 font-bold drop-shadow-sm">
+      <div className="mx-auto px-4 max-w-4xl relative z-10">
+        <Reveal className="text-center mb-6">
+          <span className="text-[11px] font-sans tracking-[0.2em] text-accent uppercase block mb-1 font-bold">
             PREVIOUS YEAR
           </span>
-          <h2 className="font-serif text-2xl md:text-3xl text-white font-normal">
+          <h2 className="font-serif text-2xl md:text-4xl text-foreground font-normal">
             उड़ान — Ceremony Highlights
           </h2>
-          <p className="text-xs text-white/60 max-w-lg mx-auto mt-1 font-sans">
+          <p className="text-xs md:text-sm text-muted-foreground max-w-lg mx-auto mt-1.5 font-sans">
             Relive the magic of last year&apos;s Academic Award Ceremony.
           </p>
+          <div className="w-14 h-0.5 bg-accent mx-auto mt-3 rounded-full" />
         </Reveal>
 
         {/* YouTube Embed */}
         <Reveal>
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
-            {/* Gradient border glow */}
-            <div
-              className="absolute -inset-px rounded-2xl opacity-60 pointer-events-none"
-              style={{
-                background:
-                  "linear-gradient(135deg, hsl(39 58% 52% / 0.5), transparent 50%, hsl(39 65% 68% / 0.3))",
-              }}
-            />
+          <div className="relative rounded-2xl overflow-hidden shadow-xl border border-border dark:border-slate-800 bg-card card-pop">
             <div className="relative aspect-video w-full">
               <iframe
                 src={`https://www.youtube.com/embed/${youtubeVideoId}?rel=0&modestbranding=1`}
@@ -59,17 +42,17 @@ export function YoutubeSection() {
         </Reveal>
 
         {/* Watch on YouTube CTA */}
-        <Reveal className="mt-3 text-center">
+        <Reveal className="mt-5 text-center">
           <a
             href={youtubeUrl}
             target="_blank"
             rel="noopener noreferrer"
             id="watch-youtube-link"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-amber-400/40 text-amber-300 hover:bg-amber-400/10 transition-all text-[11px] font-sans tracking-wider uppercase font-semibold group"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-card hover:bg-card-subtle border border-accent/40 text-foreground font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-sm hover:scale-105 group"
           >
-            <Play className="h-3 w-3 fill-amber-300 group-hover:scale-110 transition-transform" />
-            <span>Watch on YouTube</span>
-            <ExternalLink className="h-3 w-3 opacity-60" />
+            <Play className="h-3.5 w-3.5 fill-accent text-accent group-hover:scale-110 transition-transform" />
+            <span>Watch Full Event on YouTube</span>
+            <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
           </a>
         </Reveal>
       </div>

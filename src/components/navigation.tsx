@@ -222,13 +222,10 @@ export function Navigation() {
     <>
       <div ref={sentinelRef} aria-hidden className="h-px" />
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-500 ease-in-out ${condensed
-            ? "bg-[#0A1628] text-slate-100 border-y border-[#D4AF37]/50 shadow-2xl backdrop-blur-md"
-            : "bg-white/90 dark:bg-[#0A0F1A]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/60"
-          }`}
+        className="sticky top-0 z-50 w-full bg-[#0C1626] text-white shadow-md transform-gpu"
       >
         <div
-          className={`container mx-auto px-4 text-center transition-all duration-500 ease-in-out ${condensed ? "py-2" : "py-4 md:py-5"
+          className={`container mx-auto px-4 text-center transition-[padding] duration-300 ${condensed ? "py-2" : "py-3.5 md:py-4.5"
             }`}
         >
           {condensed ? (
@@ -239,13 +236,13 @@ export function Navigation() {
                 onClick={(e) => handleNavClick(e, "#dignitaries")}
                 className="flex items-center gap-3 transition-transform hover:opacity-90 text-left shrink-0"
               >
-                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-9 md:h-11 w-auto object-contain shrink-0" />
+                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-10 md:h-12 w-auto object-contain shrink-0 drop-shadow-md" />
                 <div className="flex flex-col items-start justify-center">
                   <div className="flex items-baseline gap-2 select-none">
-                    <span className="font-serif text-xl md:text-2xl font-extrabold text-amber-300 tracking-wide drop-shadow-sm">उड़ान</span>
-                    <span className="font-serif text-sm md:text-base text-amber-300/90 font-bold tracking-widest">2026</span>
+                    <span className="udaan-brand font-serif text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-md">उड़ान</span>
+                    <span className="font-serif text-base md:text-lg text-amber-200 font-extrabold tracking-widest drop-shadow-sm">2026</span>
                   </div>
-                  <span className="font-serif text-[10px] md:text-[11px] text-amber-300/80 tracking-wider font-semibold -mt-0.5 whitespace-nowrap">
+                  <span className="font-serif text-[10px] md:text-[11px] text-slate-200 tracking-wider font-bold -mt-0.5 whitespace-nowrap uppercase">
                     Academic Award Ceremony
                   </span>
                 </div>
@@ -258,13 +255,13 @@ export function Navigation() {
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className="hover:text-yellow-200 text-amber-300 font-bold transition-colors py-1 px-1 relative group drop-shadow-sm"
+                      className="hover:text-white text-amber-200/95 font-extrabold transition-colors py-1 px-1.5 relative group drop-shadow-sm"
                     >
                       {item.name}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-300 transition-all duration-300 group-hover:w-full" />
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-200/80 transition-all duration-300 group-hover:w-full" />
                     </a>
                     {idx < navItems.length - 1 && (
-                      <span className="text-amber-400/60 font-medium select-none">|</span>
+                      <span className="text-amber-300/40 font-bold select-none">|</span>
                     )}
                   </React.Fragment>
                 ))}
@@ -274,7 +271,7 @@ export function Navigation() {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={() => setIsRegQrOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F5E096] to-[#C59B27] text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-[#FFE89C]/50"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60"
                   title="Scan Registration QR Code"
                   aria-label="Open Registration QR Code Modal"
                 >
@@ -285,7 +282,7 @@ export function Navigation() {
 
                 <button
                   onClick={() => setIsWaQrOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-emerald-400/50"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 text-white font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-emerald-300/40"
                   title="Scan WhatsApp Group QR Code"
                   aria-label="Open WhatsApp Group QR Code Modal"
                 >
@@ -297,7 +294,7 @@ export function Navigation() {
                 <div className="lg:hidden flex items-center ml-1">
                   <button
                     onClick={() => setIsOpen((v) => !v)}
-                    className="p-1.5 text-[#E6CA65]"
+                    className="p-1.5 text-amber-200 hover:text-white"
                     aria-label="Toggle menu"
                     aria-expanded={isOpen}
                     aria-controls="mobile-nav-drawer"
@@ -310,53 +307,53 @@ export function Navigation() {
           ) : (
             <>
               {/* Expanded Header 3-Column Balanced Layout */}
-              <div className="grid grid-cols-12 items-center gap-4 py-1">
+              <div className="grid grid-cols-12 items-center gap-4 py-2">
                 {/* Left Column: Symmetrical balance spacer */}
                 <div className="hidden md:block md:col-span-3" />
 
                 {/* Center Column: Udaan Brand Emblem & Title */}
                 <div className="col-span-12 md:col-span-6 flex flex-col items-center justify-center text-center">
-                  <div className="flex items-center justify-center gap-3.5 md:gap-4 select-none" aria-label="उड़ान 2026">
+                  <div className="flex items-center justify-center gap-4 md:gap-5 select-none" aria-label="उड़ान 2026">
                     <Image
                       src={logo}
                       alt="SGSITS Official Seal"
-                      width={100}
-                      height={100}
-                      className="h-18 md:h-22 lg:h-26 w-auto object-contain"
+                      width={120}
+                      height={120}
+                      className="h-20 md:h-24 lg:h-28 w-auto object-contain drop-shadow-[0_0_15px_rgba(247,212,99,0.35)]"
                       priority
                     />
-                    <div className="flex items-baseline gap-2 md:gap-3">
-                      <span className="udaan-brand font-serif text-3xl md:text-4xl lg:text-5xl tracking-[0.06em] font-bold">
+                    <div className="flex items-baseline gap-2.5 md:gap-3.5">
+                      <span className="udaan-brand font-serif text-4xl md:text-5xl lg:text-6xl tracking-[0.06em] font-extrabold">
                         उड़ान
                       </span>
-                      <span className="font-serif text-xl md:text-2xl lg:text-3xl font-light text-accent/80 tracking-widest">
+                      <span className="font-serif text-2xl md:text-3xl lg:text-4xl font-extrabold text-amber-200/90 tracking-widest drop-shadow-sm">
                         2026
                       </span>
                     </div>
                   </div>
-                  <p className="font-serif text-xs md:text-sm text-foreground tracking-[0.18em] uppercase mt-1.5 font-medium">
+                  <p className="font-serif text-xs md:text-sm text-white tracking-[0.22em] uppercase mt-2 font-bold drop-shadow-sm">
                     Academic Award Ceremony
                   </p>
-                  <p className="font-serif text-[11px] md:text-xs italic text-accent/80 mt-0.5">
+                  <p className="font-serif text-xs md:text-sm italic text-amber-200/85 mt-1 font-medium drop-shadow-sm">
                     &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
                   </p>
                 </div>
 
                 {/* Right Column: Scan QR Actions */}
-                <div className="hidden md:flex md:col-span-3 justify-end items-center gap-2">
+                <div className="hidden md:flex md:col-span-3 justify-end items-center gap-2.5">
                   <button
                     onClick={() => setIsRegQrOpen(true)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-accent hover:bg-accent/90 text-slate-950 font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-accent/40"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60"
                     title="Scan Registration QR Code"
                     aria-label="Open Registration QR Code Modal"
                   >
-                    <QrCode className="h-4 w-4" />
+                    <QrCode className="h-4 w-4 text-slate-950" />
                     <span>Registration QR</span>
                   </button>
 
                   <button
                     onClick={() => setIsWaQrOpen(true)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-sans text-xs font-bold tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-emerald-400/50"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 text-white font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-emerald-300/40"
                     title="Scan WhatsApp Group QR Code"
                     aria-label="Open WhatsApp Group QR Code Modal"
                   >
@@ -369,19 +366,19 @@ export function Navigation() {
               </div>
 
               {/* Refined Navigation Bar */}
-              <div className="pt-2.5 mt-2.5 border-t border-accent/20 max-w-3xl mx-auto">
-                <nav className="hidden md:flex items-center justify-center gap-1 text-xs font-sans tracking-[0.18em] text-body">
+              <div className="pt-3 mt-3 border-t border-amber-300/25 max-w-4xl mx-auto">
+                <nav className="hidden md:flex items-center justify-center gap-2 text-xs font-sans tracking-[0.2em]">
                   {navItems.map((item, idx) => (
                     <React.Fragment key={item.name}>
                       <a
                         href={item.href}
                         onClick={(e) => handleNavClick(e, item.href)}
-                        className="hover:text-accent font-semibold tracking-[0.18em] py-1.5 px-4 rounded-lg transition-all hover:bg-accent/10"
+                        className="hover:text-white text-amber-200/95 font-extrabold tracking-[0.2em] text-xs md:text-sm py-1.5 px-4 rounded-xl transition-all hover:bg-amber-300/15 border border-transparent hover:border-amber-300/30 drop-shadow-sm"
                       >
                         {item.name}
                       </a>
                       {idx < navItems.length - 1 && (
-                        <span className="text-accent/30 font-light select-none px-1">•</span>
+                        <span className="text-amber-300/40 font-bold select-none px-1">•</span>
                       )}
                     </React.Fragment>
                   ))}

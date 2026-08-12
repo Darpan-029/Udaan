@@ -81,32 +81,18 @@ export function ActionButtons() {
   return (
     <section
       id="actions"
-      className="relative py-6 md:py-8 overflow-hidden"
+      className="relative pt-6 pb-14 overflow-hidden"
       style={{
         background:
-          "linear-gradient(135deg, hsl(215 52% 14%) 0%, hsl(215 48% 19%) 45%, hsl(215 44% 24%) 100%)",
+          "linear-gradient(180deg, #0F1C30 0%, #122137 35%, #162842 65%, hsl(36 30% 96%) 100%)",
       }}
     >
-      {/* Decorative glow */}
+      {/* Decorative golden ambient radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 50% 100%, hsl(39 55% 52% / 0.12) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, hsl(39 55% 52% / 0.5), transparent)",
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, hsl(39 55% 52% / 0.3), transparent)",
+            "radial-gradient(ellipse 80% 50% at 50% 35%, rgba(255, 215, 0, 0.12) 0%, transparent 70%)",
         }}
       />
 
@@ -165,7 +151,7 @@ export function ActionButtons() {
               </div>
             </button>
 
-            {/* ── Register Now ── (most prominent) */}
+            {/* ── Register Now ── */}
             <a
               id="action-register"
               href={registrationFormUrl}
@@ -173,39 +159,36 @@ export function ActionButtons() {
               rel="noopener noreferrer"
               className="group relative flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border transition-all duration-300 overflow-hidden"
               style={{
-                background:
-                  "linear-gradient(135deg, hsl(39 58% 52%) 0%, hsl(39 65% 60%) 100%)",
-                borderColor: "hsl(39 65% 68%)",
-                boxShadow: "0 0 30px hsl(39 55% 52% / 0.3), 0 8px 20px rgba(0,0,0,0.3)",
+                background: "rgba(247, 212, 99, 0.12)",
+                borderColor: "rgba(247, 212, 99, 0.5)",
+                boxShadow: "0 0 20px rgba(247, 212, 99, 0.15)",
               }}
             >
-              {/* Shimmer overlay */}
+              {/* Hover fill */}
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
                 style={{
                   background:
-                    "linear-gradient(135deg, transparent 30%, hsl(0 0% 100% / 0.12) 50%, transparent 70%)",
+                    "linear-gradient(135deg, #F5CE56 0%, #E5BA38 100%)",
                 }}
               />
               {/* OPEN badge */}
               <div
-                className="absolute top-3 right-3 text-[9px] font-bold tracking-widest uppercase px-2 py-0.5 rounded-full"
-                style={{ background: "hsl(0 0% 100% / 0.2)", color: "hsl(215 52% 14%)" }}
+                className="absolute top-3 right-3 text-[9px] font-extrabold tracking-widest uppercase px-2 py-0.5 rounded-full border border-amber-300/40 bg-amber-400/20 text-amber-200 group-hover:bg-slate-950 group-hover:text-amber-300 transition-colors"
               >
                 OPEN
               </div>
               <div className="relative z-10 flex flex-col items-center gap-3">
                 <div
-                  className="p-2 rounded-xl"
-                  style={{ background: "hsl(215 52% 14% / 0.15)" }}
+                  className="p-2 rounded-xl transition-colors duration-300 bg-amber-400/20 group-hover:bg-slate-950/20"
                 >
-                  <UserCheck className="h-5 w-5 text-slate-950 transition-transform group-hover:scale-110 duration-300" />
+                  <UserCheck className="h-5 w-5 text-amber-300 group-hover:text-slate-950 transition-colors duration-300" />
                 </div>
                 <div className="text-center">
-                  <span className="block font-sans font-bold text-xs tracking-wider uppercase text-slate-950">
+                  <span className="block font-sans font-extrabold text-xs tracking-wider uppercase text-amber-200 group-hover:text-slate-950 transition-colors">
                     Register Now
                   </span>
-                  <span className="block text-[10px] font-sans text-slate-950/65">
+                  <span className="block text-[10px] font-sans text-white/70 group-hover:text-slate-950/80 transition-colors">
                     Complete your registration
                   </span>
                 </div>
