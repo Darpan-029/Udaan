@@ -73,23 +73,23 @@ export function Schedule() {
         </Reveal>
 
         {/* Schedule Info Ribbon */}
-        <div className="bg-card dark:bg-[#0D1527] p-6 border border-border dark:border-slate-800 rounded-2xl shadow-md grid md:grid-cols-3 gap-6 mb-8 text-xs font-sans card-pop">
+        <div className="bg-card dark:bg-[#0D1527] p-4 sm:p-6 border border-border dark:border-slate-800 rounded-2xl shadow-md grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-6 mb-8 text-xs font-sans card-pop">
           <div className="flex items-center space-x-3">
-            <Calendar className="h-4 w-4 text-accent" />
+            <Calendar className="h-4 w-4 text-accent shrink-0" />
             <div>
               <span className="text-muted-foreground block uppercase tracking-wider text-[10px]">Date</span>
               <span className="font-semibold text-foreground">Thursday, 27 August 2026</span>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <Clock className="h-4 w-4 text-accent" />
+            <Clock className="h-4 w-4 text-accent shrink-0" />
             <div>
               <span className="text-muted-foreground block uppercase tracking-wider text-[10px]">Timing</span>
               <span className="font-semibold text-foreground">08:00 AM – 02:00 PM IST</span>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <MapPin className="h-4 w-4 text-accent" />
+            <MapPin className="h-4 w-4 text-accent shrink-0" />
             <div>
               <span className="text-muted-foreground block uppercase tracking-wider text-[10px]">Venue</span>
               <span className="font-semibold text-foreground">Silveria Hall, SGSITS</span>
@@ -98,14 +98,14 @@ export function Schedule() {
         </div>
 
         {/* Timeline Items Cards */}
-        <div className="space-y-4">
+        <div className="space-y-3.5 sm:space-y-4">
           {scheduleItems.map((item, idx) => (
             <div
               key={idx}
-              className="bg-card dark:bg-[#0D1527] p-5 border border-border dark:border-slate-800 rounded-2xl shadow-sm flex flex-col md:flex-row items-start gap-4 hover:border-accent/40 transition-all card-pop"
+              className="bg-card dark:bg-[#0D1527] p-4 sm:p-5 border border-border dark:border-slate-800 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start gap-2.5 sm:gap-4 hover:border-accent/40 transition-all card-pop"
             >
-              <div className="md:w-32 flex-shrink-0">
-                <span className="font-serif text-base text-accent font-semibold">{item.time}</span>
+              <div className="sm:w-28 md:w-32 shrink-0">
+                <span className="font-serif text-sm sm:text-base text-accent font-semibold px-2 py-0.5 sm:p-0 bg-accent/10 sm:bg-transparent rounded-lg inline-block sm:block">{item.time}</span>
               </div>
               <div className="flex-1">
                 <h3 className="font-serif text-base text-foreground font-normal mb-1">{item.title}</h3>

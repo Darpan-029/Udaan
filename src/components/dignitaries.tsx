@@ -288,18 +288,18 @@ export function Dignitaries() {
 
         {/* Event Quick Details Ribbon */}
         <Reveal className="mt-10">
-          <div className="bg-card dark:bg-[#0D1527] border border-border dark:border-slate-800 rounded-2xl p-4 grid grid-cols-2 md:grid-cols-3 gap-3 text-center text-xs font-sans card-pop max-w-4xl mx-auto">
-            <div className="p-2.5">
+          <div className="bg-card dark:bg-[#0D1527] border border-border dark:border-slate-800 rounded-2xl p-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-center text-xs font-sans card-pop max-w-4xl mx-auto">
+            <div className="p-2.5 bg-background/50 dark:bg-slate-900/40 rounded-xl border border-border/60 dark:border-slate-800/60">
               <Calendar className="h-4 w-4 text-accent mx-auto mb-1" />
               <span className="text-muted-foreground block text-[9px] uppercase tracking-wider font-semibold">Date</span>
               <span className="font-semibold text-foreground text-xs">Thursday, 27 August 2026</span>
             </div>
-            <div className="p-2.5">
+            <div className="p-2.5 bg-background/50 dark:bg-slate-900/40 rounded-xl border border-border/60 dark:border-slate-800/60">
               <MapPin className="h-4 w-4 text-accent mx-auto mb-1" />
               <span className="text-muted-foreground block text-[9px] uppercase tracking-wider font-semibold">Venue</span>
               <span className="font-semibold text-foreground text-xs">Silveria Hall, SGSITS</span>
             </div>
-            <div className="p-2.5 col-span-2 md:col-span-1">
+            <div className="p-2.5 bg-background/50 dark:bg-slate-900/40 rounded-xl border border-border/60 dark:border-slate-800/60">
               <UserCheck className="h-4 w-4 text-accent mx-auto mb-1" />
               <span className="text-muted-foreground block text-[9px] uppercase tracking-wider font-semibold">Reporting</span>
               <span className="font-semibold text-foreground text-xs">08:00 AM sharply</span>

@@ -135,7 +135,7 @@ export function Gallery() {
         {/* Featured Slider */}
         <Reveal>
           <div className="relative group/slider max-w-4xl mx-auto mb-6">
-            <div className="relative h-[380px] md:h-[500px] lg:h-[540px] w-full rounded-2xl overflow-hidden border border-border dark:border-slate-800 shadow-2xl bg-card dark:bg-[#0D1527] card-pop">
+            <div className="relative h-[250px] xs:h-[310px] sm:h-[400px] md:h-[500px] lg:h-[540px] w-full rounded-2xl overflow-hidden border border-border dark:border-slate-800 shadow-2xl bg-card dark:bg-[#0D1527] card-pop">
               <Image
                 key={activePhoto.id}
                 src={activePhoto.src}
@@ -148,11 +148,11 @@ export function Gallery() {
               />
 
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-transparent flex flex-col justify-end p-6 md:p-8">
-                <div className="flex flex-wrap items-end justify-between gap-4">
-                  <div className="space-y-1 max-w-2xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/20 to-transparent flex flex-col justify-end p-3.5 sm:p-6 md:p-8">
+                <div className="flex flex-wrap items-end justify-between gap-2.5 sm:gap-4">
+                  <div className="space-y-0.5 sm:space-y-1 max-w-2xl">
                     <span
-                      className="text-[10px] md:text-xs font-sans tracking-widest uppercase font-bold px-2.5 py-1 rounded-full inline-block backdrop-blur-md"
+                      className="text-[9px] sm:text-[10px] md:text-xs font-sans tracking-widest uppercase font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full inline-block backdrop-blur-md"
                       style={{
                         color: "hsl(39 65% 68%)",
                         background: "hsl(39 55% 52% / 0.2)",
@@ -161,31 +161,31 @@ export function Gallery() {
                     >
                       Photo {currentIndex + 1} of {images.length}
                     </span>
-                    <h3 className="font-serif text-xl md:text-3xl text-white font-medium drop-shadow-md">
+                    <h3 className="font-serif text-base sm:text-xl md:text-3xl text-white font-medium drop-shadow-md">
                       {activePhoto.alt}
                     </h3>
-                    <p className="text-xs md:text-sm text-white/75 font-sans tracking-wide">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-white/80 font-sans tracking-wide truncate max-w-[280px] xs:max-w-none">
                       {activePhoto.subtitle}
                     </p>
                   </div>
 
                   {/* Controls */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     <button
                       onClick={() => setIsPlaying((p) => !p)}
-                      className="p-2.5 rounded-xl bg-slate-900/70 hover:bg-slate-900 text-white border border-white/20 backdrop-blur-md transition-all shadow-md"
+                      className="p-2 sm:p-2.5 rounded-xl bg-slate-900/70 hover:bg-slate-900 text-white border border-white/20 backdrop-blur-md transition-all shadow-md active:scale-95"
                       title={isPlaying ? "Pause Slideshow" : "Play Slideshow"}
                       aria-label={isPlaying ? "Pause Slideshow" : "Play Slideshow"}
                     >
-                      {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                      {isPlaying ? <Pause className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> : <Play className="h-3.5 w-3.5 sm:h-4 sm:w-4" />}
                     </button>
                     <button
                       onClick={() => setIsLightboxOpen(true)}
-                      className="p-2.5 rounded-xl bg-slate-900/70 hover:bg-slate-900 text-white border border-white/20 backdrop-blur-md transition-all shadow-md"
+                      className="p-2 sm:p-2.5 rounded-xl bg-slate-900/70 hover:bg-slate-900 text-white border border-white/20 backdrop-blur-md transition-all shadow-md active:scale-95"
                       title="View Fullscreen"
                       aria-label="View Fullscreen"
                     >
-                      <Maximize2 className="h-4 w-4" />
+                      <Maximize2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     </button>
                   </div>
                 </div>
@@ -195,16 +195,16 @@ export function Gallery() {
               <button
                 onClick={handlePrevious}
                 aria-label="Previous photo"
-                className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-950/70 hover:bg-accent hover:text-slate-950 text-white border border-white/20 transition-all shadow-xl backdrop-blur-md group-hover/slider:scale-105"
+                className="absolute left-2 sm:left-3 md:left-5 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-slate-950/70 hover:bg-accent hover:text-slate-950 text-white border border-white/20 transition-all shadow-xl backdrop-blur-md"
               >
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
               </button>
               <button
                 onClick={handleNext}
                 aria-label="Next photo"
-                className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-950/70 hover:bg-accent hover:text-slate-950 text-white border border-white/20 transition-all shadow-xl backdrop-blur-md group-hover/slider:scale-105"
+                className="absolute right-2 sm:right-3 md:right-5 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-slate-950/70 hover:bg-accent hover:text-slate-950 text-white border border-white/20 transition-all shadow-xl backdrop-blur-md"
               >
-                <ChevronRight className="h-6 w-6" />
+                <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
               </button>
             </div>
 

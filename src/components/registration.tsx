@@ -19,9 +19,9 @@ export function Registration() {
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
         </Reveal>
 
-        <div className="grid md:grid-cols-12 gap-8 items-stretch">
+        <div className="grid md:grid-cols-12 gap-6 sm:gap-8 items-stretch">
           {/* Main Registration Card */}
-          <div className="md:col-span-7 bg-card dark:bg-[#0D1527] p-8 border border-border dark:border-slate-800 rounded-2xl shadow-lg flex flex-col justify-between card-pop">
+          <div className="md:col-span-7 bg-card dark:bg-[#0D1527] p-5 sm:p-8 border border-border dark:border-slate-800 rounded-2xl shadow-lg flex flex-col justify-between card-pop">
             <div className="space-y-4">
               <span className="text-[10px] font-sans tracking-widest text-accent uppercase block font-semibold">
                 OFFICIAL PORTAL

@@ -97,9 +97,9 @@ export function DocumentViewer() {
           <div className="w-12 h-px bg-accent mx-auto mt-4" />
         </Reveal>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Sidebar Item List */}
-          <div className="lg:col-span-5 space-y-3">
+          <div className="lg:col-span-5 space-y-2.5 sm:space-y-3">
             {documents.map((doc) => {
               const isSelected = doc.id === activeDocId
               return (
@@ -107,7 +107,7 @@ export function DocumentViewer() {
                   key={doc.id}
                   onClick={() => setActiveDocId(doc.id)}
                   aria-pressed={isSelected}
-                  className={`w-full text-left p-4 border transition-all text-xs font-sans rounded-xl card-pop focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                  className={`w-full text-left p-3.5 sm:p-4 border transition-all text-xs font-sans rounded-xl card-pop focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                     isSelected
                       ? "bg-primary text-white border-primary shadow-md dark:bg-[#0D1527] dark:border-accent"
                       : "bg-card text-body border-border hover:border-accent/60"
@@ -117,10 +117,10 @@ export function DocumentViewer() {
                     <span className="uppercase tracking-widest font-semibold text-[10px] opacity-80">
                       {doc.badge}
                     </span>
-                    <span className="opacity-60">{doc.size}</span>
+                    <span className="opacity-60 text-[10px] sm:text-xs">{doc.size}</span>
                   </div>
-                  <h3 className="font-serif text-base font-normal truncate mt-1">{doc.title}</h3>
-                  <p className="opacity-75 truncate mt-0.5">{doc.subtitle}</p>
+                  <h3 className="font-serif text-sm sm:text-base font-normal truncate mt-1">{doc.title}</h3>
+                  <p className="opacity-75 truncate text-[11px] sm:text-xs mt-0.5">{doc.subtitle}</p>
                 </button>
               )
             })}
@@ -128,20 +128,20 @@ export function DocumentViewer() {
 
           {/* Active Document Details */}
           <div className="lg:col-span-7">
-            <div key={activeDoc.id} className="bg-card dark:bg-[#0D1527] p-5 md:p-6 border border-border dark:border-slate-800 rounded-2xl shadow-lg card-pop">
-              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-border dark:border-slate-800 mb-4">
+            <div key={activeDoc.id} className="bg-card dark:bg-[#0D1527] p-4 sm:p-6 border border-border dark:border-slate-800 rounded-2xl shadow-lg card-pop">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border dark:border-slate-800 mb-4">
                 <div>
                   <span className="text-[10px] font-sans tracking-widest text-accent uppercase block font-semibold">
                     {activeDoc.type} • {activeDoc.updated}
                   </span>
-                  <h3 className="font-serif text-xl md:text-2xl text-foreground mt-0.5 font-normal">
+                  <h3 className="font-serif text-lg sm:text-2xl text-foreground mt-0.5 font-normal">
                     {activeDoc.title}
                   </h3>
                 </div>
                 <a
                   href={activeDoc.path}
                   download={activeDoc.filename}
-                  className="bg-primary hover:bg-primary-hover text-white px-4 py-2 text-xs font-sans tracking-[0.12em] uppercase transition-all rounded-xl flex items-center space-x-2 shadow-sm font-semibold hover:scale-105"
+                  className="w-full sm:w-auto bg-primary hover:bg-primary-hover text-white px-4 py-2.5 sm:py-2 text-xs font-sans tracking-[0.12em] uppercase transition-all rounded-xl flex items-center justify-center space-x-2 shadow-sm font-semibold active:scale-95"
                 >
                   <Download className="h-3.5 w-3.5" />
                   <span>Download {activeDoc.type.includes("PDF") ? "PDF" : "DOCX"}</span>

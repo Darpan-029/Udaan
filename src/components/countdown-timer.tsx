@@ -47,17 +47,17 @@ export function CountdownTimer() {
       { label: "SECONDS", value: "--" },
     ]
     return (
-      <div className="flex items-center justify-center space-x-4 md:space-x-8">
+      <div className="flex items-center justify-center gap-2.5 sm:gap-4 md:gap-8">
         {items.map((item, idx) => (
           <React.Fragment key={item.label}>
-            <div className="text-center min-w-[60px]">
-              <div className="font-serif text-3xl md:text-4xl text-foreground font-normal">{item.value}</div>
-              <div className="text-[10px] font-sans tracking-[0.2em] text-muted-foreground uppercase mt-1">
+            <div className="text-center min-w-[50px] sm:min-w-[60px]">
+              <div className="font-serif text-2xl sm:text-3xl md:text-4xl text-foreground font-normal">{item.value}</div>
+              <div className="text-[9px] sm:text-[10px] font-sans tracking-[0.15em] sm:tracking-[0.2em] text-muted-foreground uppercase mt-1">
                 {item.label}
               </div>
             </div>
             {idx < items.length - 1 && (
-              <span className="text-accent font-serif text-xl select-none">:</span>
+              <span className="text-accent font-serif text-lg sm:text-xl select-none">:</span>
             )}
           </React.Fragment>
         ))}
@@ -67,11 +67,11 @@ export function CountdownTimer() {
 
   if (ceremonyArrived) {
     return (
-      <div className="text-center py-2">
-        <span className="font-serif text-2xl md:text-3xl text-accent uppercase tracking-widest block">
+      <div className="text-center py-2 px-4">
+        <span className="font-serif text-xl sm:text-2xl md:text-3xl text-accent uppercase tracking-widest block">
           उड़ान 2026 IS LIVE NOW
         </span>
-        <span className="text-xs font-sans text-muted-foreground uppercase tracking-widest mt-1 block">
+        <span className="text-[11px] sm:text-xs font-sans text-muted-foreground uppercase tracking-widest mt-1 block">
           Silveria Hall, SGSITS Indore
         </span>
       </div>
@@ -86,19 +86,19 @@ export function CountdownTimer() {
   ]
 
   return (
-    <div className="flex items-center justify-center space-x-4 md:space-x-8">
+    <div className="flex items-center justify-center gap-2.5 sm:gap-4 md:gap-8">
       {items.map((item, idx) => (
         <React.Fragment key={item.label}>
-          <div className="text-center min-w-[60px]">
-            <div className="font-serif text-3xl md:text-4xl text-foreground font-normal tabular-nums">
+          <div className="text-center min-w-[50px] sm:min-w-[60px]">
+            <div className="font-serif text-2xl sm:text-3xl md:text-4xl text-foreground font-normal tabular-nums">
               {item.value.toString().padStart(2, "0")}
             </div>
-            <div className="text-[10px] font-sans tracking-[0.2em] text-muted-foreground uppercase mt-1">
+            <div className="text-[9px] sm:text-[10px] font-sans tracking-[0.15em] sm:tracking-[0.2em] text-muted-foreground uppercase mt-1">
               {item.label}
             </div>
           </div>
           {idx < items.length - 1 && (
-            <span className="text-accent font-serif text-xl select-none">:</span>
+            <span className="text-accent font-serif text-lg sm:text-xl select-none">:</span>
           )}
         </React.Fragment>
       ))}

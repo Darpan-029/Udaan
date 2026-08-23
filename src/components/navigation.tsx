@@ -151,20 +151,20 @@ export function Navigation() {
             }`}
         >
           {condensed ? (
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-2 sm:gap-4">
               {/* Left Brand block: Logo + उड़ान 2026 + Academic Award Ceremony */}
               <a
                 href="#dignitaries"
                 onClick={(e) => handleNavClick(e, "#dignitaries")}
-                className="flex items-center gap-3 transition-transform hover:opacity-90 text-left shrink-0"
+                className="flex items-center gap-2 sm:gap-3 transition-transform hover:opacity-90 text-left shrink"
               >
-                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-10 md:h-12 w-auto object-contain shrink-0 drop-shadow-md" />
-                <div className="flex flex-col items-start justify-center">
-                  <div className="flex items-baseline gap-2 select-none">
-                    <span className="udaan-brand font-serif text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-md">उड़ान</span>
-                    <span className="font-serif text-base md:text-lg text-amber-200 font-extrabold tracking-widest drop-shadow-sm">2026</span>
+                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-8 sm:h-10 md:h-12 w-auto object-contain shrink-0 drop-shadow-md" />
+                <div className="flex flex-col items-start justify-center min-w-0">
+                  <div className="flex items-baseline gap-1.5 sm:gap-2 select-none">
+                    <span className="udaan-brand font-serif text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-md">उड़ान</span>
+                    <span className="font-serif text-sm sm:text-base md:text-lg text-amber-200 font-extrabold tracking-widest drop-shadow-sm">2026</span>
                   </div>
-                  <span className="font-serif text-[10px] md:text-[11px] text-slate-200 tracking-wider font-bold -mt-0.5 whitespace-nowrap uppercase">
+                  <span className="font-serif text-[8px] xs:text-[9px] sm:text-[10px] md:text-[11px] text-slate-200 tracking-wider font-bold -mt-0.5 whitespace-nowrap uppercase">
                     Academic Award Ceremony
                   </span>
                 </div>
@@ -190,10 +190,10 @@ export function Navigation() {
               </nav>
 
               {/* Right Action: QR Buttons & Mobile Menu Toggle */}
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <button
                   onClick={() => setIsRegQrOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60"
+                  className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-[11px] sm:text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60"
                   title="Scan Registration QR Code"
                   aria-label="Open Registration QR Code Modal"
                 >
@@ -202,16 +202,15 @@ export function Navigation() {
                   <span className="sm:hidden">Reg QR</span>
                 </button>
 
-
-                <div className="lg:hidden flex items-center ml-1">
+                <div className="lg:hidden flex items-center ml-0.5">
                   <button
                     onClick={() => setIsOpen((v) => !v)}
-                    className="p-1.5 text-amber-200 hover:text-white"
+                    className="p-1.5 text-amber-200 hover:text-white rounded-lg focus:outline-none"
                     aria-label="Toggle menu"
                     aria-expanded={isOpen}
                     aria-controls="mobile-nav-drawer"
                   >
-                    {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                    {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                   </button>
                 </div>
               </div>
@@ -225,28 +224,28 @@ export function Navigation() {
 
                 {/* Center Column: Udaan Brand Emblem & Title */}
                 <div className="col-span-12 md:col-span-6 flex flex-col items-center justify-center text-center">
-                  <div className="flex items-center justify-center gap-4 md:gap-5 select-none" aria-label="उड़ान 2026">
+                  <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 select-none" aria-label="उड़ान 2026">
                     <Image
                       src={logo}
                       alt="SGSITS Official Seal"
                       width={120}
                       height={120}
-                      className="h-20 md:h-24 lg:h-28 w-auto object-contain drop-shadow-[0_0_15px_rgba(247,212,99,0.35)]"
+                      className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain drop-shadow-[0_0_15px_rgba(247,212,99,0.35)]"
                       priority
                     />
-                    <div className="flex items-baseline gap-2.5 md:gap-3.5">
-                      <span className="udaan-brand font-serif text-4xl md:text-5xl lg:text-6xl tracking-[0.06em] font-extrabold">
+                    <div className="flex items-baseline gap-2 sm:gap-2.5 md:gap-3.5">
+                      <span className="udaan-brand font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.06em] font-extrabold">
                         उड़ान
                       </span>
-                      <span className="font-serif text-2xl md:text-3xl lg:text-4xl font-extrabold text-amber-200/90 tracking-widest drop-shadow-sm">
+                      <span className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-amber-200/90 tracking-widest drop-shadow-sm">
                         2026
                       </span>
                     </div>
                   </div>
-                  <p className="font-serif text-xs md:text-sm text-white tracking-[0.22em] uppercase mt-2 font-bold drop-shadow-sm">
+                  <p className="font-serif text-[11px] sm:text-xs md:text-sm text-white tracking-[0.18em] sm:tracking-[0.22em] uppercase mt-2 font-bold drop-shadow-sm">
                     Academic Award Ceremony
                   </p>
-                  <p className="font-serif text-xs md:text-sm italic text-amber-200/85 mt-1 font-medium drop-shadow-sm">
+                  <p className="font-serif text-[11px] sm:text-xs md:text-sm italic text-amber-200/85 mt-1 font-medium drop-shadow-sm px-2">
                     &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;
                   </p>
                 </div>
@@ -262,7 +261,6 @@ export function Navigation() {
                     <QrCode className="h-4 w-4 text-slate-950" />
                     <span>Registration QR</span>
                   </button>
-
                 </div>
 
                 <span className="sr-only">उड़ान 2026 — Academic Award Ceremony</span>
@@ -289,26 +287,23 @@ export function Navigation() {
               </div>
 
               {/* Mobile toggle row (expanded state) */}
-              <div className="md:hidden flex items-center justify-between pt-2 mt-2 border-t border-border">
-                <div className="flex items-center gap-1.5">
-                  <button
-                    onClick={() => setIsRegQrOpen(true)}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent text-slate-950 font-sans text-xs font-bold uppercase"
-                  >
-                    <QrCode className="h-3.5 w-3.5" />
-                    <span>Reg QR</span>
-                  </button>
-
-                </div>
+              <div className="md:hidden flex items-center justify-between pt-2.5 mt-2 border-t border-amber-300/20">
+                <button
+                  onClick={() => setIsRegQrOpen(true)}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 text-slate-950 font-sans text-xs font-black uppercase tracking-wider shadow-sm"
+                >
+                  <QrCode className="h-3.5 w-3.5" />
+                  <span>Reg QR</span>
+                </button>
 
                 <button
                   onClick={() => setIsOpen((v) => !v)}
-                  className="p-1.5 text-foreground"
+                  className="p-1.5 text-amber-200 hover:text-white rounded-lg"
                   aria-label="Toggle menu"
                   aria-expanded={isOpen}
                   aria-controls="mobile-nav-drawer"
                 >
-                  {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                  {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                 </button>
               </div>
             </>
@@ -319,17 +314,13 @@ export function Navigation() {
         {isOpen && (
           <div
             id="mobile-nav-drawer"
-            className={`md:hidden pb-3 space-y-1 text-center border-t ${condensed
-                ? "border-slate-800 bg-[#0B132B] text-slate-100"
-                : "border-border bg-background/98"
-              } backdrop-blur-md rounded-b-lg shadow-lg`}
+            className="md:hidden py-2 px-4 space-y-1 text-center border-t border-amber-300/20 bg-[#0C1626] text-slate-100 backdrop-blur-md rounded-b-xl shadow-2xl animate-in slide-in-from-top-2 duration-200"
           >
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`block py-2.5 text-xs tracking-widest ${condensed ? "text-slate-200 hover:text-accent" : "text-body hover:text-foreground"
-                  } font-medium`}
+                className="block py-3 px-4 text-xs font-sans tracking-[0.2em] font-bold uppercase text-amber-200 hover:text-white hover:bg-amber-300/15 rounded-xl transition-all active:scale-[0.98]"
                 onClick={(e) => handleNavClick(e, item.href)}
               >
                 {item.name}

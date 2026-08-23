@@ -125,9 +125,9 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
         {/* Modal Body - Scrollable */}
         <div className="p-5 md:p-6 overflow-y-auto space-y-6 flex-1">
           {/* Info Ribbon */}
-          <div className="bg-card dark:bg-slate-900/80 border border-border dark:border-slate-800 rounded-xl p-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-sans">
+          <div className="bg-card dark:bg-slate-900/80 border border-border dark:border-slate-800 rounded-xl p-3 sm:p-4 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-xs font-sans">
             <div className="flex items-center space-x-3">
-              <div className="p-2 rounded-lg bg-accent/10 text-accent">
+              <div className="p-1.5 sm:p-2 rounded-lg bg-accent/10 text-accent shrink-0">
                 <Calendar className="h-4 w-4" />
               </div>
               <div>
@@ -136,7 +136,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <div className="p-2 rounded-lg bg-accent/10 text-accent">
+              <div className="p-1.5 sm:p-2 rounded-lg bg-accent/10 text-accent shrink-0">
                 <Clock className="h-4 w-4" />
               </div>
               <div>
@@ -145,7 +145,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <div className="p-2 rounded-lg bg-accent/10 text-accent">
+              <div className="p-1.5 sm:p-2 rounded-lg bg-accent/10 text-accent shrink-0">
                 <MapPin className="h-4 w-4" />
               </div>
               <div>
@@ -156,14 +156,14 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
           </div>
 
           {/* Minute-by-Minute Schedule Phases */}
-          <div className="space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             {timelineSections.map((sec, secIdx) => (
               <div key={secIdx} className="space-y-2.5">
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-1.5 border-b border-border dark:border-slate-800">
-                  <h3 className="font-serif text-base md:text-lg text-foreground font-normal">
+                  <h3 className="font-serif text-sm sm:text-base md:text-lg text-foreground font-normal">
                     {sec.phase}
                   </h3>
-                  <span className="text-[10px] font-sans font-bold tracking-wider uppercase px-2.5 py-0.5 bg-accent/15 border border-accent/30 text-accent rounded-full">
+                  <span className="text-[9px] sm:text-[10px] font-sans font-bold tracking-wider uppercase px-2 sm:px-2.5 py-0.5 bg-accent/15 border border-accent/30 text-accent rounded-full">
                     {sec.badge}
                   </span>
                 </div>
@@ -172,19 +172,19 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
                   {sec.items.map((item, idx) => (
                     <div
                       key={idx}
-                      className={`p-3 md:p-3.5 border rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-2 transition-all ${
+                      className={`p-3 md:p-3.5 border rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition-all ${
                         item.isImportant
                           ? "bg-rose-500/10 border-rose-500/30 dark:bg-rose-950/30 text-rose-800 dark:text-rose-300"
                           : "bg-card dark:bg-[#0D1527] border-border dark:border-slate-800/80 hover:border-accent/40"
                       }`}
                     >
-                      <div className="flex items-start md:items-center gap-3">
-                        <span className="font-serif text-xs md:text-sm font-semibold text-accent min-w-[130px] shrink-0">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                        <span className="font-serif text-xs md:text-sm font-semibold text-accent min-w-[110px] sm:min-w-[130px] shrink-0">
                           {item.time}
                         </span>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-start sm:items-center gap-1.5">
                           {item.isImportant && (
-                            <AlertCircle className="h-4 w-4 text-rose-500 shrink-0" />
+                            <AlertCircle className="h-4 w-4 text-rose-500 shrink-0 mt-0.5 sm:mt-0" />
                           )}
                           <span className={`font-sans text-xs ${item.isImportant ? "font-bold text-rose-600 dark:text-rose-300 uppercase tracking-wide" : "text-foreground"}`}>
                             {item.activity}
@@ -192,8 +192,8 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1 text-[11px] font-sans text-muted-foreground shrink-0 md:ml-4">
-                        <MapPin className="h-3 w-3 text-accent" />
+                      <div className="flex items-center gap-1 text-[11px] font-sans text-muted-foreground shrink-0 sm:ml-4">
+                        <MapPin className="h-3 w-3 text-accent shrink-0" />
                         <span>{item.location}</span>
                       </div>
                     </div>

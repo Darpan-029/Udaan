@@ -111,6 +111,11 @@
   .bg-primary-light { background-color: hsl(var(--primary-light)); }
 }
 
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
@@ -133,11 +138,26 @@ html {
 #faq,
 #register,
 #actions {
-  scroll-margin-top: 90px;
+  scroll-margin-top: 80px;
+}
+
+@media (min-width: 768px) {
+  #dignitaries,
+  #hero,
+  #about,
+  #documents,
+  #medalists,
+  #schedule,
+  #gallery,
+  #faq,
+  #register,
+  #actions {
+    scroll-margin-top: 95px;
+  }
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar { width: 8px; }
 
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
@@ -171,7 +191,7 @@ html {
 }
 
 /*
- * Card hover pop micro-animation
+ * Card hover pop micro-animation — touch friendly
  */
 .card-pop {
   border-radius: 1rem;
@@ -179,18 +199,20 @@ html {
   will-change: transform;
 }
 
-.card-pop:hover {
-  transform: translateY(-4px) scale(1.005) translateZ(0);
-  box-shadow:
-    0 15px 25px -8px rgba(0, 0, 0, 0.08),
-    0 6px 8px -4px rgba(0, 0, 0, 0.04),
-    0 0 0 1px hsl(39 55% 52% / 0.08);
-}
+@media (hover: hover) {
+  .card-pop:hover {
+    transform: translateY(-4px) scale(1.005) translateZ(0);
+    box-shadow:
+      0 15px 25px -8px rgba(0, 0, 0, 0.08),
+      0 6px 8px -4px rgba(0, 0, 0, 0.04),
+      0 0 0 1px hsl(39 55% 52% / 0.08);
+  }
 
-.dark .card-pop:hover {
-  box-shadow:
-    0 18px 30px -8px rgba(0, 0, 0, 0.5),
-    0 0 15px hsl(39 55% 52% / 0.15);
+  .dark .card-pop:hover {
+    box-shadow:
+      0 18px 30px -8px rgba(0, 0, 0, 0.5),
+      0 0 15px hsl(39 55% 52% / 0.15);
+  }
 }
 
 /* === उड़ान Fast GPU Text Branding === */
