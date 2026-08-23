@@ -144,7 +144,7 @@ export function Navigation() {
     <>
       <div ref={sentinelRef} aria-hidden className="h-px" />
       <header
-        className="sticky top-0 z-50 w-full bg-[#0C1626] text-white shadow-md transform-gpu"
+        className="relative md:sticky top-0 z-50 w-full bg-[#0C1626] text-white shadow-md transform-gpu"
       >
         <div
           className={`container mx-auto px-4 text-center transition-[padding] duration-300 ${condensed ? "py-2" : "py-3.5 md:py-4.5"
