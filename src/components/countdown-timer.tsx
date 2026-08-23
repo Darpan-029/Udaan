@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-const EVENT_DATE = new Date("2026-08-27T09:00:00+05:30")
+const EVENT_DATE = new Date("2026-08-27T08:00:00+05:30")
 
 function computeTimeLeft() {
   const distance = EVENT_DATE.getTime() - Date.now()
@@ -72,7 +72,7 @@ export function CountdownTimer() {
           उड़ान 2026 IS LIVE NOW
         </span>
         <span className="text-xs font-sans text-muted-foreground uppercase tracking-widest mt-1 block">
-          SGSITS Golden Jubilee Auditorium, Indore
+          Silveria Hall, SGSITS Indore
         </span>
       </div>
     )

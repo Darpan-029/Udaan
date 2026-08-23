@@ -40,7 +40,7 @@ export function Registration() {
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-accent flex-shrink-0" />
-                  <span>Seat assignment in main auditorium hall</span>
+                  <span>Seat assignment in Silveria Hall</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="h-3.5 w-3.5 text-accent flex-shrink-0" />
@@ -86,6 +86,14 @@ export function Registration() {
                 <h3 className="font-serif text-base text-foreground font-normal">Official Guidelines</h3>
               </div>
               <div className="space-y-2 text-xs font-sans">
+                <a
+                  href="/docs/UDAAN-Tentative Minute to minute shedule.pdf"
+                  download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
+                  className="flex items-center justify-between p-2.5 bg-background dark:bg-slate-900 border border-border dark:border-slate-800 rounded-xl hover:border-accent transition-colors"
+                >
+                  <span className="text-foreground font-medium">Event Schedule (PDF)</span>
+                  <Download className="h-3.5 w-3.5 text-accent" />
+                </a>
                 <a
                   href="/docs/Circular For 2026 Batch.pdf"
                   target="_blank"

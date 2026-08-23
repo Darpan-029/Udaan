@@ -3,46 +3,58 @@ import { Reveal } from "@/components/reveal"
 
 const scheduleItems = [
   {
+    time: "08:00 AM",
+    title: "Student Reporting & Kit Distribution",
+    description: "Reporting of all registered students, entry verification, and distribution of event kits.",
+    location: "Golden Jubilee Auditorium",
+  },
+  {
     time: "09:00 AM",
-    title: "Registration & Half-Jacket Counter",
-    description: "Verification of entry passes, guest registration, and ceremonial half-jacket distribution.",
-    location: "Main Auditorium Foyer",
+    title: "Student Seating in Silveria Hall",
+    description: "Registered students assemble and take designated seats in Silveria Hall. Entry closes strictly at 09:45 AM.",
+    location: "Silveria Hall",
+  },
+  {
+    time: "09:00 AM",
+    title: "Arrival of Hon’ble Minister & Dignitaries",
+    description: "Welcome of Chief Guest Hon'ble Technical Education Minister Shri Inder Singh Ji Parmar and distinguished guests.",
+    location: "VIP Gate / Director’s Chamber",
+  },
+  {
+    time: "09:50 AM",
+    title: "Start of Academic Procession",
+    description: "Robing of dignitaries at Administrative Lounge, Saraswati Malyarpan, and formal procession to Silveria Hall.",
+    location: "Saraswati Temple to Silveria Hall",
   },
   {
     time: "10:00 AM",
-    title: "Inaugural Ceremony & Lamp Lighting",
-    description: "Academic procession entry, Saraswati Vandana, and welcome address by Director SGSITS.",
-    location: "Main Auditorium",
+    title: "Inaugural Ceremony & Dignitaries Address",
+    description: "Saraswati Vandana, Lamp Lighting, Vande Mataram, Director's address, and Keynote Address by Hon'ble Minister.",
+    location: "Silveria Hall",
   },
   {
-    time: "10:30 AM",
-    title: "Degree Certificate Conferral",
-    description: "Conferring degree certificates to meritorious graduating scholars across departments.",
-    location: "Main Auditorium",
+    time: "10:40 AM",
+    title: "Academic Excellence Awards Distribution",
+    description: "Conferral of academic excellence gold medals and institutional honors to top rank holders by dignitaries.",
+    location: "Silveria Hall",
   },
   {
-    time: "12:00 PM",
-    title: "Donor Gold Medal Distribution",
-    description: "Awarding institutional donor gold medals to overall rank holders by Dignitaries.",
-    location: "Main Auditorium",
+    time: "11:00 AM",
+    title: "Provisional Degree Certificate Distribution",
+    description: "Distribution of provisional degree certificates to 2026 batch graduating scholars across all departments.",
+    location: "Silveria Hall",
   },
   {
-    time: "01:00 PM",
-    title: "Networking High Tea",
-    description: "High tea and interaction session for awardees, faculty, and family guests.",
-    location: "Golden Jubilee Lawn",
+    time: "01:15 PM",
+    title: "Oath Ceremony & Photo Session",
+    description: "Solemn oath administration by Dean (IPFA), group photo session with awardees, and Rashtra Gaan.",
+    location: "Silveria Hall",
   },
   {
-    time: "02:30 PM",
-    title: "Keynote Address by Chief Guest",
-    description: "Inspiring convocation address by eminent chief guest and distinguished alumni.",
-    location: "Main Auditorium",
-  },
-  {
-    time: "03:30 PM",
-    title: "National Anthem & Group Photograph",
-    description: "Formal conclusion of ceremony followed by department group photo sessions.",
-    location: "Main Auditorium Steps",
+    time: "01:30 PM",
+    title: "Certificate Collection & Lunch",
+    description: "Folder/Academic certificate collection for graduands and lunch for registered awardees, parents, and authorized guests.",
+    location: "GJ Auditorium & Basketball Ground",
   },
 ]
 
@@ -73,14 +85,14 @@ export function Schedule() {
             <Clock className="h-4 w-4 text-accent" />
             <div>
               <span className="text-muted-foreground block uppercase tracking-wider text-[10px]">Timing</span>
-              <span className="font-semibold text-foreground">09:00 AM – 04:00 PM IST</span>
+              <span className="font-semibold text-foreground">08:00 AM – 02:00 PM IST</span>
             </div>
           </div>
           <div className="flex items-center space-x-3">
             <MapPin className="h-4 w-4 text-accent" />
             <div>
               <span className="text-muted-foreground block uppercase tracking-wider text-[10px]">Venue</span>
-              <span className="font-semibold text-foreground">SGSITS Main Auditorium</span>
+              <span className="font-semibold text-foreground">Silveria Hall, SGSITS</span>
             </div>
           </div>
         </div>
@@ -108,8 +120,8 @@ export function Schedule() {
 
         <div className="mt-8 text-center">
           <a
-            href="/docs/schedule.pdf"
-            download="UDAAN_2026_Schedule.pdf"
+            href="/docs/UDAAN-Tentative Minute to minute shedule.pdf"
+            download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
             className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-all shadow-md rounded-xl card-pop focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             Download Schedule PDF

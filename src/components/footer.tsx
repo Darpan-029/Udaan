@@ -8,7 +8,7 @@ import { WhatsAppIcon } from "@/components/whatsapp-icon"
 
 const footerNavItems = [
   { name: "DIGNITARIES", href: "#dignitaries" },
-  { name: "DOCUMENTS", href: "#documents" },
+  { name: "BROCHURE", href: "#documents" },
   { name: "GALLERY", href: "#gallery" },
   { name: "REGISTRATION", href: "#register" },
 ]

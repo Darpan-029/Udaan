@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "Can I bring guest family members?",
-    answer: "Each award recipient is permitted up to 2 family guests inside the main auditorium. Guest details must be recorded during digital registration.",
+    answer: "Each award recipient is permitted up to 2 family guests inside Silveria Hall. Guest details must be recorded during digital registration.",
   },
   {
     question: "What documents must I present at entry?",

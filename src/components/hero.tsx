@@ -47,7 +47,7 @@ export function Hero() {
           Congratulations to our graduates.
         </h2>
         <p className="font-sans text-sm md:text-base text-muted-foreground mt-2 tracking-wide">
-          Thursday, 27 August 2026 | SGSITS Auditorium, Indore
+          Thursday, 27 August 2026 | 08:00 AM | Silveria Hall, SGSITS Indore
         </p>
         <p className="font-serif text-sm md:text-base italic text-accent mt-2 font-semibold drop-shadow-sm">
           &quot;आज की सफलता, कल की प्रेरणा — Today&apos;s success, tomorrow&apos;s inspiration&quot;

@@ -145,7 +145,7 @@ export function ActionButtons() {
                     Program Timeline
                   </span>
                   <span className="block text-[10px] font-sans text-white/50 group-hover:text-slate-950/70 transition-colors">
-                    To be announced later
+                    Minute-to-Minute Schedule
                   </span>
                 </div>
               </div>

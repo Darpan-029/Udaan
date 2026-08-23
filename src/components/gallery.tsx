@@ -43,7 +43,7 @@ const images: GalleryImage[] = [
     id: 5,
     src: "/images/gallery/WhatsApp Image 2026-08-04 at 1.32.28 PM.jpeg",
     alt: "उड़ान Ceremony Celebrations",
-    subtitle: "Moments of pride and joy at SGSITS Auditorium",
+    subtitle: "Moments of pride and joy at Silveria Hall",
   },
   {
     id: 6,

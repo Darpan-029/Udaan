@@ -297,12 +297,12 @@ export function Dignitaries() {
             <div className="p-2.5">
               <MapPin className="h-4 w-4 text-accent mx-auto mb-1" />
               <span className="text-muted-foreground block text-[9px] uppercase tracking-wider font-semibold">Venue</span>
-              <span className="font-semibold text-foreground text-xs">SGSITS Main Auditorium</span>
+              <span className="font-semibold text-foreground text-xs">Silveria Hall, SGSITS</span>
             </div>
             <div className="p-2.5 col-span-2 md:col-span-1">
               <UserCheck className="h-4 w-4 text-accent mx-auto mb-1" />
               <span className="text-muted-foreground block text-[9px] uppercase tracking-wider font-semibold">Reporting</span>
-              <span className="font-semibold text-foreground text-xs">09:00 AM sharply</span>
+              <span className="font-semibold text-foreground text-xs">08:00 AM sharply</span>
             </div>
           </div>
         </Reveal>

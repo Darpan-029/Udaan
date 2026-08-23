@@ -122,11 +122,11 @@ export default function AboutPage() {
               <MapPin className="h-4 w-4 text-accent" /> Venue &amp; Location
             </h3>
             <p className="font-sans text-xs text-body leading-relaxed mb-4">
-              SGSITS Golden Jubilee Auditorium, 23 Sir M. Visvesvaraya Marg, Indore, Madhya Pradesh 452003.
+              Silveria Hall, SGSITS Campus, 23 Sir M. Visvesvaraya Marg, Indore, Madhya Pradesh 452003.
             </p>
             <div className="space-y-1 text-xs font-sans text-muted-foreground">
               <p>• Entry Gates: Gate 1 &amp; Gate 2</p>
-              <p>• Reporting: 09:00 AM IST</p>
+              <p>• Reporting: 08:00 AM IST</p>
             </div>
           </div>
 

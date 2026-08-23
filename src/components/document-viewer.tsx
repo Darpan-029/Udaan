@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { FileText, Download, Shirt, Info, ExternalLink } from "lucide-react"
+import { FileText, Download, Shirt, Info, ExternalLink, Clock } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 interface DocumentItem {
@@ -20,6 +20,25 @@ interface DocumentItem {
 }
 
 const documents: DocumentItem[] = [
+  {
+    id: "schedule-pdf",
+    title: "Minute-to-Minute Schedule (Tentative)",
+    subtitle: "Official event sequence, timing & venue details — 2026 Batch",
+    filename: "UDAAN-Tentative Minute to minute shedule.pdf",
+    path: "/docs/UDAAN-Tentative Minute to minute shedule.pdf",
+    type: "PDF Document",
+    size: "172 KB",
+    updated: "August 2026",
+    icon: Clock,
+    badge: "Official Schedule",
+    description: "Official minute-to-minute schedule issued by SGSITS Indore for the उड़ान 2026 Academic Award Ceremony, including student reporting, academic procession, main ceremony sequence, degree conferral, and lunch.",
+    highlights: [
+      "08:00 AM: Student reporting & kit distribution (Golden Jubilee Auditorium)",
+      "09:00 AM – 09:30 AM: Student seating in Silveria Hall (Entry closes 09:45 AM)",
+      "09:50 AM: Academic Procession from Saraswati Temple to Silveria Hall",
+      "10:40 AM – 01:15 PM: Award Distribution & Provisional Degree Conferral (Silveria Hall)"
+    ]
+  },
   {
     id: "circular",
     title: "Official Circular & Guidelines",
@@ -61,7 +80,7 @@ const documents: DocumentItem[] = [
 ]
 
 export function DocumentViewer() {
-  const [activeDocId, setActiveDocId] = React.useState("circular")
+  const [activeDocId, setActiveDocId] = React.useState("schedule-pdf")
 
   const activeDoc = documents.find((doc) => doc.id === activeDocId) || documents[0]
 
