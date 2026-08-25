@@ -71,8 +71,8 @@ export function Registration() {
                 <h3 className="font-serif text-base text-foreground font-normal">Dress Code Policy</h3>
               </div>
               <div className="text-xs font-sans text-body space-y-2 leading-relaxed">
-                <p><strong className="text-foreground">Male Candidates:</strong> White / Off-white Kurta Pyjama.</p>
-                <p><strong className="text-foreground">Female Candidates:</strong> White / Off-white Salwar-Kurta or Saree.</p>
+                <p><strong className="text-foreground">Male Candidates:</strong> Traditional Kurta Pyjama preferably white or off white color.</p>
+                <p><strong className="text-foreground">Female Candidates:</strong> Kurta Salwar or Saree preferably white or off white color.</p>
                 <p className="text-accent italic pt-1 border-t border-border dark:border-slate-800">
                   Half-jackets will be provided at reporting counter.
                 </p>
@@ -87,7 +87,7 @@ export function Registration() {
               </div>
               <div className="space-y-2 text-xs font-sans">
                 <a
-                  href="/docs/UDAAN-Tentative Minute to minute shedule.pdf"
+                  href="/docs/UDAAN-Minute to minute-4.pdf"
                   download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
                   className="flex items-center justify-between p-2.5 bg-background dark:bg-slate-900 border border-border dark:border-slate-800 rounded-xl hover:border-accent transition-colors"
                 >

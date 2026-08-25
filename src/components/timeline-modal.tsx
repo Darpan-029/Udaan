@@ -105,7 +105,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
           </div>
           <div className="flex items-center gap-2 md:gap-3">
             <a
-              href="/docs/UDAAN-Tentative Minute to minute shedule.pdf"
+              href="/docs/UDAAN-Minute to minute-4.pdf"
               download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
               className="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-hover text-white px-3.5 py-1.5 text-xs font-sans tracking-wider uppercase rounded-xl shadow-sm transition-all font-semibold"
             >
@@ -220,7 +220,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
           </span>
           <div className="flex items-center gap-3">
             <a
-              href="/docs/UDAAN-Tentative Minute to minute shedule.pdf"
+              href="/docs/UDAAN-Minute to minute-4.pdf"
               download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
               className="px-4 py-2 text-xs font-sans tracking-wider uppercase bg-primary hover:bg-primary-hover text-white rounded-xl transition-colors font-semibold flex items-center gap-1.5"
             >

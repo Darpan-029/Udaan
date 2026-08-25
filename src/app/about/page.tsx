@@ -138,8 +138,8 @@ export default function AboutPage() {
               Traditional Indian formal wear is mandatory for receiving certificates and gold medals on stage.
             </p>
             <div className="space-y-1 text-xs font-sans text-muted-foreground">
-              <p>• Male: White / Off-white Kurta Pyjama</p>
-              <p>• Female: White / Off-white Salwar-Kurta or Saree</p>
+              <p>• Male: Traditional Kurta Pyjama preferably white or off white color</p>
+              <p>• Female: Kurta Salwar or Saree preferably white or off white color</p>
             </div>
           </div>
         </div>

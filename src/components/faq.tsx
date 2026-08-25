@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     question: "What is the mandatory dress code?",
-    answer: "Traditional Indian formal wear is required. Male candidates should wear white/off-white Kurta Pyjama. Female candidates should wear white/off-white Salwar-Kurta or Saree. Ceremonial half-jackets are provided at the venue registration counter.",
+    answer: "Traditional Indian formal wear is required. Male candidates: Traditional Kurta Pyjama preferably white or off white color. Female candidates: Kurta Salwar or Saree preferably white or off white color. Ceremonial half-jackets are provided at the venue registration counter.",
   },
   {
     question: "Can I bring guest family members?",

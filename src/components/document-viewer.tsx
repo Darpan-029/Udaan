@@ -24,10 +24,10 @@ const documents: DocumentItem[] = [
     id: "schedule-pdf",
     title: "Minute-to-Minute Schedule (Tentative)",
     subtitle: "Official event sequence, timing & venue details — 2026 Batch",
-    filename: "UDAAN-Tentative Minute to minute shedule.pdf",
-    path: "/docs/UDAAN-Tentative Minute to minute shedule.pdf",
+    filename: "UDAAN-Minute to minute-4.pdf",
+    path: "/docs/UDAAN-Minute to minute-4.pdf",
     type: "PDF Document",
-    size: "172 KB",
+    size: "176 KB",
     updated: "August 2026",
     icon: Clock,
     badge: "Official Schedule",
@@ -71,8 +71,8 @@ const documents: DocumentItem[] = [
     badge: "Attire Guidelines",
     description: "Detailed specification of approved traditional Indian formal wear required for receiving certificates and awards on stage at the उड़ान 2026 Academic Award Ceremony.",
     highlights: [
-      "Male Candidates: White / Off-White Kurta Pyjama",
-      "Female Candidates: White / Off-White Salwar Suits or Sarees",
+      "Male Candidates: Traditional Kurta Pyjama preferably white or off white color",
+      "Female Candidates: Kurta Salwar or Saree preferably white or off white color",
       "Ceremonial Half-Jackets provided at counter upon pass validation",
       "Strict prohibition of casual denim, sneakers, or informal footwear on stage"
     ]

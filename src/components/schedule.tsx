@@ -120,7 +120,7 @@ export function Schedule() {
 
         <div className="mt-8 text-center">
           <a
-            href="/docs/UDAAN-Tentative Minute to minute shedule.pdf"
+            href="/docs/UDAAN-Minute to minute-4.pdf"
             download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
             className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-all shadow-md rounded-xl card-pop focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
