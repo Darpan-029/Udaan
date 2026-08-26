@@ -87,7 +87,7 @@ export function Registration() {
               </div>
               <div className="space-y-2 text-xs font-sans">
                 <a
-                  href="/docs/UDAAN-Minute to minute-4.pdf"
+                  href="/docs/UDAAN-Minute to minute.pdf"
                   download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
                   className="flex items-center justify-between p-2.5 bg-background dark:bg-slate-900 border border-border dark:border-slate-800 rounded-xl hover:border-accent transition-colors"
                 >

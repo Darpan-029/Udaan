@@ -5,56 +5,74 @@ const scheduleItems = [
   {
     time: "08:00 AM",
     title: "Student Reporting & Kit Distribution",
-    description: "Reporting of all registered students, entry verification, and distribution of event kits.",
+    description: "Reporting of registered students (08:00 AM) and kit distribution (08:00 AM – 08:40 AM) at Golden Jubilee Auditorium.",
     location: "Golden Jubilee Auditorium",
   },
   {
+    time: "08:40 AM",
+    title: "Breakfast for Students & Parents",
+    description: "Morning refreshments for registered graduands and accompanying parents.",
+    location: "Basketball Court",
+  },
+  {
     time: "09:00 AM",
-    title: "Student Seating in Silveria Hall",
-    description: "Registered students assemble and take designated seats in Silveria Hall. Entry closes strictly at 09:45 AM.",
+    title: "Student Seating in Silveria Hall & Malyarpan",
+    description: "Seating of registered students in Silveria Hall (Entry closes strictly at 09:40 AM). Statue Malyarpan by designated persons at Vivekanand, Ahilyabai Holkar, Eklavya & Hanuman Mandir.",
+    location: "Silveria Hall & Designated Places",
+  },
+  {
+    time: "09:00 AM – 09:30 AM",
+    title: "Arrival of Hon’ble Chief Guest & Dignitaries",
+    description: "Welcome of Chief Guest, Guests of Honour, and dignitaries at Director's Chamber with tea/breakfast and robing.",
+    location: "Director’s Chamber",
+  },
+  {
+    time: "09:40 AM",
+    title: "Lamp Lighting & Code of Conduct",
+    description: "Lamp lighting inside Silveria Hall by Prof. Smita Verma, Prof. Preeti Trivedi & Core Committee, followed by code of conduct briefing.",
     location: "Silveria Hall",
   },
   {
-    time: "09:00 AM",
-    title: "Arrival of Hon’ble Minister & Dignitaries",
-    description: "Welcome of Chief Guest Hon'ble Technical Education Minister Shri Inder Singh Ji Parmar and distinguished guests.",
-    location: "VIP Gate / Director’s Chamber",
-  },
-  {
-    time: "09:50 AM",
-    title: "Start of Academic Procession",
-    description: "Robing of dignitaries at Administrative Lounge, Saraswati Malyarpan, and formal procession to Silveria Hall.",
+    time: "09:40 AM – 10:00 AM",
+    title: "Academic Procession & Saraswati Malyarpan",
+    description: "Assembly at ATC Front Gate (09:40 AM), Malyarpan of Maa Saraswati by Director (09:42 AM), and procession start to Silveria Hall (09:50 AM).",
     location: "Saraswati Temple to Silveria Hall",
   },
   {
     time: "10:00 AM",
-    title: "Inaugural Ceremony & Dignitaries Address",
-    description: "Saraswati Vandana, Lamp Lighting, Vande Mataram, Director's address, and Keynote Address by Hon'ble Minister.",
+    title: "Stage Entry & Amrit Mahotsav Inauguration",
+    description: "Stage entry with Medha Suktam Mantra Chanting, Rashtra Geet (Vande Mataram), Guest Welcome, Amrit Mahotsav introduction, logo & booklet release (10:12 AM).",
     location: "Silveria Hall",
   },
   {
-    time: "10:40 AM",
-    title: "Academic Excellence Awards Distribution",
-    description: "Conferral of academic excellence gold medals and institutional honors to top rank holders by dignitaries.",
+    time: "10:20 AM – 11:00 AM",
+    title: "Dean's Report & Dignitaries Addresses",
+    description: "Dean ARSD report, Alumni President address, Director's address, and addresses by Guests of Honour Prof. M. Dandekar, Prof. Rakesh Singhai, and Sh. Prafulla Jhalani ji.",
     location: "Silveria Hall",
   },
   {
     time: "11:00 AM",
+    title: "Academic Excellence Awards Distribution",
+    description: "Conferral of academic excellence gold medals and institutional honors followed by group photo with awardees.",
+    location: "Silveria Hall",
+  },
+  {
+    time: "11:15 AM – 01:18 PM",
     title: "Provisional Degree Certificate Distribution",
     description: "Distribution of provisional degree certificates to 2026 batch graduating scholars across all departments.",
     location: "Silveria Hall",
   },
   {
-    time: "01:15 PM",
-    title: "Oath Ceremony & Photo Session",
-    description: "Solemn oath administration by Dean (IPFA), group photo session with awardees, and Rashtra Gaan.",
+    time: "01:18 PM – 01:22 PM",
+    title: "Oath Ceremony & Rashtra Gaan",
+    description: "Solemn oath administration by Dean (IPFA), followed by Rashtra Gaan (Jan-Gan-Man).",
     location: "Silveria Hall",
   },
   {
-    time: "01:30 PM",
+    time: "01:30 PM Onwards",
     title: "Certificate Collection & Lunch",
-    description: "Folder/Academic certificate collection for graduands and lunch for registered awardees, parents, and authorized guests.",
-    location: "GJ Auditorium & Basketball Ground",
+    description: "Folder/Academic certificate collection at Golden Jubilee Auditorium (01:30 PM – 02:00 PM). Lunch for dignitaries at Conference Hall and graduates/parents at Basketball Ground.",
+    location: "GJ Auditorium / Basketball Ground",
   },
 ]
 
@@ -120,9 +138,9 @@ export function Schedule() {
 
         <div className="mt-8 text-center">
           <a
-            href="/docs/UDAAN-Minute to minute-4.pdf"
+            href="/docs/UDAAN-Minute to minute.pdf"
             download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
-            className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-all shadow-md rounded-xl card-pop focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-block bg-primary hover:bg-primary-hover text-white px-6 py-3 text-xs font-sans tracking-[0.15em] uppercase border border-transparent transition-all shadow-md rounded-xl card-pop focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring font-semibold"
           >
             Download Schedule PDF
           </a>

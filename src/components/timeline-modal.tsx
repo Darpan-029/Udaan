@@ -8,59 +8,61 @@ interface TimelineModalProps {
 
 const timelineSections = [
   {
-    phase: "Phase 1: Student Reporting & Seating",
-    badge: "08:00 AM – 09:45 AM",
+    phase: "Phase 1: Student Reporting, Seating & Morning Refreshment",
+    badge: "08:00 AM – 09:40 AM",
     items: [
       { time: "08:00 AM", activity: "Reporting of all registered students", location: "Golden Jubilee Auditorium" },
       { time: "08:00 AM – 08:40 AM", activity: "Kit distribution to the registered students", location: "Golden Jubilee Auditorium" },
-      { time: "08:40 AM – 09:00 AM", activity: "Breakfast for registered students & parents", location: "Outside GJ Auditorium" },
-      { time: "09:00 AM – 09:30 AM", activity: "Seating of registered students in Silveria Hall", location: "Silveria Hall" },
-      { time: "09:45 AM", activity: "ENTRY CLOSED FOR STUDENTS", location: "Silveria Hall", isImportant: true },
+      { time: "08:40 AM – 09:00 AM", activity: "Breakfast for the registered students & parents", location: "Basketball Court" },
+      { time: "09:00 AM – 09:30 AM", activity: "Seating of reg. students in the Silveria Hall", location: "Silveria Hall" },
+      { time: "09:40 AM", activity: "ENTRY AND EXIT CLOSED FOR STUDENTS", location: "Silveria Hall", isImportant: true },
+      { time: "09:40 AM", activity: "Lamp Lightening inside Silveria Hall by Prof. Smita Verma, Prof. Preeti Trivedi & Core Committee, followed by Code of Conduct info", location: "Silveria Hall" },
     ],
   },
   {
-    phase: "Phase 2: Dignitaries Arrival & Academic Procession",
+    phase: "Phase 2: Dignitaries Arrival, Statue Malyarpan & Academic Procession",
     badge: "09:00 AM – 10:00 AM",
     items: [
-      { time: "09:00 AM", activity: "Arrival of Hon’ble Technical Education Minister", location: "VIP Gate" },
-      { time: "09:00 AM – 09:05 AM", activity: "Guests / Dignitaries welcome", location: "Director’s Chamber" },
-      { time: "09:05 AM – 09:30 AM", activity: "Tea / Breakfast", location: "Director’s Chamber" },
-      { time: "09:30 AM – 09:32 AM", activity: "Arrival of Dignitaries at ATC Building", location: "Administrative Lounge" },
-      { time: "09:32 AM – 09:42 AM", activity: "Robing for Academic Procession", location: "Administrative Lounge" },
-      { time: "09:42 AM – 09:50 AM", activity: "Malyarpan of Maa Saraswati", location: "Saraswati Temple" },
-      { time: "09:50 AM – 10:00 AM", activity: "Start of Academic Procession", location: "Saraswati Temple to Silveria Hall" },
+      { time: "09:00 AM", activity: "Malyarpan at Swami Vivekanand Statue, Lokmata Ahilyabai Holkar Statue, Eklavya Statue, and Campus Hanuman Mandir", location: "At Designated Places" },
+      { time: "09:00 AM – 09:30 AM", activity: "Arrival of Hon’ble Chief Guest / Guests of Honour / Dignitaries (Welcome, Tea/Breakfast & Robing)", location: "Director’s Chamber" },
+      { time: "09:40 AM", activity: "Assembly of Academic Procession", location: "ATC Front Gate" },
+      { time: "09:42 AM – 09:50 AM", activity: "Malyarpan of Maa Saraswati By Director of the Institute", location: "Saraswati Temple" },
+      { time: "09:50 AM – 10:00 AM", activity: "Start of Academic Procession", location: "Saraswati Temple to Silveria" },
     ],
   },
   {
-    phase: "Phase 3: Formal Inauguration & Dignitaries Address",
-    badge: "10:00 AM – 10:40 AM",
+    phase: "Phase 3: Formal Inauguration, Reports & Dignitaries Addresses",
+    badge: "10:00 AM – 11:00 AM",
     items: [
-      { time: "10:00 AM – 10:05 AM", activity: "Saraswati Vandana & Lamp Lighting", location: "Silveria Hall" },
-      { time: "10:05 AM – 10:10 AM", activity: "Rashtra Geet (Vande Mataram)", location: "Silveria Hall" },
-      { time: "10:10 AM – 10:12 AM", activity: "Guest(s) Welcome", location: "Silveria Hall" },
-      { time: "10:12 AM – 10:15 AM", activity: "Vimochan (Amrit Mahotsav Magazine/Logo)", location: "Silveria Hall" },
-      { time: "10:15 AM – 10:25 AM", activity: "Address by Director", location: "Silveria Hall" },
-      { time: "10:25 AM – 10:40 AM", activity: "Address by Hon’ble Minister Shri Inder Singh Ji Parmar", location: "Silveria Hall" },
+      { time: "10:00 AM – 10:09 AM", activity: "Entry and Positioning of Procession on stage with Medha Suktam Mantra Chanting, followed by Rasthra Geet (Vande Matram)", location: "Silveria Hall" },
+      { time: "10:09 AM – 10:12 AM", activity: "Guest(s) Welcome", location: "Silveria Hall" },
+      { time: "10:12 AM – 10:20 AM", activity: "Amrit Mahotsav Introduction, releasing of Logo and launch booklet", location: "Silveria Hall" },
+      { time: "10:20 AM – 10:23 AM", activity: "Deans Report presentation by Dean ARSD", location: "Silveria Hall" },
+      { time: "10:23 AM – 10:28 AM", activity: "Address by President SGSITS Alumni Association (SAA)", location: "Silveria Hall" },
+      { time: "10:28 AM – 10:36 AM", activity: "Address by the Director (Ex-officio member secretary of GB and SGST Society)", location: "Silveria Hall" },
+      { time: "10:36 AM – 10:44 AM", activity: "Address by Guest of Honour Prof. M Dandekar", location: "Silveria Hall" },
+      { time: "10:44 AM – 10:52 AM", activity: "Address by Guest of Honour Prof. Rakesh Singhai", location: "Silveria Hall" },
+      { time: "10:52 AM – 11:00 AM", activity: "Address by Guest of Honour Sh. Prafulla Jhalani ji", location: "Silveria Hall" },
     ],
   },
   {
-    phase: "Phase 4: Award Ceremony & Degree Distribution",
-    badge: "10:40 AM – 01:22 PM",
+    phase: "Phase 4: Award Ceremony, Degree Distribution & Formal Closing",
+    badge: "11:00 AM – 01:22 PM",
     items: [
-      { time: "10:40 AM – 11:00 AM", activity: "Academic Excellence Awards Distribution (Dr. Smita Verma)", location: "Silveria Hall" },
-      { time: "11:00 AM – 01:15 PM", activity: "Distribution of Provisional Degree Certificate", location: "Silveria Hall" },
-      { time: "01:15 PM – 01:18 PM", activity: "Oath ceremony by Dean (IPFA)", location: "Silveria Hall" },
-      { time: "01:18 PM – 01:20 PM", activity: "Photo Session with Awardees", location: "Silveria Hall" },
+      { time: "11:00 AM – 11:15 AM", activity: "Academic Excellence Awards Distribution followed by group photo with Awardees", location: "Silveria Hall" },
+      { time: "11:15 AM – 01:18 PM", activity: "Distribution of Provisional Degree Certificate", location: "Silveria Hall" },
+      { time: "01:18 PM – 01:20 PM", activity: "Oath ceremony by Dean (IPFA)", location: "Silveria Hall" },
       { time: "01:20 PM – 01:22 PM", activity: "Rashtra Gaan (Jan-Gan-Man)", location: "Silveria Hall" },
     ],
   },
   {
-    phase: "Phase 5: Concluding Procession, Certificate Collection & Lunch",
+    phase: "Phase 5: Return Procession, Certificate Collection & Lunch",
     badge: "01:22 PM Onwards",
     items: [
-      { time: "01:22 PM – 01:30 PM", activity: "Return of Academic Procession", location: "Silveria Hall to Director Chamber" },
+      { time: "01:22 PM – 01:30 PM", activity: "Return of Academic Procession", location: "Silveria Hall to Director's Chamber" },
       { time: "01:30 PM – 02:00 PM", activity: "Folder / Academic certificate collection", location: "Golden Jubilee Auditorium" },
-      { time: "01:30 PM onwards", activity: "Lunch for registered graduands / parents and authorized persons", location: "Basketball Ground" },
+      { time: "01:30 PM onwards", activity: "Lunch for Academic procession participants, HODs and other invited dignitaries", location: "Conference Hall" },
+      { time: "01:30 PM onwards", activity: "Lunch for registered graduates / parents and other authorized persons", location: "Basketball Ground" },
     ],
   },
 ]
@@ -97,7 +99,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-border dark:border-slate-800 bg-card/80 dark:bg-slate-900/80">
           <div>
             <span className="text-[10px] md:text-[11px] font-sans tracking-[0.2em] text-accent uppercase block font-semibold">
-              MINUTE TO MINUTE SCHEDULE (TENTATIVE)
+              MINUTE TO MINUTE SCHEDULE
             </span>
             <h2 className="font-serif text-xl md:text-2xl text-foreground font-normal mt-0.5">
               Program Timeline — उड़ान 2026
@@ -105,7 +107,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
           </div>
           <div className="flex items-center gap-2 md:gap-3">
             <a
-              href="/docs/UDAAN-Minute to minute-4.pdf"
+              href="/docs/UDAAN-Minute to minute.pdf"
               download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
               className="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-hover text-white px-3.5 py-1.5 text-xs font-sans tracking-wider uppercase rounded-xl shadow-sm transition-all font-semibold"
             >
@@ -220,7 +222,7 @@ export function TimelineModal({ isOpen, onClose }: TimelineModalProps) {
           </span>
           <div className="flex items-center gap-3">
             <a
-              href="/docs/UDAAN-Minute to minute-4.pdf"
+              href="/docs/UDAAN-Minute to minute.pdf"
               download="UDAAN_2026_Minute_To_Minute_Schedule.pdf"
               className="px-4 py-2 text-xs font-sans tracking-wider uppercase bg-primary hover:bg-primary-hover text-white rounded-xl transition-colors font-semibold flex items-center gap-1.5"
             >

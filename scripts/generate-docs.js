@@ -201,16 +201,20 @@ const brochureContent = [
 ];
 
 const scheduleContent = [
-  'UDAAN 2026 - OFFICIAL EVENT SCHEDULE',
+  'UDAAN 2026 - OFFICIAL MINUTE-TO-MINUTE SCHEDULE',
   'SGSITS Indore | Thursday, 27 August 2026',
   '',
-  '09:00 AM - 10:00 AM: Registration, Kit & Half-Jacket Distribution (Auditorium Foyer)',
-  '10:00 AM - 10:15 AM: Arrival of Chief Guest & Lamp Lighting Ceremony',
-  '10:15 AM - 10:35 AM: Welcome Speech by Director, SGSITS Indore',
-  '10:35 AM - 11:30 AM: Gold Medal Awarding Ceremony (Departmental Batchwise)',
-  '11:30 AM - 12:30 PM: Merit Certificate Distribution (Undergraduate & Postgraduate)',
-  '12:30 PM - 12:50 PM: Valedictory & Vote of Thanks',
-  '12:50 PM - 04:00 PM: High Tea, Interactive Sessions & Photo Session'
+  '08:00 AM - 08:40 AM: Student Reporting & Kit Distribution (Golden Jubilee Auditorium)',
+  '08:40 AM - 09:00 AM: Breakfast for Students & Parents (Basketball Court)',
+  '09:00 AM - 09:30 AM: Student Seating (Silveria Hall) & Statue Malyarpan',
+  '09:00 AM - 09:30 AM: Dignitaries Arrival & Robing (Director Chamber)',
+  '09:40 AM - 10:00 AM: Lamp Lighting, Assembly & Academic Procession (ATC / Saraswati Temple)',
+  '10:00 AM - 11:00 AM: Stage Entry, Vande Mataram, Logo Release & Addresses by Director & Guests of Honour',
+  '11:00 AM - 11:15 AM: Academic Excellence Awards Distribution & Group Photo',
+  '11:15 AM - 01:18 PM: Provisional Degree Certificate Distribution (Silveria Hall)',
+  '01:18 PM - 01:22 PM: Oath Ceremony by Dean (IPFA) & Rashtra Gaan',
+  '01:22 PM - 01:30 PM: Return of Academic Procession',
+  '01:30 PM - 02:00 PM: Folder/Certificate Collection (GJ Auditorium) & Lunch'
 ];
 
 const circularContent = [
