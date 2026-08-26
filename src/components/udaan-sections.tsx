@@ -1,6 +1,7 @@
 import { Dignitaries } from "@/components/dignitaries"
 import { ActionButtons } from "@/components/action-buttons"
 import { YoutubeSection } from "@/components/youtube-section"
+import { BannerSection } from "@/components/banner-section"
 import { DocumentViewer } from "@/components/document-viewer"
 import { Gallery } from "@/components/gallery"
 import { Registration } from "@/components/registration"
@@ -14,16 +15,19 @@ export function UdaanSections() {
       {/* 2. Distinguished Dignitary — Chief Guest section */}
       <Dignitaries />
 
-      {/* 3. Previous Year YouTube Highlights */}
+      {/* 3. Official Event Banner */}
+      <BannerSection />
+
+      {/* 4. Previous Year 2025 YouTube Highlights */}
       <YoutubeSection />
 
       {/* 5. Brochure & Documents */}
       <DocumentViewer />
 
-      {/* 7. Photo Gallery */}
+      {/* 6. Photo Gallery */}
       <Gallery />
 
-      {/* 8. Registration */}
+      {/* 7. Registration */}
       <Registration />
     </>
   )

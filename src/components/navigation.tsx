@@ -12,6 +12,7 @@ import { TimelineModal } from "@/components/timeline-modal"
 
 const navItems = [
   { name: "DIGNITARIES", href: "#dignitaries" },
+  { name: "BANNER", href: "#banner" },
   { name: "BROCHURE", href: "#documents" },
   { name: "GALLERY", href: "#gallery" },
   { name: "REGISTRATION", href: "#register" },

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { FileText, Download, Shirt, Info, ExternalLink, Clock } from "lucide-react"
+import { FileText, Download, Shirt, Info, ExternalLink, Clock, Sparkles } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 interface DocumentItem {
@@ -20,6 +20,25 @@ interface DocumentItem {
 }
 
 const documents: DocumentItem[] = [
+  {
+    id: "banner-pdf",
+    title: "Official Event Banner & Flyer",
+    subtitle: "Visual event poster, dignitaries & schedule graphics — 2026 Batch",
+    filename: "banner with images.pdf",
+    path: "/docs/banner with images.pdf",
+    type: "PDF Banner",
+    size: "4.4 MB",
+    updated: "August 2026",
+    icon: Sparkles,
+    badge: "Official Banner",
+    description: "Official visual banner and poster for उड़ान 2026, showcasing event dignitaries, ceremony sequence, venue maps, and traditional dress code requirements.",
+    highlights: [
+      "High-resolution Canva event poster & flyer",
+      "Features Hon. Director, Chief Guest & Patron profiles",
+      "Event schedule & venue breakdown",
+      "Traditional Indian formal dress code visual guide"
+    ]
+  },
   {
     id: "schedule-pdf",
     title: "Minute-to-Minute Schedule (Tentative)",
@@ -80,7 +99,7 @@ const documents: DocumentItem[] = [
 ]
 
 export function DocumentViewer() {
-  const [activeDocId, setActiveDocId] = React.useState("schedule-pdf")
+  const [activeDocId, setActiveDocId] = React.useState("banner-pdf")
 
   const activeDoc = documents.find((doc) => doc.id === activeDocId) || documents[0]
 
