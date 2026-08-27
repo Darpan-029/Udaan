@@ -25,7 +25,7 @@ export function UdaanSections() {
       {/* 5. Previous Year 2025 YouTube Highlights */}
       <YoutubeSection />
 
-      {/* 5. Brochure & Documents */}
+      {/* 6. Brochure & Documents */}
       <DocumentViewer />
 
       {/* 6. Photo Gallery */}

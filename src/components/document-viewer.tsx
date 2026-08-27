@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { FileText, Download, Shirt, Info, ExternalLink, Clock, Sparkles, BookOpen } from "lucide-react"
+import { FileText, Download, Shirt, Info, ExternalLink, Clock } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 interface DocumentItem {
@@ -20,44 +20,6 @@ interface DocumentItem {
 }
 
 const documents: DocumentItem[] = [
-  {
-    id: "magazine-pdf",
-    title: "Official Event Magazine & Souvenir",
-    subtitle: "Commemorative edition, articles, gold medalist roll of honor — 2026 Batch",
-    filename: "UDAAN_2026_Event_Magazine.pdf",
-    path: "/docs/magazine.pdf",
-    type: "PDF Magazine",
-    size: "35.7 MB",
-    updated: "August 2026",
-    icon: BookOpen,
-    badge: "Event Magazine",
-    description: "Official commemorative souvenir and magazine for उड़ान 2026, chronicling academic milestones, leadership messages, department achievements, and student honors at SGSITS Indore.",
-    highlights: [
-      "Address of GB Chairman (p. 13), Director SGSITS (p. 16) & Chief Guests (p. 19)",
-      "Academic Gold Medalists & Degree Conferral Roll of Honor",
-      "Graduation Statistics 2026 (p. 40)",
-      "Amrit Kaal Special Commemorative Feature (p. 41)"
-    ]
-  },
-  {
-    id: "banner-pdf",
-    title: "Official Event Banner & Flyer",
-    subtitle: "Visual event poster, dignitaries & schedule graphics — 2026 Batch",
-    filename: "banner with images.pdf",
-    path: "/docs/banner with images.pdf",
-    type: "PDF Banner",
-    size: "4.4 MB",
-    updated: "August 2026",
-    icon: Sparkles,
-    badge: "Official Banner",
-    description: "Official visual banner and poster for उड़ान 2026, showcasing event dignitaries, ceremony sequence, venue maps, and traditional dress code requirements.",
-    highlights: [
-      "High-resolution Canva event poster & flyer",
-      "Features Hon. Director, Chief Guest & Patron profiles",
-      "Event schedule & venue breakdown",
-      "Traditional Indian formal dress code visual guide"
-    ]
-  },
   {
     id: "schedule-pdf",
     title: "Minute-to-Minute Schedule",
@@ -118,7 +80,7 @@ const documents: DocumentItem[] = [
 ]
 
 export function DocumentViewer() {
-  const [activeDocId, setActiveDocId] = React.useState("banner-pdf")
+  const [activeDocId, setActiveDocId] = React.useState("schedule-pdf")
 
   const activeDoc = documents.find((doc) => doc.id === activeDocId) || documents[0]
 

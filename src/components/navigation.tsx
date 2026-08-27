@@ -4,11 +4,12 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Sun, Moon, ExternalLink, Radio } from "lucide-react"
+import { Menu, X, Sun, Moon, ExternalLink, Radio, Users } from "lucide-react"
 import { useTheme } from "next-themes"
 import logo from "../../public/docs/sgsits_logo.png"
 import footerLogo from "../../public/docs/sgsits_logo.png"
 import { TimelineModal } from "@/components/timeline-modal"
+import { SittingPlanModal } from "@/components/sitting-plan-modal"
 
 const LIVE_STREAM_URL = "https://www.youtube.com/live/KxwwqEIDZ_0?si=1aTwo1IjuQqUpzLm"
 
@@ -25,6 +26,7 @@ export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [condensed, setCondensed] = React.useState(false)
   const [isTimelineOpen, setIsTimelineOpen] = React.useState(false)
+  const [isSittingPlanOpen, setIsSittingPlanOpen] = React.useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   const sentinelRef = React.useRef<HTMLDivElement>(null)
@@ -81,37 +83,37 @@ export function Navigation() {
         className="relative md:sticky top-0 z-50 w-full bg-[#0C1626] text-white shadow-md transform-gpu"
       >
         <div
-          className={`container mx-auto px-4 text-center transition-[padding] duration-300 ${condensed ? "py-2" : "py-3.5 md:py-4.5"
+          className={`max-w-[1400px] mx-auto px-2.5 sm:px-4 md:px-6 text-center transition-[padding] duration-300 ${condensed ? "py-1.5 sm:py-2" : "py-3.5 md:py-4.5"
             }`}
         >
           {condensed ? (
-            <div className="flex items-center justify-between gap-2 sm:gap-4">
+            <div className="flex items-center justify-between gap-2 lg:gap-3 w-full">
               {/* Left Brand block: Logo + उड़ान 2026 + Academic Award Ceremony */}
               <a
                 href="#dignitaries"
                 onClick={(e) => handleNavClick(e, "#dignitaries")}
-                className="flex items-center gap-2 sm:gap-3 transition-transform hover:opacity-90 text-left shrink"
+                className="flex items-center gap-1.5 sm:gap-2.5 transition-transform hover:opacity-90 text-left shrink-0"
               >
-                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-8 sm:h-10 md:h-12 w-auto object-contain shrink-0 drop-shadow-md" />
+                <Image src={footerLogo} alt="SGSITS Official Seal" className="h-7 sm:h-9 md:h-10 w-auto object-contain shrink-0 drop-shadow-md" />
                 <div className="flex flex-col items-start justify-center min-w-0">
-                  <div className="flex items-baseline gap-1.5 sm:gap-2 select-none">
-                    <span className="udaan-brand font-serif text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-md">उड़ान</span>
-                    <span className="font-serif text-sm sm:text-base md:text-lg text-amber-200 font-extrabold tracking-widest drop-shadow-sm">2026</span>
+                  <div className="flex items-baseline gap-1 sm:gap-1.5 select-none">
+                    <span className="udaan-brand font-serif text-lg sm:text-xl md:text-2xl font-extrabold tracking-wide drop-shadow-md">उड़ान</span>
+                    <span className="font-serif text-xs sm:text-sm md:text-base text-amber-200 font-extrabold tracking-wider drop-shadow-sm">2026</span>
                   </div>
-                  <span className="font-serif text-[8px] xs:text-[9px] sm:text-[10px] md:text-[11px] text-slate-200 tracking-wider font-bold -mt-0.5 whitespace-nowrap uppercase">
+                  <span className="font-serif text-[7.5px] xs:text-[8.5px] sm:text-[9.5px] text-slate-200 tracking-wider font-bold -mt-0.5 whitespace-nowrap uppercase">
                     Academic Award Ceremony
                   </span>
                 </div>
               </a>
 
               {/* Desktop Nav Items with Pipe Separators & Gold Underline */}
-              <nav className="hidden lg:flex items-center gap-4 text-xs font-sans tracking-[0.2em] uppercase">
+              <nav className="hidden lg:flex items-center gap-2 xl:gap-3.5 2xl:gap-4 text-[11px] xl:text-xs font-sans tracking-[0.08em] xl:tracking-[0.16em] uppercase shrink min-w-0">
                 {navItems.map((item, idx) => (
                   <React.Fragment key={item.name}>
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className="hover:text-white text-amber-200/95 font-extrabold transition-colors py-1 px-1.5 relative group drop-shadow-sm"
+                      className="hover:text-white text-amber-200/95 font-extrabold transition-colors py-1 px-1 relative group drop-shadow-sm whitespace-nowrap"
                     >
                       {item.name}
                       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-200/80 transition-all duration-300 group-hover:w-full" />
@@ -123,13 +125,13 @@ export function Navigation() {
                 ))}
               </nav>
 
-              {/* Right Action: Live Streaming Button & Mobile Menu Toggle */}
+              {/* Right Action: Live Streaming & Sitting Plan Buttons & Mobile Menu Toggle */}
               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <a
                   href={LIVE_STREAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-[11px] sm:text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60 group"
+                  className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-[10.5px] sm:text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60 whitespace-nowrap shrink-0 group"
                   title="Watch Live Streaming"
                   aria-label="Watch Live Streaming on YouTube"
                 >
@@ -137,10 +139,21 @@ export function Navigation() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                   </span>
-                  <Radio className="h-3.5 w-3.5" />
+                  <Radio className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                   <span className="hidden sm:inline">Live Streaming</span>
                   <span className="sm:hidden">Live</span>
                 </a>
+
+                {/* Sitting Plan Button in Condensed Header */}
+                <button
+                  onClick={() => setIsSittingPlanOpen(true)}
+                  className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-[10.5px] sm:text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60 whitespace-nowrap shrink-0"
+                  title="View Sitting Plan (2 PDFs)"
+                  aria-label="View Sitting Plan"
+                >
+                  <Users className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                  <span>Sitting Plan</span>
+                </button>
 
                 <div className="lg:hidden flex items-center ml-0.5">
                   <button
@@ -160,10 +173,10 @@ export function Navigation() {
               {/* Expanded Header 3-Column Balanced Layout */}
               <div className="grid grid-cols-12 items-center gap-4 py-2">
                 {/* Left Column: Symmetrical balance spacer */}
-                <div className="hidden md:block md:col-span-3" />
+                <div className="hidden md:block md:col-span-2 lg:col-span-3" />
 
                 {/* Center Column: Udaan Brand Emblem & Title */}
-                <div className="col-span-12 md:col-span-6 flex flex-col items-center justify-center text-center">
+                <div className="col-span-12 md:col-span-8 lg:col-span-6 flex flex-col items-center justify-center text-center">
                   <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 select-none" aria-label="उड़ान 2026">
                     <Image
                       src={logo}
@@ -190,23 +203,34 @@ export function Navigation() {
                   </p>
                 </div>
 
-                {/* Right Column: Live Streaming Action */}
-                <div className="hidden md:flex md:col-span-3 justify-end items-center gap-2.5">
+                {/* Right Column: Live Streaming & Sitting Plan Actions */}
+                <div className="hidden md:flex md:col-span-2 lg:col-span-3 justify-end items-center gap-2 flex-wrap lg:flex-nowrap">
                   <a
                     href={LIVE_STREAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60 group"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60 whitespace-nowrap group"
                     title="Watch Live Streaming"
                     aria-label="Watch Live Streaming on YouTube"
                   >
-                    <span className="relative flex h-2.5 w-2.5">
+                    <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                     </span>
-                    <Radio className="h-4 w-4" />
+                    <Radio className="h-3.5 w-3.5" />
                     <span>Live Streaming</span>
                   </a>
+
+                  {/* Sitting Plan Button in Expanded Header */}
+                  <button
+                    onClick={() => setIsSittingPlanOpen(true)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60 whitespace-nowrap"
+                    title="View Sitting Plan (2 PDFs)"
+                    aria-label="View Sitting Plan"
+                  >
+                    <Users className="h-3.5 w-3.5" />
+                    <span>Sitting Plan</span>
+                  </button>
                 </div>
 
                 <span className="sr-only">उड़ान 2026 — Academic Award Ceremony</span>
@@ -233,26 +257,36 @@ export function Navigation() {
               </div>
 
               {/* Mobile toggle row (expanded state) */}
-              <div className="md:hidden flex items-center justify-between pt-2.5 mt-2 border-t border-amber-300/20">
-                <a
-                  href={LIVE_STREAM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 text-slate-950 font-sans text-xs font-black uppercase tracking-wider shadow-sm"
-                  title="Watch Live Streaming"
-                  aria-label="Watch Live Streaming on YouTube"
-                >
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-                  </span>
-                  <Radio className="h-3.5 w-3.5" />
-                  <span>Live Streaming</span>
-                </a>
+              <div className="md:hidden flex items-center justify-between pt-2.5 mt-2 border-t border-amber-300/20 gap-2">
+                <div className="flex items-center gap-1.5">
+                  <a
+                    href={LIVE_STREAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 text-slate-950 font-sans text-[11px] font-black uppercase tracking-wider shadow-sm"
+                    title="Watch Live Streaming"
+                    aria-label="Watch Live Streaming on YouTube"
+                  >
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                    </span>
+                    <Radio className="h-3.5 w-3.5" />
+                    <span>Live Streaming</span>
+                  </a>
+
+                  <button
+                    onClick={() => setIsSittingPlanOpen(true)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 text-slate-950 font-sans text-[11px] font-black uppercase tracking-wider shadow-sm border border-amber-200/60"
+                  >
+                    <Users className="h-3.5 w-3.5" />
+                    <span>Sitting Plan</span>
+                  </button>
+                </div>
 
                 <button
                   onClick={() => setIsOpen((v) => !v)}
-                  className="p-1.5 text-amber-200 hover:text-white rounded-lg"
+                  className="p-1.5 text-amber-200 hover:text-white rounded-lg shrink-0"
                   aria-label="Toggle menu"
                   aria-expanded={isOpen}
                   aria-controls="mobile-nav-drawer"
@@ -286,6 +320,9 @@ export function Navigation() {
 
       {/* Program Timeline Popup Modal */}
       <TimelineModal isOpen={isTimelineOpen} onClose={() => setIsTimelineOpen(false)} />
+
+      {/* Sitting Plan Lightbox Modal */}
+      <SittingPlanModal isOpen={isSittingPlanOpen} onClose={() => setIsSittingPlanOpen(false)} />
     </>
   )
 }
