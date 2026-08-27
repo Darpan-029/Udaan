@@ -4,6 +4,8 @@ import * as React from "react"
 import { BookOpen, Download, ExternalLink, X, Sparkles, Award, BarChart3, CheckCircle2 } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
+import { PdfViewerFrame } from "@/components/pdf-viewer-frame"
+
 // Change this path to your uploaded event magazine PDF in public/docs/
 const magazinePdfPath = "/docs/magazine.pdf"
 const magazineFileName = "UDAAN_2026_Event_Magazine.pdf"
@@ -77,10 +79,10 @@ function MagazineModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
         {/* PDF Frame */}
         <div className="flex-1 w-full bg-slate-900/90 relative">
-          <iframe
+          <PdfViewerFrame
             src={magazinePdfPath}
-            className="w-full h-full border-none"
             title="Official UDAAN 2026 Event Magazine PDF"
+            filename={magazineFileName}
           />
         </div>
       </div>
@@ -136,10 +138,10 @@ export function MagazineSection() {
 
                 {/* PDF Container Frame */}
                 <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full bg-slate-950 overflow-hidden">
-                  <iframe
-                    src={`${magazinePdfPath}#toolbar=0&navpanes=0`}
-                    className="w-full h-full border-none pointer-events-auto"
+                  <PdfViewerFrame
+                    src={magazinePdfPath}
                     title="UDAAN 2026 Event Magazine PDF Preview"
+                    filename={magazineFileName}
                   />
                 </div>
               </div>

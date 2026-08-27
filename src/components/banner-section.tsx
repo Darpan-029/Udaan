@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Download, Maximize2, ExternalLink, X, Sparkles, Calendar, MapPin, Award, FileText } from "lucide-react"
 import { Reveal } from "@/components/reveal"
+import { PdfViewerFrame } from "@/components/pdf-viewer-frame"
 
 const bannerPdfPath = "/docs/banner with images.pdf"
 const bannerFileName = "banner with images.pdf"
@@ -76,10 +77,10 @@ function BannerModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
 
         {/* PDF Frame */}
         <div className="flex-1 w-full bg-slate-900/90 relative">
-          <iframe
+          <PdfViewerFrame
             src={bannerPdfPath}
-            className="w-full h-full border-none"
             title="Official UDAAN 2026 Event Banner PDF"
+            filename={bannerFileName}
           />
         </div>
       </div>
@@ -155,10 +156,10 @@ export function BannerSection() {
 
                 {/* PDF Container Frame */}
                 <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full bg-slate-950 overflow-hidden">
-                  <iframe
-                    src={`${bannerPdfPath}#toolbar=0&navpanes=0`}
-                    className="w-full h-full border-none pointer-events-auto"
+                  <PdfViewerFrame
+                    src={bannerPdfPath}
                     title="UDAAN 2026 Banner PDF Preview"
+                    filename={bannerFileName}
                   />
 
                   {/* Quick Expand Floating Button Overlay */}

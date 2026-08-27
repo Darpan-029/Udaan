@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Users, Download, ExternalLink, X, MapPin, Layers, CheckCircle2 } from "lucide-react"
+import { PdfViewerFrame } from "@/components/pdf-viewer-frame"
 
 export interface SittingPlanItem {
   id: string
@@ -162,11 +163,11 @@ export function SittingPlanModal({
 
         {/* PDF Frame */}
         <div className="flex-1 w-full bg-slate-900 relative">
-          <iframe
+          <PdfViewerFrame
             key={currentPlan.path}
             src={currentPlan.path}
-            className="w-full h-full border-none"
             title={`UDAAN 2026 Sitting Plan - ${currentPlan.title}`}
+            filename={currentPlan.filename}
           />
         </div>
       </div>

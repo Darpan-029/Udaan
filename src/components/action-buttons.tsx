@@ -11,6 +11,8 @@ const registrationFormUrl =
 const whatsappGroupUrl = "https://chat.whatsapp.com/HWvvBf4oraHDfnleGcEe86"
 const circularPath = "/docs/Circular For 2026 Batch.pdf"
 
+import { PdfViewerFrame } from "@/components/pdf-viewer-frame"
+
 // Brochure / circular modal
 function BrochureModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   React.useEffect(() => {
@@ -48,7 +50,7 @@ function BrochureModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
               href={circularPath}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-4 py-2 text-xs font-sans tracking-wider uppercase rounded-lg shadow-sm transition-all"
+              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-4 py-2 text-xs font-sans tracking-wider uppercase rounded-lg shadow-sm transition-all font-semibold"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               <span>Open PDF</span>
@@ -62,11 +64,11 @@ function BrochureModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
             </button>
           </div>
         </div>
-        <div className="flex-1 overflow-hidden">
-          <iframe
+        <div className="flex-1 overflow-hidden min-h-[60vh]">
+          <PdfViewerFrame
             src={circularPath}
-            className="w-full h-full min-h-[70vh]"
             title="UDAAN 2026 Official Circular"
+            filename="Circular For 2026 Batch.pdf"
           />
         </div>
       </div>
