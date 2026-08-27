@@ -1,8 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { Download, Maximize2, ExternalLink, X, Sparkles, Calendar, MapPin, Award, FileText } from "lucide-react"
+import Image from "next/image"
+import { Download, Maximize2, ExternalLink, X, Sparkles, Calendar, MapPin, Award, FileText, Eye } from "lucide-react"
 import { Reveal } from "@/components/reveal"
+import logo from "../../public/docs/sgsits_logo.png"
 import { PdfViewerFrame } from "@/components/pdf-viewer-frame"
 
 const bannerPdfPath = "/docs/banner with images.pdf"
@@ -90,6 +92,7 @@ function BannerModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
 
 export function BannerSection() {
   const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const [showLiveDesktopReader, setShowLiveDesktopReader] = React.useState(false)
 
   return (
     <section id="banner" className="py-16 md:py-20 bg-background border-t border-border-strong relative overflow-hidden">
@@ -117,7 +120,7 @@ export function BannerSection() {
         </Reveal>
 
         <div className="grid lg:grid-cols-12 gap-8 items-center">
-          {/* Interactive PDF Viewer Card */}
+          {/* Interactive Poster Card */}
           <div className="lg:col-span-7">
             <Reveal>
               <div className="relative bg-card dark:bg-[#0D1527] border border-border dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden card-pop group">
@@ -126,51 +129,99 @@ export function BannerSection() {
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4 text-accent" />
                     <span className="font-sans text-xs font-semibold text-foreground truncate max-w-[200px] sm:max-w-xs">
-                      banner with images.pdf
+                      {bannerFileName}
                     </span>
-                    <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-accent/15 text-accent font-bold uppercase tracking-wider hidden sm:inline-block">
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-accent/15 text-accent font-bold uppercase tracking-wider">
                       Official Flyer
                     </span>
-                  </div>
 
-                  <div className="flex items-center gap-1.5">
+                    {/* Desktop reader toggle */}
                     <button
-                      onClick={() => setIsModalOpen(true)}
-                      className="p-1.5 text-xs font-sans text-muted-foreground hover:text-foreground hover:bg-muted/80 rounded-lg transition-colors flex items-center gap-1"
-                      title="View Fullscreen"
+                      onClick={() => setShowLiveDesktopReader((v) => !v)}
+                      className="hidden md:inline-flex items-center gap-1 text-[11px] font-sans text-muted-foreground hover:text-accent transition-colors pl-2 border-l border-border"
+                      title="Toggle between banner poster card and embedded reader"
                     >
-                      <Maximize2 className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">Expand</span>
+                      <Eye className="h-3 w-3" />
+                      <span>{showLiveDesktopReader ? "Show Card" : "Live Reader"}</span>
                     </button>
-                    <a
-                      href={bannerPdfPath}
-                      download={bannerFileName}
-                      className="p-1.5 text-xs font-sans text-muted-foreground hover:text-accent hover:bg-accent/10 rounded-lg transition-colors flex items-center gap-1"
-                      title="Download PDF"
-                    >
-                      <Download className="h-3.5 w-3.5" />
-                      <span className="hidden sm:inline">Download</span>
-                    </a>
                   </div>
                 </div>
 
-                {/* PDF Container Frame */}
-                <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full bg-slate-950 overflow-hidden">
-                  <PdfViewerFrame
-                    src={bannerPdfPath}
-                    title="UDAAN 2026 Banner PDF Preview"
-                    filename={bannerFileName}
-                  />
+                {/* Main Showcase Frame */}
+                {showLiveDesktopReader ? (
+                  <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full bg-slate-950 overflow-hidden">
+                    <PdfViewerFrame
+                      src={bannerPdfPath}
+                      title="UDAAN 2026 Banner PDF Preview"
+                      filename={bannerFileName}
+                    />
+                  </div>
+                ) : (
+                  <div className="relative p-6 sm:p-8 bg-gradient-to-b from-[#0B1526] via-[#102038] to-[#0A1220] text-white flex flex-col items-center justify-center text-center overflow-hidden border-t border-amber-300/10">
+                    {/* Inner Golden Ornate Border Frame */}
+                    <div className="absolute inset-3 sm:inset-4 rounded-xl border border-amber-300/30 pointer-events-none" />
+                    <div className="absolute inset-4 sm:inset-5 rounded-lg border border-amber-300/15 pointer-events-none" />
 
-                  {/* Quick Expand Floating Button Overlay */}
-                  <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="absolute bottom-4 right-4 bg-slate-950/95 hover:bg-slate-900 text-amber-200 border border-amber-300/40 hover:border-amber-300 px-4 py-2 rounded-xl text-xs font-sans font-bold uppercase tracking-wider shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2 backdrop-blur-md"
-                  >
-                    <Maximize2 className="h-4 w-4" />
-                    <span>Full Screen Banner View</span>
-                  </button>
-                </div>
+                    <div className="relative z-10 flex flex-col items-center max-w-md my-2">
+                      <Image
+                        src={logo}
+                        alt="SGSITS Official Seal"
+                        width={70}
+                        height={70}
+                        className="h-12 sm:h-14 w-auto object-contain drop-shadow-[0_0_12px_rgba(247,212,99,0.4)] mb-3"
+                      />
+
+                      <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.25em] text-amber-300/90 uppercase font-bold">
+                        OFFICIAL CEREMONY BANNER &amp; POSTER
+                      </span>
+
+                      <div className="flex items-baseline gap-2 my-1 select-none">
+                        <span className="udaan-brand font-serif text-3xl sm:text-4xl text-white font-extrabold tracking-wide drop-shadow-md">
+                          उड़ान
+                        </span>
+                        <span className="font-serif text-xl sm:text-2xl text-amber-200 font-extrabold tracking-widest">
+                          2026
+                        </span>
+                      </div>
+
+                      <p className="font-serif text-[11px] sm:text-xs text-slate-200 tracking-wider font-semibold uppercase mb-1">
+                        Academic Award &amp; Degree Ceremony
+                      </p>
+
+                      <p className="font-sans text-[11px] text-amber-200/75 italic mb-5">
+                        Chief Guests • Schedule • Gold Medalists • Venue Guide
+                      </p>
+
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-amber-300/30 text-[10px] font-sans text-amber-200 font-semibold mb-6">
+                        <Sparkles className="h-3 w-3 text-accent" />
+                        <span>High-Resolution Graphics Poster • 4.4 MB</span>
+                      </div>
+
+                      {/* Action buttons on cover */}
+                      <div className="flex flex-col xs:flex-row items-center gap-2.5 w-full max-w-xs">
+                        <button
+                          onClick={() => setIsModalOpen(true)}
+                          className="w-full xs:flex-1 bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 hover:from-amber-400 hover:to-amber-600 text-slate-950 font-sans text-xs font-black tracking-wider uppercase py-2.5 px-4 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 border border-amber-200/60"
+                        >
+                          <Maximize2 className="h-4 w-4" />
+                          <span>View Fullscreen</span>
+                        </button>
+
+                        <a
+                          href={bannerPdfPath}
+                          download={bannerFileName}
+                          className="w-full xs:w-auto bg-slate-900 hover:bg-slate-800 text-amber-200 border border-amber-300/40 hover:border-amber-300 font-sans text-xs font-bold tracking-wider uppercase py-2.5 px-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                        >
+                          <Download className="h-4 w-4 text-accent" />
+                          <span>Download</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </Reveal>
           </div>
