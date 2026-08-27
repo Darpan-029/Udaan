@@ -15,6 +15,7 @@ const LIVE_STREAM_URL = "https://www.youtube.com/live/KxwwqEIDZ_0?si=1aTwo1IjuQq
 const navItems = [
   { name: "DIGNITARIES", href: "#dignitaries" },
   { name: "BANNER", href: "#banner" },
+  { name: "MAGAZINE", href: "#magazine" },
   { name: "BROCHURE", href: "#documents" },
   { name: "GALLERY", href: "#gallery" },
   { name: "REGISTRATION", href: "#register" },

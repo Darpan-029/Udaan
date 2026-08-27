@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { FileText, Download, Shirt, Info, ExternalLink, Clock, Sparkles } from "lucide-react"
+import { FileText, Download, Shirt, Info, ExternalLink, Clock, Sparkles, BookOpen } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 
 interface DocumentItem {
@@ -20,6 +20,25 @@ interface DocumentItem {
 }
 
 const documents: DocumentItem[] = [
+  {
+    id: "magazine-pdf",
+    title: "Official Event Magazine & Souvenir",
+    subtitle: "Commemorative edition, articles, gold medalist roll of honor — 2026 Batch",
+    filename: "UDAAN_2026_Event_Magazine.pdf",
+    path: "/docs/magazine.pdf",
+    type: "PDF Magazine",
+    size: "35.7 MB",
+    updated: "August 2026",
+    icon: BookOpen,
+    badge: "Event Magazine",
+    description: "Official commemorative souvenir and magazine for उड़ान 2026, chronicling academic milestones, leadership messages, department achievements, and student honors at SGSITS Indore.",
+    highlights: [
+      "Address of GB Chairman (p. 13), Director SGSITS (p. 16) & Chief Guests (p. 19)",
+      "Academic Gold Medalists & Degree Conferral Roll of Honor",
+      "Graduation Statistics 2026 (p. 40)",
+      "Amrit Kaal Special Commemorative Feature (p. 41)"
+    ]
+  },
   {
     id: "banner-pdf",
     title: "Official Event Banner & Flyer",
