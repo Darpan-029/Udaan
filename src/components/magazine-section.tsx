@@ -1,12 +1,12 @@
 "use client"
 
 import * as React from "react"
-import Image from "next/image"
-import { BookOpen, Download, ExternalLink, X, Sparkles, Award, BarChart3, CheckCircle2, Eye, FileText } from "lucide-react"
+import { BookOpen, Download, ExternalLink, X, Sparkles, Award, BarChart3, CheckCircle2 } from "lucide-react"
 import { Reveal } from "@/components/reveal"
-import logo from "../../public/docs/sgsits_logo.png"
+
 import { PdfViewerFrame } from "@/components/pdf-viewer-frame"
 
+// Change this path to your uploaded event magazine PDF in public/docs/
 const magazinePdfPath = "/docs/magazine.pdf"
 const magazineFileName = "UDAAN_2026_Event_Magazine.pdf"
 
@@ -92,7 +92,6 @@ function MagazineModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
 export function MagazineSection() {
   const [isModalOpen, setIsModalOpen] = React.useState(false)
-  const [showLiveDesktopReader, setShowLiveDesktopReader] = React.useState(false)
 
   return (
     <section id="magazine" className="py-16 md:py-20 bg-background border-t border-border-strong relative overflow-hidden">
@@ -120,7 +119,7 @@ export function MagazineSection() {
         </Reveal>
 
         <div className="grid lg:grid-cols-12 gap-8 items-center">
-          {/* Visual Magazine Cover & Interactive Reader Card */}
+          {/* Interactive PDF Viewer Card */}
           <div className="lg:col-span-7">
             <Reveal>
               <div className="relative bg-card dark:bg-[#0D1527] border border-border dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden card-pop group">
@@ -132,106 +131,19 @@ export function MagazineSection() {
                       {magazineFileName}
                     </span>
                   </div>
-
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-accent/15 text-accent font-bold uppercase tracking-wider">
-                      Official Edition
-                    </span>
-
-                    {/* Desktop reader toggle */}
-                    <button
-                      onClick={() => setShowLiveDesktopReader((v) => !v)}
-                      className="hidden md:inline-flex items-center gap-1 text-[11px] font-sans text-muted-foreground hover:text-accent transition-colors pl-2 border-l border-border"
-                      title="Toggle between magazine cover showcase and embedded reader"
-                    >
-                      <Eye className="h-3 w-3" />
-                      <span>{showLiveDesktopReader ? "Show Cover" : "Live Reader"}</span>
-                    </button>
-                  </div>
+                  <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-accent/15 text-accent font-bold uppercase tracking-wider">
+                    Official Edition
+                  </span>
                 </div>
 
-                {/* Main Showcase Frame */}
-                {showLiveDesktopReader ? (
-                  <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full bg-slate-950 overflow-hidden">
-                    <PdfViewerFrame
-                      src={magazinePdfPath}
-                      title="UDAAN 2026 Event Magazine PDF Preview"
-                      filename={magazineFileName}
-                    />
-                  </div>
-                ) : (
-                  <div className="relative p-6 sm:p-8 bg-gradient-to-b from-[#091322] via-[#0F1C30] to-[#080E1A] text-white flex flex-col items-center justify-center text-center overflow-hidden border-t border-amber-300/10">
-                    {/* Inner Golden Ornate Border Frame */}
-                    <div className="absolute inset-3 sm:inset-4 rounded-xl border border-amber-300/30 pointer-events-none" />
-                    <div className="absolute inset-4 sm:inset-5 rounded-lg border border-amber-300/15 pointer-events-none" />
-
-                    {/* Glowing background orb */}
-                    <div
-                      className="absolute inset-0 pointer-events-none opacity-25"
-                      style={{
-                        background: "radial-gradient(circle at 50% 40%, rgba(247, 212, 99, 0.25) 0%, transparent 60%)",
-                      }}
-                    />
-
-                    <div className="relative z-10 flex flex-col items-center max-w-md my-2">
-                      {/* SGSITS Seal */}
-                      <Image
-                        src={logo}
-                        alt="SGSITS Official Seal"
-                        width={70}
-                        height={70}
-                        className="h-12 sm:h-14 w-auto object-contain drop-shadow-[0_0_12px_rgba(247,212,99,0.4)] mb-3"
-                      />
-
-                      <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.25em] text-amber-300/90 uppercase font-bold">
-                        COMMEMORATIVE SOUVENIR &amp; MAGAZINE
-                      </span>
-
-                      <div className="flex items-baseline gap-2 my-1 select-none">
-                        <span className="udaan-brand font-serif text-3xl sm:text-4xl text-white font-extrabold tracking-wide drop-shadow-md">
-                          उड़ान
-                        </span>
-                        <span className="font-serif text-xl sm:text-2xl text-amber-200 font-extrabold tracking-widest">
-                          2026
-                        </span>
-                      </div>
-
-                      <p className="font-serif text-[11px] sm:text-xs text-slate-200 tracking-wider font-semibold uppercase mb-1">
-                        Shri G.S. Institute of Technology and Science, Indore
-                      </p>
-
-                      <p className="font-sans text-[11px] text-amber-200/75 italic mb-5">
-                        &quot;आज की सफलता, कल की प्रेरणा — Annual Academic Ceremony&quot;
-                      </p>
-
-                      {/* Pill info tag */}
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-amber-300/30 text-[10px] font-sans text-amber-200 font-semibold mb-6">
-                        <FileText className="h-3 w-3 text-accent" />
-                        <span>35.7 MB PDF • 48+ Pages • Full Color Souvenir</span>
-                      </div>
-
-                      {/* Action buttons on cover */}
-                      <div className="flex flex-col xs:flex-row items-center gap-2.5 w-full max-w-xs">
-                        <button
-                          onClick={() => setIsModalOpen(true)}
-                          className="w-full xs:flex-1 bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 hover:from-amber-400 hover:to-amber-600 text-slate-950 font-sans text-xs font-black tracking-wider uppercase py-2.5 px-4 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 border border-amber-200/60"
-                        >
-                          <BookOpen className="h-4 w-4" />
-                          <span>Read Fullscreen</span>
-                        </button>
-
-                        <a
-                          href={magazinePdfPath}
-                          download={magazineFileName}
-                          className="w-full xs:w-auto bg-slate-900 hover:bg-slate-800 text-amber-200 border border-amber-300/40 hover:border-amber-300 font-sans text-xs font-bold tracking-wider uppercase py-2.5 px-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
-                        >
-                          <Download className="h-4 w-4 text-accent" />
-                          <span>Download</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                {/* PDF Container Frame */}
+                <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full bg-slate-950 overflow-hidden">
+                  <PdfViewerFrame
+                    src={magazinePdfPath}
+                    title="UDAAN 2026 Event Magazine PDF Preview"
+                    filename={magazineFileName}
+                  />
+                </div>
               </div>
             </Reveal>
           </div>
