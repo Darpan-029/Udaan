@@ -4,11 +4,13 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Sun, Moon, QrCode, ExternalLink } from "lucide-react"
+import { Menu, X, Sun, Moon, ExternalLink, Radio } from "lucide-react"
 import { useTheme } from "next-themes"
 import logo from "../../public/docs/sgsits_logo.png"
 import footerLogo from "../../public/docs/sgsits_logo.png"
 import { TimelineModal } from "@/components/timeline-modal"
+
+const LIVE_STREAM_URL = "https://www.youtube.com/live/KxwwqEIDZ_0?si=1aTwo1IjuQqUpzLm"
 
 const navItems = [
   { name: "DIGNITARIES", href: "#dignitaries" },
@@ -18,80 +20,10 @@ const navItems = [
   { name: "REGISTRATION", href: "#register" },
 ]
 
-function RegistrationQrModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  React.useEffect(() => {
-    if (!isOpen) return
-    document.body.style.overflow = "hidden"
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose()
-    }
-    window.addEventListener("keydown", handleKeyDown)
-    return () => {
-      document.body.style.overflow = ""
-      window.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [isOpen, onClose])
-
-  if (!isOpen) return null
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-      <div
-        className="fixed inset-0 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-      <div className="relative z-10 w-full max-w-md bg-background dark:bg-[#0D1527] border border-border dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col items-center p-6 text-center animate-in zoom-in-95 duration-200">
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 text-muted-foreground hover:text-foreground rounded-full hover:bg-muted/50 transition-colors"
-          aria-label="Close Registration QR Modal"
-        >
-          <X className="h-5 w-5" />
-        </button>
-
-        <div className="w-12 h-12 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center text-accent mb-3">
-          <QrCode className="h-6 w-6" />
-        </div>
-
-        <h3 className="font-serif text-xl md:text-2xl text-foreground font-normal mb-1">
-          Scan &amp; Register Directly
-        </h3>
-        <p className="font-sans text-xs text-muted-foreground mb-4 max-w-xs leading-relaxed">
-          Scan this official QR code to open and submit your student registration for उड़ान 2026.
-        </p>
-
-        <div className="relative p-3 bg-white rounded-xl shadow-lg border border-slate-200 mb-5">
-          <Image
-            src="/docs/QR_code.png"
-            alt="UDAAN 2026 Registration QR Code"
-            width={220}
-            height={220}
-            className="w-52 h-52 object-contain rounded-lg"
-            priority
-          />
-        </div>
-
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSe8TeeVoAveBtiZdZLuZ6Ep6YqbmiQltxQUBG0eAK1yqaF7jQ/viewform"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-slate-950 px-4 py-2.5 text-xs font-sans font-bold tracking-wider uppercase rounded-xl shadow-md transition-all hover:scale-[1.02]"
-        >
-          <ExternalLink className="h-4 w-4" />
-          <span>Open Direct Registration Form</span>
-        </a>
-      </div>
-    </div>
-  )
-}
-
-
 export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [condensed, setCondensed] = React.useState(false)
   const [isTimelineOpen, setIsTimelineOpen] = React.useState(false)
-  const [isRegQrOpen, setIsRegQrOpen] = React.useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
   const sentinelRef = React.useRef<HTMLDivElement>(null)
@@ -190,18 +122,24 @@ export function Navigation() {
                 ))}
               </nav>
 
-              {/* Right Action: QR Buttons & Mobile Menu Toggle */}
+              {/* Right Action: Live Streaming Button & Mobile Menu Toggle */}
               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                <button
-                  onClick={() => setIsRegQrOpen(true)}
-                  className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-[11px] sm:text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60"
-                  title="Scan Registration QR Code"
-                  aria-label="Open Registration QR Code Modal"
+                <a
+                  href={LIVE_STREAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-[11px] sm:text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60 group"
+                  title="Watch Live Streaming"
+                  aria-label="Watch Live Streaming on YouTube"
                 >
-                  <QrCode className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">Registration QR</span>
-                  <span className="sm:hidden">Reg QR</span>
-                </button>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                  </span>
+                  <Radio className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">Live Streaming</span>
+                  <span className="sm:hidden">Live</span>
+                </a>
 
                 <div className="lg:hidden flex items-center ml-0.5">
                   <button
@@ -251,17 +189,23 @@ export function Navigation() {
                   </p>
                 </div>
 
-                {/* Right Column: Scan QR Actions */}
+                {/* Right Column: Live Streaming Action */}
                 <div className="hidden md:flex md:col-span-3 justify-end items-center gap-2.5">
-                  <button
-                    onClick={() => setIsRegQrOpen(true)}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60"
-                    title="Scan Registration QR Code"
-                    aria-label="Open Registration QR Code Modal"
+                  <a
+                    href={LIVE_STREAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-slate-950 font-sans text-xs font-black tracking-wider uppercase transition-all shadow-md hover:scale-105 border border-amber-200/60 group"
+                    title="Watch Live Streaming"
+                    aria-label="Watch Live Streaming on YouTube"
                   >
-                    <QrCode className="h-4 w-4 text-slate-950" />
-                    <span>Registration QR</span>
-                  </button>
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
+                    </span>
+                    <Radio className="h-4 w-4" />
+                    <span>Live Streaming</span>
+                  </a>
                 </div>
 
                 <span className="sr-only">उड़ान 2026 — Academic Award Ceremony</span>
@@ -289,13 +233,21 @@ export function Navigation() {
 
               {/* Mobile toggle row (expanded state) */}
               <div className="md:hidden flex items-center justify-between pt-2.5 mt-2 border-t border-amber-300/20">
-                <button
-                  onClick={() => setIsRegQrOpen(true)}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 text-slate-950 font-sans text-xs font-black uppercase tracking-wider shadow-sm"
+                <a
+                  href={LIVE_STREAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-300 to-amber-500 text-slate-950 font-sans text-xs font-black uppercase tracking-wider shadow-sm"
+                  title="Watch Live Streaming"
+                  aria-label="Watch Live Streaming on YouTube"
                 >
-                  <QrCode className="h-3.5 w-3.5" />
-                  <span>Reg QR</span>
-                </button>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                  </span>
+                  <Radio className="h-3.5 w-3.5" />
+                  <span>Live Streaming</span>
+                </a>
 
                 <button
                   onClick={() => setIsOpen((v) => !v)}
@@ -333,8 +285,6 @@ export function Navigation() {
 
       {/* Program Timeline Popup Modal */}
       <TimelineModal isOpen={isTimelineOpen} onClose={() => setIsTimelineOpen(false)} />
-      {/* Registration QR Modal */}
-      <RegistrationQrModal isOpen={isRegQrOpen} onClose={() => setIsRegQrOpen(false)} />
     </>
   )
 }
